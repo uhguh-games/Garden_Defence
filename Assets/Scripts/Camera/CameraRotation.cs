@@ -7,7 +7,13 @@ public class CameraRotation : MonoBehaviour
     [SerializeField] Transform cameraPivot;
     [SerializeField] float speed;
     [SerializeField] float rotationAngle = 90f;
+    InputManager inputManager;
     bool isRotating;
+
+    void Awake() 
+    {
+        inputManager = GetComponent<InputManager>();
+    }
 
     void Update()
     {
