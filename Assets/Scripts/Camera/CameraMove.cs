@@ -40,7 +40,7 @@ public class CameraMove : MonoBehaviour
             
         }
 
-        if (Input.GetMouseButton(1)) 
+        if (Input.GetMouseButton(3)) 
         {
             Camera.main.transform.position = resetCamera;
         }
