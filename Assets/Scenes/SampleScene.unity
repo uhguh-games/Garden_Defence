@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomChange: 100
-  smoothChange: 0.7
+  smoothChange: 0.8
   minSize: 3
   maxSize: 12
 --- !u!1 &410087039
