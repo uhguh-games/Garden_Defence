@@ -78,7 +78,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd8c4a6ca9dc8d4f9cfddafc66c09e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonSpeed: 5
+  autoDestroyTime: 5
+  cannonSpeed: 9
   cannonDamage: 2
   rb: {fileID: 5214538112293331725}
 --- !u!1 &7939881810329936524

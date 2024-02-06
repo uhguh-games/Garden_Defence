@@ -1365,6 +1365,7 @@ MonoBehaviour:
   cannonBallPrefab: {fileID: 2627033665290779465, guid: ad0104d97cef27f49a3e567cdc543fde,
     type: 3}
   firePoint: {fileID: 639168080}
+  fireRate: 10
 --- !u!1 &1269074183
 GameObject:
   m_ObjectHideFlags: 0

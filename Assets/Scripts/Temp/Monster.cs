@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;
+    [SerializeField] Transform hitTarget; // empty object on the enemy
 
     void Start()
     {
@@ -42,5 +43,10 @@ public class Monster : MonoBehaviour
 
         currentHealth -= actualDamage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    public Transform getHitTarget() 
+    {
+        return hitTarget;
     }
 }

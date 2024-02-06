@@ -4,9 +4,25 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    [SerializeField] float range = 3.5f;
+    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] Collider[] colliders;
+    [SerializeField] List<Monster> enemiesInRange;
+    [SerializeField] Monster targetedEnemy;
+    float scanningTimer;
+    float scanningDelay = 0.1f;
+    private bool cannonActive;
+
+
+    [Header ("Shooting")]
+    // [SerializeField] Transform firingPoint;
+    float fireTimer;
+    [SerializeField] float fireDelay = 1.0f;
+
+
     [SerializeField] CannonBall cannonBallPrefab;
     [SerializeField] GameObject firePoint;
-    private int fireRate = 10;
+    // [SerializeField] private int fireRate = 10;
     private ObjectPool cannonBallPool;
 
     private void Awake() 
@@ -16,17 +32,96 @@ public class Cannon : MonoBehaviour
 
     private void Update() 
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            StartCoroutine(Shoot());
+            // StartCoroutine(Shoot());
+            Fire();
+        }
+        */
+        if (cannonActive)
+        {
+            scanningTimer += Time.deltaTime;
+            if (scanningTimer >= scanningDelay)
+            {
+                scanningTimer = 0;
+                ScanForEnemies();
+            }
+            
+            if (targetedEnemy)
+            {
+                fireTimer += Time.deltaTime;
+            }
+            if (fireTimer >= fireDelay)
+            {
+                fireTimer = 0f;
+                Fire();
+            }
         }
     }
 
+    private void ScanForEnemies() 
+    {
+        colliders = Physics.OverlapSphere(transform.position, range, enemyLayer);
+
+        enemiesInRange.Clear();
+
+        foreach(Collider collider in colliders) 
+        {
+            enemiesInRange.Add(collider.GetComponent<Monster>());
+        }
+
+        if (enemiesInRange.Count != 0) 
+        {
+            targetedEnemy = enemiesInRange[0];
+        }
+    }
+    
+    private void Fire()
+    {
+        if (targetedEnemy != null) 
+        {
+           // Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized; // uncomment
+            PoolableObject instance = cannonBallPool.GetObject();
+            //  instance.Setup(enemyDirection, targetedEnemy); // uncomment
+            instance.transform.SetParent(transform, false);
+            instance.transform.position = firePoint.transform.position;
+        }
+        /*
+        PoolableObject instance = cannonBallPool.GetObject();
+        instance.transform.SetParent(transform, false);
+        instance.transform.position = firePoint.transform.position;
+        */
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    public void ActivateCannon() 
+    {
+        cannonActive = true;
+    }
+
+    #region IEnumerator
+    /*
     private IEnumerator Shoot() 
     {
-        WaitForSeconds wait = new WaitForSeconds(1f / fireRate);
+        #region One at the time
+        PoolableObject instance = cannonBallPool.GetObject();
+        instance.transform.SetParent(transform, false);
+        instance.transform.position = firePoint.transform.position;
 
-        while(true) 
+        yield return new WaitForSeconds(5f);
+
+        // WaitForSeconds wait = new WaitForSeconds(1f / fireRate);
+        #endregion
+
+        #region Rapid fire
+
+        while(true)
         {
             PoolableObject instance = cannonBallPool.GetObject();
 
@@ -36,11 +131,16 @@ public class Cannon : MonoBehaviour
                 instance.transform.position = firePoint.transform.position;
                 // instance.transform.localPosition = Vector3.zero;
             }
+
             yield return wait;
         }
-    }
 
-    #region Outdated Cannon Instantiation
+        #endregion
+    }
+    */
+    #endregion
+
+    #region Outdated Cannon
     /*
     private void ShootCannonBall() 
     {

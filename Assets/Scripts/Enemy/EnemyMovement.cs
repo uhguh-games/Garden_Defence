@@ -26,8 +26,12 @@ public class EnemyMovement : MonoBehaviour
         while(enabled) 
         {
             agent.SetDestination(target.transform.position);
+            transform.LookAt(target);
             yield return wait;
         }
+
+        // Once reach target (the crops): perform animation, play nomnom sound
+        // Walk off screen despawn.
     }
 
 
