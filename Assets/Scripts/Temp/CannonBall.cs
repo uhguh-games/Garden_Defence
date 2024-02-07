@@ -74,6 +74,7 @@ public class CannonBall : AutoDestroyPoolableObject
         if (targetedEnemy != null && other.gameObject == targetedEnemy.gameObject)
         {
             targetedEnemy.TakeDamage(cannonDamage);
+            this.gameObject.SetActive(false);
         }
  
         // Get destroyed anyway

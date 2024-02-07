@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
         while(enabled) 
         {
             agent.SetDestination(target.transform.position);
-            transform.LookAt(target);
+            // transform.LookAt(target);
             yield return wait;
         }
 

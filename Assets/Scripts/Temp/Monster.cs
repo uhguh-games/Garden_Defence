@@ -33,14 +33,8 @@ public class Monster : MonoBehaviour
     {
         float percentage = damage / maxHealth;
 
-        print("Percent damage taken: " + Mathf.Round(percentage * 100f) / 100f);
-        print (percentage);
-
         float actualDamage = maxHealth * percentage;
         
-        print("Actual damage: " + Mathf.Round(actualDamage * 100f) / 100f);
-        print (actualDamage);
-
         currentHealth -= actualDamage;
         healthBar.SetHealth(currentHealth);
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    [Header("Enemy Detection")]
     [SerializeField] float range = 3.5f;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] Collider[] colliders;
@@ -11,17 +12,13 @@ public class Cannon : MonoBehaviour
     [SerializeField] Monster targetedEnemy;
     float scanningTimer;
     float scanningDelay = 0.1f;
-    private bool cannonActive;
 
 
-    [Header ("Shooting")]
-    // [SerializeField] Transform firingPoint;
+    private bool cannonActive = true;
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
-
-
     [SerializeField] CannonBall cannonBallPrefab;
-    [SerializeField] GameObject firePoint;
+    [SerializeField] Transform firePoint;
     // [SerializeField] private int fireRate = 10;
     private ObjectPool cannonBallPool;
 
@@ -39,6 +36,7 @@ public class Cannon : MonoBehaviour
             Fire();
         }
         */
+
         if (cannonActive)
         {
             scanningTimer += Time.deltaTime;
@@ -81,12 +79,19 @@ public class Cannon : MonoBehaviour
     {
         if (targetedEnemy != null) 
         {
-           // Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized; // uncomment
-            PoolableObject instance = cannonBallPool.GetObject();
-            //  instance.Setup(enemyDirection, targetedEnemy); // uncomment
-            instance.transform.SetParent(transform, false);
-            instance.transform.position = firePoint.transform.position;
+            Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized;
+        
+            PoolableObject pooledObject = cannonBallPool.GetObject();
+            CannonBall cannonBall = pooledObject as CannonBall; // Attempt to cast the pooled object to CannonBall
+
+            if (cannonBall != null) 
+            {
+                cannonBall.Setup(enemyDirection, targetedEnemy); // Call Setup() on the CannonBall
+                cannonBall.transform.SetParent(transform, false);
+                cannonBall.transform.position = firePoint.transform.position;
+            }
         }
+
         /*
         PoolableObject instance = cannonBallPool.GetObject();
         instance.transform.SetParent(transform, false);
