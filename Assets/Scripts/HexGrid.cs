@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HexGrid : MonoBehaviour 
 {
-    [SerializeField] private Transform pfHex;
+    [SerializeField] private Transform hexSprite;
 
     private GridHexXZ<GridObject> gridHexXZ;
     private GridObject lastGridObject;
@@ -43,7 +43,7 @@ public class HexGrid : MonoBehaviour
         {
             for (int z = 0; z < height; z++) 
             {
-                Transform visualTransform = Instantiate(pfHex, gridHexXZ.GetWorldPosition(x, z), Quaternion.identity);
+                Transform visualTransform = Instantiate(hexSprite, gridHexXZ.GetWorldPosition(x, z), Quaternion.identity);
                 visualTransform.transform.parent = hexGridContainer.transform;
                 gridHexXZ.GetGridObject(x, z).visualTransform = visualTransform;
                 gridHexXZ.GetGridObject(x, z).Hide();
