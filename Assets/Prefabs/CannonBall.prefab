@@ -95,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd8c4a6ca9dc8d4f9cfddafc66c09e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonSpeed: 5
-  cannonDamage: 2
+  autoDestroyTime: 5
+  cannonSpeed: 9
+  cannonDamage: 1
   rb: {fileID: 5214538112293331725}
 --- !u!1 &7939881810329936524
 GameObject:

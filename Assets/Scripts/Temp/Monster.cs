@@ -11,6 +11,7 @@ public class Monster : MonoBehaviour
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;
+    [SerializeField] Transform hitTarget; // empty object on the enemy
 
     void Start()
     {
@@ -32,15 +33,14 @@ public class Monster : MonoBehaviour
     {
         float percentage = damage / maxHealth;
 
-        print("Percent damage taken: " + Mathf.Round(percentage * 100f) / 100f);
-        print (percentage);
-
         float actualDamage = maxHealth * percentage;
         
-        print("Actual damage: " + Mathf.Round(actualDamage * 100f) / 100f);
-        print (actualDamage);
-
         currentHealth -= actualDamage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    public Transform getHitTarget() 
+    {
+        return hitTarget;
     }
 }
