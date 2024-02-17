@@ -5,14 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class TowerSpawner : MonoBehaviour
 {
-    [SerializeField] private HexGrid hexGrid;
-
-    // Write any code needed for UI regarding to the grid in HexGrid
-
-    Cannon towerIndicator;
+    private HexGrid hexGrid;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Cannon basicTower;
     private bool spawnerActive;
+    Cannon towerIndicator;
     Vector3 worldPosition;
 
     [Header("Grid")]
@@ -27,14 +24,14 @@ public class TowerSpawner : MonoBehaviour
         hexGrid = FindObjectOfType<HexGrid>();
     }
 
-    private void Update() 
+    private void FixedUpdate() 
     {
         if (hexGrid != null)
         {
             worldPosition = hexGrid.lastWorldPosition;
         }
 
-         if (Input.GetKeyDown(KeyCode.Alpha0) && !spawnerActive) 
+        if (Input.GetKeyDown(KeyCode.Alpha0) && !spawnerActive) 
         {
             towerIndicator = Instantiate(basicTower, GetMousePosition(), Quaternion.identity);
             spawnerActive = true;
@@ -44,12 +41,12 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.transform.position = GetMousePosition();
 
-            if (Input.GetMouseButton(0)) 
+            if (Input.GetMouseButtonDown(0)) 
             {
                 towerIndicator = null;
                 spawnerActive = false;
             }
-            else if (Input.GetMouseButton(1)) 
+            else if (Input.GetMouseButtonDown(1)) 
             {
                 Destroy(towerIndicator.gameObject);
                 spawnerActive = false;
@@ -67,15 +64,12 @@ public class TowerSpawner : MonoBehaviour
         {
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
 
-            // Convert raycast hit point to a position on the tilemap grid
             cellPosition = tilemap.WorldToCell(hit.point);
 
-            // Calculate the world position of the center of the hexagon
             Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPosition);
 
             return worldPosition;
         }
-
         return Vector3.zero;
     }
 }
