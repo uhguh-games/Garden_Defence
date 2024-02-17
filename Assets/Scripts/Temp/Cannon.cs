@@ -7,7 +7,7 @@ public class Cannon : MonoBehaviour
     [Header("Enemy Detection")]
     [SerializeField] float range = 3.5f;
     [SerializeField] LayerMask enemyLayer;
-    [SerializeField] Collider[] colliders;
+    Collider[] colliders;
     [SerializeField] List<Monster> enemiesInRange;
     [SerializeField] Monster targetedEnemy;
     float scanningTimer;
@@ -19,7 +19,6 @@ public class Cannon : MonoBehaviour
     [SerializeField] float fireDelay = 1.0f;
     [SerializeField] CannonBall cannonBallPrefab;
     [SerializeField] Transform firePoint;
-    // [SerializeField] private int fireRate = 10;
     private ObjectPool cannonBallPool;
 
     private void Awake() 
@@ -29,14 +28,6 @@ public class Cannon : MonoBehaviour
 
     private void Update() 
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            // StartCoroutine(Shoot());
-            Fire();
-        }
-        */
-
         if (cannonActive)
         {
             scanningTimer += Time.deltaTime;
@@ -82,21 +73,15 @@ public class Cannon : MonoBehaviour
             Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized;
         
             PoolableObject pooledObject = cannonBallPool.GetObject();
-            CannonBall cannonBall = pooledObject as CannonBall; // Attempt to cast the pooled object to CannonBall
+            CannonBall cannonBall = pooledObject as CannonBall;
 
             if (cannonBall != null) 
             {
-                cannonBall.Setup(enemyDirection, targetedEnemy); // Call Setup() on the CannonBall
+                cannonBall.Setup(enemyDirection, targetedEnemy);
                 cannonBall.transform.SetParent(transform, false);
                 cannonBall.transform.position = firePoint.transform.position;
             }
         }
-
-        /*
-        PoolableObject instance = cannonBallPool.GetObject();
-        instance.transform.SetParent(transform, false);
-        instance.transform.position = firePoint.transform.position;
-        */
     }
 
     private void OnDrawGizmosSelected() 
@@ -109,50 +94,4 @@ public class Cannon : MonoBehaviour
     {
         cannonActive = true;
     }
-
-    #region IEnumerator
-    /*
-    private IEnumerator Shoot() 
-    {
-        #region One at the time
-        PoolableObject instance = cannonBallPool.GetObject();
-        instance.transform.SetParent(transform, false);
-        instance.transform.position = firePoint.transform.position;
-
-        yield return new WaitForSeconds(5f);
-
-        // WaitForSeconds wait = new WaitForSeconds(1f / fireRate);
-        #endregion
-
-        #region Rapid fire
-
-        while(true)
-        {
-            PoolableObject instance = cannonBallPool.GetObject();
-
-            if (instance != null) 
-            {
-                instance.transform.SetParent(transform, false);
-                instance.transform.position = firePoint.transform.position;
-                // instance.transform.localPosition = Vector3.zero;
-            }
-
-            yield return wait;
-        }
-
-        #endregion
-    }
-    */
-    #endregion
-
-    #region Outdated Cannon
-    /*
-    private void ShootCannonBall() 
-    {
-        Vector3 cannonBallSpawnPoint = firePoint.transform.position;
-        GameObject newCannonBall = Instantiate(cannonBallPrefab, cannonBallSpawnPoint, Quaternion.identity);
-        newCannonBall.transform.parent = firePoint.transform;
-    }
-    */
-    #endregion
 }
