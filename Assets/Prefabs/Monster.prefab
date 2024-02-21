@@ -305,6 +305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f915a767a76be42b78d34523d3499c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+  junkPrefab: {fileID: 3261530027318942942, guid: c72c1b152d66e624cac996877c346792,
+    type: 3}
   maxHealth: 2
   currentHealth: 0
   hitTarget: {fileID: 3795463032311767885}

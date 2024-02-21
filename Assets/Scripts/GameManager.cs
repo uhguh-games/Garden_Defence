@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] EventManagerSO eventManager;
+    public int junk = 0;
+
+    private void OnEnable()
     {
-        // this is a comment
-        
+        eventManager.onKill += CollectJunk;
+    }
+    private void OnDisable()
+    {
+        eventManager.onKill -= CollectJunk;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CollectJunk()
     {
-        
+        junk += 100;
     }
 }
