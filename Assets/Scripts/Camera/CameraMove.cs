@@ -16,7 +16,7 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate() 
     {
-        if (Input.GetMouseButton(0)) 
+        if (Input.GetMouseButton(1)) 
         {
             difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
 
@@ -40,7 +40,7 @@ public class CameraMove : MonoBehaviour
             
         }
 
-        if (Input.GetMouseButton(3)) 
+        if (Input.GetKeyDown(KeyCode.R)) 
         {
             Camera.main.transform.position = resetCamera;
         }
