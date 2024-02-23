@@ -25,7 +25,7 @@ public class ResourceJunk : AutoDestroyPoolableObject
         base.OnDisable();
     }
 
-    private void Update()
+    private void OnMouseDown()
     {
         
         Debug.Log(Mouse3D.GetMouseWorldPosition()); 

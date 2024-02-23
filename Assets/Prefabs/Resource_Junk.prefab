@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1231780269651237123}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.034, y: -0.9010001, z: -0.195}
+  m_LocalPosition: {x: -0.21, y: -0.9010001, z: 0.12099999}
   m_LocalScale: {x: 0.44000003, y: 0.44000003, z: 0.44000003}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 2886332594939383517}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.162, y: -0.5180001, z: -0.419}
+  m_LocalPosition: {x: -0.013999999, y: -0.5180001, z: -0.103000015}
   m_LocalScale: {x: 0.44000003, y: 0.44000003, z: 0.44000003}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -238,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 6392081749248097232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.413, y: -0.901, z: -0.542}
+  m_LocalPosition: {x: 0.23699999, y: -0.901, z: -0.226}
   m_LocalScale: {x: 0.44000003, y: 0.44000003, z: 0.44000003}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -325,6 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9049469592402957548}
   - component: {fileID: 3261530027318942942}
+  - component: {fileID: 1264418434084964570}
   m_Layer: 0
   m_Name: Resource_Junk
   m_TagString: Untagged
@@ -364,3 +365,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDestroyTime: 5
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+--- !u!65 &1264418434084964570
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7146167263187382049}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.6, z: 0}
