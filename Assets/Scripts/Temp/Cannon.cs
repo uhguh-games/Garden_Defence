@@ -12,9 +12,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] Monster targetedEnemy;
     float scanningTimer;
     float scanningDelay = 0.1f;
-
-
-    private bool cannonActive = true;
+    private bool cannonActive = false;
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
     [SerializeField] CannonBall cannonBallPrefab;
@@ -23,7 +21,7 @@ public class Cannon : MonoBehaviour
 
     private void Awake() 
     {
-        cannonBallPool = ObjectPool.CreateInstance(cannonBallPrefab, 50);
+        cannonBallPool = ObjectPool.CreateInstance(cannonBallPrefab, 50); // Move this to a different script
     }
 
     private void Update() 

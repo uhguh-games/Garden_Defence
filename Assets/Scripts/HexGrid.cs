@@ -49,6 +49,8 @@ public class HexGrid : MonoBehaviour
                 gridHexXZ.GetGridObject(x, z).Hide();
             }
         }
+        
+        ToggleGridVisibility(false);
     }
 
     private void Update()
@@ -70,5 +72,10 @@ public class HexGrid : MonoBehaviour
 
             lastGridObject.Show();
         }
+    }
+
+    public void ToggleGridVisibility(bool isVisible)
+    {
+        hexGridContainer.SetActive(isVisible);
     }
 }

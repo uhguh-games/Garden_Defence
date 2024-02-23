@@ -14,7 +14,7 @@ public class CameraZoom : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    private void Update() 
+    private void LateUpdate() 
     {
         if (Input.mouseScrollDelta.y > 0) 
         {
@@ -27,14 +27,5 @@ public class CameraZoom : MonoBehaviour
 
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minSize, maxSize);
 
-
-
-
     }
-
-
-
-
-
-    
 }

@@ -33,8 +33,7 @@ public class TowerSpawner : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0) && !spawnerActive) 
         {
-            towerIndicator = Instantiate(basicTower, GetMousePosition(), Quaternion.identity);
-            spawnerActive = true;
+            PreviewTower();
         }
 
         if (spawnerActive) 
@@ -43,18 +42,37 @@ public class TowerSpawner : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0)) 
             {
-                towerIndicator = null;
-                spawnerActive = false;
+                PlaceTower();
             }
             else if (Input.GetMouseButtonDown(1)) 
             {
-                Destroy(towerIndicator.gameObject);
-                spawnerActive = false;
+                CancelTower();
             }
         }
     }
 
-    private Vector3 GetMousePosition() 
+    public void PreviewTower() 
+    {
+        towerIndicator = Instantiate(basicTower, GetMousePosition(), Quaternion.identity);
+        hexGrid.ToggleGridVisibility(true);
+        spawnerActive = true;
+    }
+
+    public void PlaceTower() 
+    {
+        towerIndicator.ActivateCannon();
+        hexGrid.ToggleGridVisibility(false);
+        towerIndicator = null;
+        spawnerActive = false;
+    }
+
+    public void CancelTower() 
+    {
+        Destroy(towerIndicator.gameObject);
+        spawnerActive = false;
+    }
+
+    private Vector3 GetMousePosition() // Later: Fetch mouse position from mouse3D script?
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -70,6 +88,7 @@ public class TowerSpawner : MonoBehaviour
 
             return worldPosition;
         }
+
         return Vector3.zero;
     }
 }

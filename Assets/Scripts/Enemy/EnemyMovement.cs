@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake() 
     {
+        target = GameObject.Find("MonsterTarget").GetComponent<Transform>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
