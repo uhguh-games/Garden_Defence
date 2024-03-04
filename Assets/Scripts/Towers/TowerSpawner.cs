@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine;
 
 public class TowerSpawner : MonoBehaviour
 {
     private HexGrid hexGrid;
+    private PlaceItem placeItem;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] Cannon basicTower;
     private bool spawnerActive;
-    Cannon towerIndicator;
+
+    // Cannon towerIndicator;
+    GameObject towerIndicator;
     Vector3 worldPosition;
 
     [Header("Grid")]
@@ -22,6 +24,7 @@ public class TowerSpawner : MonoBehaviour
         spawnerActive = false;
 
         hexGrid = FindObjectOfType<HexGrid>();
+        placeItem = GameObject.Find("Main Canvas").GetComponent<PlaceItem>();
     }
 
     private void FixedUpdate() 
@@ -53,14 +56,14 @@ public class TowerSpawner : MonoBehaviour
 
     public void PreviewTower() 
     {
-        towerIndicator = Instantiate(basicTower, GetMousePosition(), Quaternion.identity);
+        towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
         hexGrid.ToggleGridVisibility(true);
         spawnerActive = true;
     }
 
     public void PlaceTower() 
     {
-        towerIndicator.ActivateCannon();
+        towerIndicator.GetComponent<Tower>().ActivateTower();
         hexGrid.ToggleGridVisibility(false);
         towerIndicator = null;
         spawnerActive = false;

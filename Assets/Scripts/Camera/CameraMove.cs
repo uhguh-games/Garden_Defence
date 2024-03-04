@@ -16,7 +16,7 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate() 
     {
-        if (Input.GetMouseButton(1)) 
+        if (Input.GetMouseButton(2)) 
         {
             difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
 

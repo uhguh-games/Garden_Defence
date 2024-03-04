@@ -12,21 +12,22 @@ public class Cannon : MonoBehaviour
     [SerializeField] Monster targetedEnemy;
     float scanningTimer;
     float scanningDelay = 0.1f;
-    private bool cannonActive = false;
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
     [SerializeField] CannonBall cannonBallPrefab;
     [SerializeField] Transform firePoint;
     private ObjectPool cannonBallPool;
+    private Tower tower;
 
     private void Awake() 
     {
         cannonBallPool = ObjectPool.CreateInstance(cannonBallPrefab, 50); // Move this to a different script
+        tower = GetComponent<Tower>();
     }
 
     private void Update() 
     {
-        if (cannonActive)
+        if (tower.towerActive)
         {
             scanningTimer += Time.deltaTime;
             if (scanningTimer >= scanningDelay)
@@ -39,6 +40,7 @@ public class Cannon : MonoBehaviour
             {
                 fireTimer += Time.deltaTime;
             }
+
             if (fireTimer >= fireDelay)
             {
                 fireTimer = 0f;
@@ -86,10 +88,5 @@ public class Cannon : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
-    }
-
-    public void ActivateCannon() 
-    {
-        cannonActive = true;
     }
 }

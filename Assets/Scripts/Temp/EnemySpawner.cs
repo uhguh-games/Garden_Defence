@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    private bool spawnEnemies;
+    [SerializeField] private bool spawnEnemies;
     [SerializeField] private float waitTime = 2f;
 
     void Start()
@@ -19,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
         {
             Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(waitTime);
-
         }
     }
 }

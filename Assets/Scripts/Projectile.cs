@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    /*
     [SerializeField] float speed = 10f;
     [SerializeField] float rotationSpeed = 360f;
     [SerializeField] float damage = 5f;
@@ -13,7 +14,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] LayerMask groundLayers;
 
     private Rigidbody rb;
-    private Enemy targetedEnemy;
+    private Monster targetedEnemy;
     private Vector3 lastDirection;
     public bool onGround = false;
     
@@ -97,5 +98,7 @@ public class Projectile : MonoBehaviour
              Destroy(this.gameObject);
       
     }
+
+    */
 
 }
