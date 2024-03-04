@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class JunkUITest : MonoBehaviour
 {
 
-    [SerializeField] GameManager gameManager;
-    [SerializeField] private Text text;
+    GameManager gameManager;
+    [SerializeField] private TextMeshProUGUI text;
+
+    void Start() 
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
 
     void Update()

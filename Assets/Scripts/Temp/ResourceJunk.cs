@@ -33,8 +33,7 @@ public class ResourceJunk : AutoDestroyPoolableObject
         {
             Debug.Log("Collected junk");
             eventManager.LootCollected();
-            Destroy(gameObject);
-            
+            Destroy(gameObject); // Instead of deleting <- Set inactive
         }
     }
 }

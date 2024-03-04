@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    /*
-    This is a script used for testing - it will be deleted later
-    */
     [SerializeField] EventManagerSO eventManager;
     [SerializeField] private ResourceJunk junkPrefab;
     private ObjectPool junkPool;
@@ -19,7 +16,7 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
-        junkPool = ObjectPool.CreateInstance(junkPrefab, 50);
+        junkPool = ObjectPool.CreateInstance(junkPrefab, 50); // I will move this to a pool manager later
 
     }
     void Start()
