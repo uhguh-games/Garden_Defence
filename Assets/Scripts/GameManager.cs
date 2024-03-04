@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
     public int junk = 0;
+    public int junkAmount = 10;
 
     private void OnEnable()
     {
@@ -18,6 +19,6 @@ public class GameManager : MonoBehaviour
 
     private void CollectJunk()
     {
-        junk += 100;
+        junk += junkAmount;
     }
 }

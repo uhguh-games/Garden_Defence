@@ -5,10 +5,9 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    [SerializeField] private ResourceJunk junkPrefab;
+    [SerializeField] ResourceJunk junkPrefab;
     private ObjectPool junkPool;
     private Transform deathPos;
-
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;

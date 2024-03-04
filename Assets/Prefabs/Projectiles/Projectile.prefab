@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2417419389206653550}
   - component: {fileID: 406663592428045698}
   - component: {fileID: -546886658390944062}
+  - component: {fileID: -721869806762949626}
   m_Layer: 7
   m_Name: Projectile
   m_TagString: Projectile
@@ -95,14 +96,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2de5f4390317e4d9fdd9401301f45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  rotationSpeed: 50
-  damage: 2
-  impact: {fileID: 4617422913374790330, guid: fe0981d9d1714464cb6208d26a08d3a1, type: 3}
-  waitTime: 0.1
+--- !u!114 &-721869806762949626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817646743612878425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd8c4a6ca9dc8d4f9cfddafc66c09e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoDestroyTime: 5
+  cannonSpeed: 5
+  rotationSpeed: 360
+  cannonDamage: 1
   groundLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
+  waitTime: 0.1
+  impact: {fileID: 4617422913374790330, guid: fe0981d9d1714464cb6208d26a08d3a1, type: 3}
   onGround: 0
 --- !u!1 &1519296037760517609
 GameObject:

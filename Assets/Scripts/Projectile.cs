@@ -26,41 +26,6 @@ public class Projectile : MonoBehaviour
         StartCoroutine(Spin());
     }
 
-    public void Setup(Vector3 enemyDirection, Enemy incomingTargetedEnemy)
-    {
-        targetedEnemy = incomingTargetedEnemy; // who to chase?
-        lastDirection = (targetedEnemy.getHitTarget().position - transform.position).normalized;
-    }
-    private void DestroyStrayBullet()
-    {
-        Destroy(this.gameObject);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-       if ((groundLayers & (1<< collision.gameObject.layer)) != 0)
-        {
-            onGround = true;
-        }
-       
-    }
-
-    IEnumerator Spin()
-    {
-        while (!onGround)
-        {
-            // Apply a random rotation around the y-axis
-            float randomYRotation = Random.Range(0f, 360f);
-            transform.rotation = Quaternion.Euler(0f, randomYRotation, 0f);
-
-            // Apply continuous angular velocity for spinning effect
-            rb.angularVelocity = Random.insideUnitSphere * rotationSpeed; // Adjust rotation speed as needed
-           
-            yield return new WaitForSeconds(waitTime);
-        }
- 
-    }
-
     private void Update()
     {
         
@@ -79,6 +44,41 @@ public class Projectile : MonoBehaviour
         Invoke("DestroyStrayBullet", 3f);
     }
 
+    public void Setup(Vector3 enemyDirection, Enemy incomingTargetedEnemy)
+    {
+        targetedEnemy = incomingTargetedEnemy; // who to chase?
+        lastDirection = (targetedEnemy.getHitTarget().position - transform.position).normalized;
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+       if ((groundLayers & (1<< collision.gameObject.layer)) != 0)
+        {
+            onGround = true;
+        }
+    }
+
+    IEnumerator Spin()
+    {
+        while (!onGround)
+        {
+            // Apply a random rotation around the y-axis
+            float randomYRotation = Random.Range(0f, 360f);
+            transform.rotation = Quaternion.Euler(0f, randomYRotation, 0f);
+
+            // Apply continuous angular velocity for spinning effect
+            rb.angularVelocity = Random.insideUnitSphere * rotationSpeed; // Adjust rotation speed as needed
+           
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    private void DestroyStrayBullet()
+    {
+        Destroy(this.gameObject);
+    }
+
 
 
     private void ActivateRigidbody()
@@ -95,7 +95,7 @@ public class Projectile : MonoBehaviour
             GameObject newImpact = Instantiate(impact, transform.position, Quaternion.identity);
             Destroy(newImpact, 1f);
         }
-             Destroy(this.gameObject);
+            Destroy(this.gameObject);
       
     }
 

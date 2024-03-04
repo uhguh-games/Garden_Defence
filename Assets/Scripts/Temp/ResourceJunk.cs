@@ -27,8 +27,6 @@ public class ResourceJunk : AutoDestroyPoolableObject
 
     private void OnMouseDown()
     {
-        
-        Debug.Log(Mouse3D.GetMouseWorldPosition()); 
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Collected junk");
