@@ -27279,7 +27279,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2076557669}
     m_Modifications:
     - target: {fileID: 2867965618050074642, guid: 0672d9619a3a8b6479595662bbbd9a18,
         type: 3}
@@ -32013,6 +32013,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632182629}
   m_CullTransparentMesh: 1
+--- !u!4 &636560574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3208497131490431656, guid: 0672d9619a3a8b6479595662bbbd9a18,
+    type: 3}
+  m_PrefabInstance: {fileID: 435959241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &663244616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54919,6 +54925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559011590}
+  - component: {fileID: 1559011591}
   m_Layer: 0
   m_Name: PoolManager
   m_TagString: Untagged
@@ -54941,6 +54948,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 903377379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1559011591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559011589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481213fa9d6a67c40864d792b4216290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannonBallPrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
+    type: 3}
+  junkPrefab: {fileID: 3261530027318942942, guid: c72c1b152d66e624cac996877c346792,
+    type: 3}
 --- !u!1001 &1560594444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74604,6 +74627,7 @@ Transform:
   - {fileID: 29922569}
   - {fileID: 355320840121315747}
   - {fileID: 1712890400}
+  - {fileID: 636560574}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2118702351
@@ -75829,6 +75853,5 @@ SceneRoots:
   - {fileID: 1278186079}
   - {fileID: 903377379}
   - {fileID: 1291824600}
-  - {fileID: 435959241}
   - {fileID: 2050581225}
   - {fileID: 224426405}

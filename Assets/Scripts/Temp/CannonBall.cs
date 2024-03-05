@@ -7,15 +7,15 @@ using UnityEngine;
 public class CannonBall : AutoDestroyPoolableObject
 {
     [SerializeField] float cannonSpeed = 5f;
-    [SerializeField] float rotationSpeed = 360f;
+    // float rotationSpeed = 360f;
     [SerializeField] float cannonDamage = 1f;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] float waitTime = 0.1f;
     private Rigidbody rb;
     private Monster targetedEnemy;
     private Vector3 lastDirection;
-    [SerializeField] private GameObject impact;
-    public bool onGround = false;
+    [SerializeField] GameObject impact;
+    public bool onGround;
 
     void Awake()
     {
@@ -70,7 +70,7 @@ public class CannonBall : AutoDestroyPoolableObject
             transform.rotation = Quaternion.Euler(0f, randomYRotation, 0f);
 
             // Apply continuous angular velocity for spinning effect
-            rb.angularVelocity = Random.insideUnitSphere * rotationSpeed; // Adjust rotation speed as needed
+            // rb.angularVelocity = Random.insideUnitSphere * rotationSpeed; // Adjust rotation speed as needed
            
             yield return new WaitForSeconds(waitTime);
         }

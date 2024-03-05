@@ -10,18 +10,18 @@ public class Cannon : MonoBehaviour
     Collider[] colliders;
     [SerializeField] List<Monster> enemiesInRange;
     [SerializeField] Monster targetedEnemy;
+    [SerializeField] float scanningDelay = 0.1f;
     float scanningTimer;
-    float scanningDelay = 0.1f;
     float fireTimer;
-    [SerializeField] float fireDelay = 1.0f;
-    [SerializeField] CannonBall cannonBallPrefab;
-    [SerializeField] Transform firePoint;
-    private ObjectPool cannonBallPool;
     private Tower tower;
+    [SerializeField] float fireDelay = 1.0f;
+    [SerializeField] Transform firePoint;
+    private PoolManager poolManager;
+
 
     private void Awake() 
     {
-        cannonBallPool = ObjectPool.CreateInstance(cannonBallPrefab, 50); // Move this to a different script
+        poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
         tower = GetComponent<Tower>();
     }
 
@@ -30,6 +30,7 @@ public class Cannon : MonoBehaviour
         if (tower.towerActive)
         {
             scanningTimer += Time.deltaTime;
+
             if (scanningTimer >= scanningDelay)
             {
                 scanningTimer = 0;
@@ -72,7 +73,8 @@ public class Cannon : MonoBehaviour
         {
             Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized;
         
-            PoolableObject pooledObject = cannonBallPool.GetObject();
+            PoolableObject pooledObject = poolManager.cannonBallPool.GetObject();
+            // PoolableObject pooledObject = cannonBallPool.GetObject();
             CannonBall cannonBall = pooledObject as CannonBall;
 
             if (cannonBall != null) 

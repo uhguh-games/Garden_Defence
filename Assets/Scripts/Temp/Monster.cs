@@ -5,17 +5,21 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    [SerializeField] ResourceJunk junkPrefab;
-    private ObjectPool junkPool;
     private Transform deathPos;
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;
     [SerializeField] Transform hitTarget; // empty object on the enemy
+    private PoolManager poolManager;
+
+    // [SerializeField] ResourceJunk junkPrefab;
+    
+    // private ObjectPool junkPool;
 
     private void Awake()
     {
-        junkPool = ObjectPool.CreateInstance(junkPrefab, 50); // I will move this to a pool manager later
+        poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
+        // junkPool = ObjectPool.CreateInstance(junkPrefab, 50); // I will move this to a pool manager later
 
     }
     void Start()
@@ -32,7 +36,7 @@ public class Monster : MonoBehaviour
             deathPos = this.transform;
             print ("Killed " + this.gameObject.name);
             DropJunk();
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); // disable (return too pool)
         }
     }
 
@@ -53,7 +57,7 @@ public class Monster : MonoBehaviour
 
     private void DropJunk()
     {
-        PoolableObject instance = junkPool.GetObject();
+        PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
         instance.transform.position = deathPos.position;
     }

@@ -17,5 +17,5 @@ MonoBehaviour:
   description: 'Basic Tower Cost: 2$'
   type: 0
   prefab: {fileID: 2204349404975903633, guid: 4c8106f09008246448315df3c6d86383, type: 3}
-  icon: {fileID: 2800000, guid: 2d7ecdddcb9de8246bc09cec00d8da07, type: 3}
+  icon: {fileID: 2800000, guid: e9559f2381648704e85ac1e17f1c471e, type: 3}
   value: 2
