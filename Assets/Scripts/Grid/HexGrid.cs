@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class HexGrid : MonoBehaviour
 {
-    [SerializeField] private Transform hexSprite;
+    [SerializeField] Transform hexSprite;
+    [SerializeField] Transform testObject;
 
     private GridHexXZ<GridObject> gridHexXZ;
     private GridObject lastGridObject;
@@ -17,6 +18,24 @@ public class HexGrid : MonoBehaviour
     private class GridObject
     {
         public Transform visualTransform;
+
+        // Testing stuff from CodeMonkeys horrible video:
+        private Transform cellTransform;
+
+        public void SetTransform(Transform cellTransform) 
+        {
+            this.cellTransform = cellTransform;
+        }
+
+        public void ClearTransform() 
+        {
+            cellTransform = null;
+        }
+
+        public bool CanPlace() 
+        {
+            return cellTransform == null;
+        }
 
         public void Show()
         {
@@ -69,8 +88,17 @@ public class HexGrid : MonoBehaviour
             gridHexXZ.GetXZ(lastGridObject.visualTransform.position, out x, out z);
             lastWorldPosition = gridHexXZ.GetWorldPosition(x, z);
             // Debug.Log("World Position of Current Cell: " + lastWorldPosition);
+            if (lastGridObject.CanPlace()) 
+            {
+                lastGridObject.Show();
+                // Transform placedTransform = Instantiate(testObject, lastWorldPosition, Quaternion.identity);
+                // lastGridObject.SetTransform(placedTransform);
+            } 
+            else 
+            {
+                print ("Can't place here");
 
-            lastGridObject.Show();
+            }
         }
     }
 

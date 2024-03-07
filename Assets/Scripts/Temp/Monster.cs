@@ -61,4 +61,12 @@ public class Monster : MonoBehaviour
         ResourceJunk junkPrefab = instance as ResourceJunk;
         instance.transform.position = deathPos.position;
     }
+
+    void OnTriggerEnter(Collider other) // temporary cringy solution
+    {
+        if (other.tag == "Temp")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
