@@ -1,50 +1,41 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class HexGrid : MonoBehaviour
 {
-    [SerializeField] Transform hexSprite;
-    [SerializeField] Transform testObject;
-
-    private GridHexXZ<GridObject> gridHexXZ;
-    private GridObject lastGridObject;
-
-    public Vector3 lastWorldPosition;
-
     [SerializeField] int horizontalCellAmount = 10;
     [SerializeField] int verticalCellAmount = 10;
 
+    public int Width { get { return horizontalCellAmount; } }
+    public int Height { get { return verticalCellAmount; } }
+
+    [SerializeField] Transform hexSprite;
+    private GridHexXZ<GridObject> gridHexXZ;
+    private GridObject lastGridObject;
+    private TowerSpawner towerSpawner;
+
+    public Vector3 currentWorldPosition;
+
+    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+
     private GameObject hexGridContainer;
+    public bool currentPositionEmpty;
+    public bool canPlace;
+    public bool testFlag;
 
     private class GridObject
     {
         public Transform visualTransform;
-
-        // Testing stuff from CodeMonkeys horrible video:
-        private Transform cellTransform;
-
-        public void SetTransform(Transform cellTransform) 
+        public void Show(string spriteName)
         {
-            this.cellTransform = cellTransform;
-        }
-
-        public void ClearTransform() 
-        {
-            cellTransform = null;
-        }
-
-        public bool CanPlace() 
-        {
-            return cellTransform == null;
-        }
-
-        public void Show()
-        {
-            visualTransform.Find("Selected").gameObject.SetActive(true);
+            visualTransform.Find(spriteName).gameObject.SetActive(true);
         }
 
         public void Hide()
         {
             visualTransform.Find("Selected").gameObject.SetActive(false);
+            visualTransform.Find("Unavailable").gameObject.SetActive(false);
         }
     }
 
@@ -55,6 +46,7 @@ public class HexGrid : MonoBehaviour
         float cellSize = 2f;
 
         hexGridContainer = GameObject.Find("HexGrid");
+        towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
 
         gridHexXZ = new GridHexXZ<GridObject>(width, height, cellSize, Vector3.zero, (GridHexXZ<GridObject> g, int x, int y) => new GridObject());
 
@@ -68,8 +60,13 @@ public class HexGrid : MonoBehaviour
                 gridHexXZ.GetGridObject(x, z).Hide();
             }
         }
-        
+
         ToggleGridVisibility(false);
+    }
+
+    public void UpdatePositionList() 
+    {
+        occupiedPositions.Add(currentWorldPosition);
     }
 
     private void Update()
@@ -78,26 +75,49 @@ public class HexGrid : MonoBehaviour
         {
             lastGridObject.Hide();
         }
+/*
+        if (currentWorldPosition == new Vector3(0, 0, 0)) 
+        {
+            // print ("current world position is empty");
+            currentPositionEmpty = true;
+            canPlace = false;
+        } 
+        else 
+        {
+            
+        }
+
+        */
+
+        if (testFlag) 
+        {
+            currentPositionEmpty = true;
+            canPlace = false;
+        } 
+        else 
+        {
+            currentPositionEmpty = false;
+        }
 
         lastGridObject = gridHexXZ.GetGridObject(Mouse3D.GetMouseWorldPosition());
 
         if (lastGridObject != null)
         {
-            // Print the world position of the current cell
             int x, z;
             gridHexXZ.GetXZ(lastGridObject.visualTransform.position, out x, out z);
-            lastWorldPosition = gridHexXZ.GetWorldPosition(x, z);
-            // Debug.Log("World Position of Current Cell: " + lastWorldPosition);
-            if (lastGridObject.CanPlace()) 
+            currentWorldPosition = gridHexXZ.GetWorldPosition(x, z);
+
+            if (occupiedPositions.Contains(currentWorldPosition) || currentPositionEmpty) 
             {
-                lastGridObject.Show();
-                // Transform placedTransform = Instantiate(testObject, lastWorldPosition, Quaternion.identity);
-                // lastGridObject.SetTransform(placedTransform);
+                // Debug.Log("Can't place");
+                lastGridObject.Show("Unavailable");
+                canPlace = false;
             } 
             else 
             {
-                print ("Can't place here");
-
+                // Debug.Log("Can place");
+                lastGridObject.Show("Selected");
+                canPlace = true;
             }
         }
     }

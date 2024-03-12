@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8877811060870311888}
   - component: {fileID: 3451786120057907558}
   - component: {fileID: -7591540427305344808}
+  - component: {fileID: -7264162286976317660}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -53,9 +54,8 @@ MonoBehaviour:
     m_Bits: 128
   enemiesInRange: []
   targetedEnemy: {fileID: 0}
+  scanningDelay: 0.1
   fireDelay: 1
-  cannonBallPrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
-    type: 3}
   firePoint: {fileID: 4442700895908096282}
 --- !u!114 &-7591540427305344808
 MonoBehaviour:
@@ -70,6 +70,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerActive: 0
+--- !u!23 &-7264162286976317660
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204349404975903633}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a7a546d4167f7e84885f985457879874, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5751630017066653891
 GameObject:
   m_ObjectHideFlags: 0

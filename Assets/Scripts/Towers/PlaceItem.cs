@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
+// This script handles the tower placement CONTROLS using the EventSystem
+
 [RequireComponent(typeof(GraphicRaycaster))]
 public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IBeginDragHandler, IPointerUpHandler
 {
@@ -11,13 +13,17 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     private Slot slot;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
-    EventSystem m_EventSystem; // rename
+    EventSystem m_EventSystem;
+
     // private GameObject selectedItem;
     public GameObject itemToPlace;
+    private HexGrid hexGrid;
 
 
     void Start() 
     {
+        hexGrid = FindObjectOfType<HexGrid>();
+
         if (GetComponent<GraphicRaycaster>() == null) 
         {
             GraphicRaycaster m_Raycaster = gameObject.AddComponent(typeof(GraphicRaycaster)) as GraphicRaycaster;
@@ -34,7 +40,6 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
    public void OnPointerClick(PointerEventData eventData) 
    {
         // Show tooltip
-        // Spawn tooltip bubble at clicked position
    }
 
     public void OnPointerDown(PointerEventData eventData) 
@@ -49,14 +54,13 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         foreach (RaycastResult result in results)
         {
             GameObject selectedItem = result.gameObject;
-            Debug.Log(selectedItem.GetComponent<Slot>().ItemInSlot.itemName);
+            // Debug.Log(selectedItem.GetComponent<Slot>().ItemInSlot.itemName);
             itemToPlace = selectedItem.GetComponent<Slot>().ItemInSlot.prefab;
         }
 
         towerSpawner.PreviewTower();
 
         // Show tooltip
-        // Spawn tooltip bubble at clicked position
     }
 
     public void OnBeginDrag(PointerEventData eventData) 
@@ -67,6 +71,6 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     public void OnPointerUp(PointerEventData eventData) 
     {
         towerSpawner.PlaceTower();
-        // Hide tooltip
+        Debug.Log("Tower placed successfully");
     }
 }

@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using UnityEngine;
+using TMPro;
+
+// This script handles tower/item placement LOGIC
 
 public class TowerSpawner : MonoBehaviour
 {
-    private HexGrid hexGrid;
     private PlaceItem placeItem;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask otherLayer;
     private bool spawnerActive;
-
-    // Cannon towerIndicator;
-    GameObject towerIndicator;
+    public GameObject towerIndicator;
     Vector3 worldPosition;
 
     [Header("Grid")]
+    private HexGrid hexGrid;
     [SerializeField] Tilemap tilemap;
     private Vector3Int cellPosition;
 
+    [Header("UI & UX")]
+    [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later :)
 
     private void Awake() 
     {
         spawnerActive = false;
-
         hexGrid = FindObjectOfType<HexGrid>();
         placeItem = GameObject.Find("Main Canvas").GetComponent<PlaceItem>();
     }
@@ -31,42 +34,44 @@ public class TowerSpawner : MonoBehaviour
     {
         if (hexGrid != null)
         {
-            worldPosition = hexGrid.lastWorldPosition;
+            worldPosition = hexGrid.currentWorldPosition;
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha0) && !spawnerActive) 
-        {
-            PreviewTower();
-        }
-
+      
         if (spawnerActive) 
         {
             towerIndicator.transform.position = GetMousePosition();
-
-            if (Input.GetMouseButtonDown(0)) 
-            {
-                PlaceTower();
-            }
-            else if (Input.GetMouseButtonDown(1)) 
-            {
-                CancelTower();
-            }
         }
     }
 
-    public void PreviewTower() 
+    public void PreviewTower()
     {
         towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
         hexGrid.ToggleGridVisibility(true);
         spawnerActive = true;
+
     }
 
     public void PlaceTower() 
     {
-        towerIndicator.GetComponent<Tower>().ActivateTower();
-        hexGrid.ToggleGridVisibility(false);
-        towerIndicator = null;
-        spawnerActive = false;
+        if (hexGrid.canPlace) 
+        {
+            towerIndicator.GetComponent<Tower>().ActivateTower();
+            hexGrid.UpdatePositionList();
+            hexGrid.ToggleGridVisibility(false);
+            towerIndicator = null;
+            spawnerActive = false;
+        }
+        else 
+        {
+            tooltipText.text = "Can't place here";
+            CancelTower();
+            Invoke("TextAway", 2.5f);
+        }
+    }
+
+    public void TextAway() 
+    {
+        tooltipText.text = " ";
     }
 
     public void CancelTower() 
@@ -75,23 +80,31 @@ public class TowerSpawner : MonoBehaviour
         spawnerActive = false;
     }
 
-    private Vector3 GetMousePosition() // Later: Fetch mouse position from mouse3D script?
+    private Vector3 GetMousePosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
-            Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
+            Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green);
 
             cellPosition = tilemap.WorldToCell(hit.point);
 
-            Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPosition);
-
-            return worldPosition;
-        } 
-       
+            if (cellPosition.x >= 0 && cellPosition.x < hexGrid.Width && cellPosition.y >= 0 && cellPosition.y < hexGrid.Height)
+            {
+                Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPosition);
+                hexGrid.testFlag = false;
+                return worldPosition;
+            } 
+            else 
+            {
+                hexGrid.testFlag = true;
+                // turn towerIndicator red 
+                return hit.point;
+            }
+        }
+        
         return Vector3.zero;
     }
 }
