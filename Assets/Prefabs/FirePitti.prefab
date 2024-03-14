@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerActive: 0
+  blockedLayers:
+    serializedVersion: 2
+    m_Bits: 320
 --- !u!1001 &4808201316064068809
 PrefabInstance:
   m_ObjectHideFlags: 0

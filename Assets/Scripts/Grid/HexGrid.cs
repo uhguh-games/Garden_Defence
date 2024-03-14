@@ -75,23 +75,10 @@ public class HexGrid : MonoBehaviour
         {
             lastGridObject.Hide();
         }
-/*
-        if (currentWorldPosition == new Vector3(0, 0, 0)) 
-        {
-            // print ("current world position is empty");
-            currentPositionEmpty = true;
-            canPlace = false;
-        } 
-        else 
-        {
-            
-        }
-
-        */
 
         if (testFlag) 
         {
-            currentPositionEmpty = true;
+            currentPositionEmpty = true; 
             canPlace = false;
         } 
         else 

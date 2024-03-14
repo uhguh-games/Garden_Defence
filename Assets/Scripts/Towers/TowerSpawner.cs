@@ -10,10 +10,10 @@ public class TowerSpawner : MonoBehaviour
 {
     private PlaceItem placeItem;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask otherLayer;
     private bool spawnerActive;
     public GameObject towerIndicator;
     Vector3 worldPosition;
+    public bool spaceBlocked;
 
     [Header("Grid")]
     private HexGrid hexGrid;
@@ -48,12 +48,11 @@ public class TowerSpawner : MonoBehaviour
         towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
         hexGrid.ToggleGridVisibility(true);
         spawnerActive = true;
-
     }
 
     public void PlaceTower() 
     {
-        if (hexGrid.canPlace) 
+        if (hexGrid.canPlace && !spaceBlocked) 
         {
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
@@ -69,7 +68,7 @@ public class TowerSpawner : MonoBehaviour
         }
     }
 
-    public void TextAway() 
+    public void TextAway() // will be moved later
     {
         tooltipText.text = " ";
     }
@@ -91,10 +90,10 @@ public class TowerSpawner : MonoBehaviour
 
             cellPosition = tilemap.WorldToCell(hit.point);
 
-            if (cellPosition.x >= 0 && cellPosition.x < hexGrid.Width && cellPosition.y >= 0 && cellPosition.y < hexGrid.Height)
+            if (cellPosition.x >= 0 && cellPosition.x < hexGrid.Width && cellPosition.y >= 0 && cellPosition.y < hexGrid.Height) // is current position of the mouse within the grid bounds
             {
                 Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPosition);
-                hexGrid.testFlag = false;
+                hexGrid.testFlag = false; // rename "testflag" (•‿•)
                 return worldPosition;
             } 
             else 

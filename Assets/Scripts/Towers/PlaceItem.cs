@@ -71,6 +71,5 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     public void OnPointerUp(PointerEventData eventData) 
     {
         towerSpawner.PlaceTower();
-        Debug.Log("Tower placed successfully");
     }
 }
