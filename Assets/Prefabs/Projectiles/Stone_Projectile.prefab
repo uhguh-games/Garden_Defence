@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 4214289287814974730}
   - component: {fileID: 2417419389206653550}
   - component: {fileID: 406663592428045698}
-  - component: {fileID: -546886658390944062}
   - component: {fileID: -721869806762949626}
   m_Layer: 7
-  m_Name: Projectile
+  m_Name: Stone_Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,18 +83,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-546886658390944062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817646743612878425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2de5f4390317e4d9fdd9401301f45c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-721869806762949626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDestroyTime: 5
   cannonSpeed: 5
-  rotationSpeed: 360
   cannonDamage: 1
   groundLayers:
     serializedVersion: 2

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class StoneSlinger : MonoBehaviour
 {
     [Header("Enemy Detection")]
     [SerializeField] float range = 3.5f;
@@ -73,15 +73,14 @@ public class Cannon : MonoBehaviour
         {
             Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized;
         
-            PoolableObject pooledObject = poolManager.cannonBallPool.GetObject();
-            // PoolableObject pooledObject = cannonBallPool.GetObject();
-            CannonBall cannonBall = pooledObject as CannonBall;
+            PoolableObject pooledObject = poolManager.stonePool.GetObject();
+            StoneProjectile stone = pooledObject as StoneProjectile;
 
-            if (cannonBall != null) 
+            if (stone != null) 
             {
-                cannonBall.Setup(enemyDirection, targetedEnemy);
-                cannonBall.transform.SetParent(transform, false);
-                cannonBall.transform.position = firePoint.transform.position;
+                stone.Setup(enemyDirection, targetedEnemy);
+                stone.transform.SetParent(transform, false);
+                stone.transform.position = firePoint.transform.position;
             }
         }
     }

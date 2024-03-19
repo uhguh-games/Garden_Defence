@@ -98,7 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDestroyTime: 5
   cannonSpeed: 9
-  rotationSpeed: 360
   cannonDamage: 1
   groundLayers:
     serializedVersion: 2

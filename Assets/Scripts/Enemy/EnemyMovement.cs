@@ -1,23 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [HideInInspector] public Transform target;
     private float updateSpeed = 0.1f;
     private UnityEngine.AI.NavMeshAgent agent;
+    private Coroutine FollowCoroutine;
 
     void Awake() 
     {
         target = GameObject.Find("MonsterTarget").GetComponent<Transform>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.enabled = true; // Ensure NavMeshAgent is enabled
     }
 
-    void Start()
+    public void StartChasing()
     {
-        StartCoroutine(FollowTarget());
+        if (FollowCoroutine == null) 
+        {
+            FollowCoroutine = StartCoroutine(FollowTarget());
+        } 
+        else 
+        {
+            Debug.LogWarning("Called StartChasing on Enemy that is already chasing.");
+        }
     }
 
     private IEnumerator FollowTarget() 
@@ -26,15 +35,18 @@ public class EnemyMovement : MonoBehaviour
         
         while(enabled) 
         {
-            agent.SetDestination(target.transform.position);
-            // transform.LookAt(target);
+            if (agent.isOnNavMesh) // Check if agent is on NavMesh before setting destination
+            {
+                agent.SetDestination(target.position);
+            }
+            else
+            {
+                Debug.LogWarning("Enemy is not on NavMesh.");
+            }
             yield return wait;
         }
 
         // Once reach target (the crops): perform animation, play nomnom sound
-        // Walk off screen despawn.
+        // Walk off screen and despawn.
     }
-
-
-    
 }

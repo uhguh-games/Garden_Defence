@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    // Script where all object pools are started and referenced from
-
-    // private ObjectPool cannonBallPool;
-    // private ObjectPool junkPool;
-    public ObjectPool cannonBallPool; // <- accessing directly works but I should try make the fancy way work.
+    public ObjectPool stonePool; // <- accessing directly works but I should try make the fancy way work.
     public ObjectPool junkPool;
-    [SerializeField] CannonBall cannonBallPrefab;
+    [SerializeField] StoneProjectile stonePrefab;
     [SerializeField] ResourceJunk junkPrefab;
     
     void Awake() // pools are created here
     {
-        cannonBallPool = ObjectPool.CreateInstance(cannonBallPrefab, 50);
+        stonePool = ObjectPool.CreateInstance(stonePrefab, 50);
         junkPool = ObjectPool.CreateInstance(junkPrefab, 50);
     }
 

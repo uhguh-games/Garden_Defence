@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2147
+  m_VersionIndex: 2150
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1300,7 +1300,6 @@ MonoBehaviour:
     m_Bits: 128
   enemiesInRange: []
   targetedEnemy: {fileID: 0}
+  scanningDelay: 0.1
   fireDelay: 1
-  cannonBallPrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
-    type: 3}
   firePoint: {fileID: 1210187174662729056}
