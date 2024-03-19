@@ -16,6 +16,8 @@ public class StoneSlinger : MonoBehaviour
     private Tower tower;
     [SerializeField] float fireDelay = 1.0f;
     [SerializeField] Transform firePoint;
+    [SerializeField] GameObject towerTop;
+    [SerializeField] float topRotationSpeed = 5.0f;
     private PoolManager poolManager;
 
 
@@ -69,10 +71,16 @@ public class StoneSlinger : MonoBehaviour
     
     private void Fire()
     {
-        if (targetedEnemy != null) 
-        {
-            Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position.normalized;
-        
+       if (targetedEnemy != null) 
+       {
+            Vector3 enemyDirection = targetedEnemy.transform.position - firePoint.position;
+            enemyDirection.y = 0;
+
+            Quaternion targetRotation = Quaternion.LookRotation(enemyDirection, Vector3.up); 
+            Quaternion adjustedRotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, 0); 
+
+            towerTop.transform.rotation = adjustedRotation;
+
             PoolableObject pooledObject = poolManager.stonePool.GetObject();
             StoneProjectile stone = pooledObject as StoneProjectile;
 
@@ -84,7 +92,6 @@ public class StoneSlinger : MonoBehaviour
             }
         }
     }
-
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;
