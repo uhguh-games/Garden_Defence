@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceJunk : AutoDestroyPoolableObject
-
 {
     [SerializeField] EventManagerSO eventManager;
     private GameObject mouseObj;
@@ -19,7 +18,6 @@ public class ResourceJunk : AutoDestroyPoolableObject
         base.OnEnable();
     }
 
-
     public override void OnDisable()
     {
         base.OnDisable();
@@ -31,7 +29,7 @@ public class ResourceJunk : AutoDestroyPoolableObject
         {
             Debug.Log("Collected junk");
             eventManager.LootCollected();
-            Destroy(gameObject); // Instead of deleting <- Set inactive
+            this.gameObject.SetActive(false); // loot object returns to the pool
         }
     }
 }

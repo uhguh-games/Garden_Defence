@@ -20,7 +20,6 @@ public class ObjectPool
 
         GameObject poolGameObject = new GameObject(Prefab + " Pool");
         pool.CreateObjects(poolGameObject);
-
         return pool;
     }
 

@@ -11,16 +11,9 @@ public class Monster : MonoBehaviour
     private HealthBar healthBar;
     [SerializeField] Transform hitTarget; // empty object on the enemy
     private PoolManager poolManager;
-
-    // [SerializeField] ResourceJunk junkPrefab;
-    
-    // private ObjectPool junkPool;
-
     private void Awake()
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
-        // junkPool = ObjectPool.CreateInstance(junkPrefab, 50); // I will move this to a pool manager later
-
     }
     void Start()
     {
@@ -34,9 +27,12 @@ public class Monster : MonoBehaviour
         if (currentHealth <= 0) 
         {
             deathPos = this.transform;
+            
             print ("Killed " + this.gameObject.name);
+
             DropJunk();
-            Destroy(this.gameObject); // disable (return too pool)
+
+            this.gameObject.SetActive(false); // Enemy gets returned into its' pool
         }
     }
 
@@ -66,7 +62,7 @@ public class Monster : MonoBehaviour
     {
         if (other.tag == "Temp")
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false); // Enemy gets returned into its' pool
         }
     }
 }
