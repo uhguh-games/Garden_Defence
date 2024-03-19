@@ -67,7 +67,9 @@ public class EnemySpawner : MonoBehaviour
                 Debug.LogWarning("Failed to find valid position on NavMesh for spawn point.");
             }
 
-            poolableObject = EnemyObjectPools[0].GetObject(); // Assuming the first enemy prefab is the one to spawn
+            // poolableObject = EnemyObjectPools[0].GetObject(); // Assuming the first enemy prefab is the one to spawn
+            int randomIndex = Random.Range(0, enemyPrefabs.Count);
+            poolableObject = EnemyObjectPools[randomIndex].GetObject();
             poolableObject.transform.position = spawnPosition;
         }
 

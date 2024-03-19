@@ -72992,10 +72992,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1278186079}
-  enemySpawnAmount: 25
-  spawnDelay: 5
+  enemySpawnAmount: 15
+  spawnDelay: 4
   enemyPrefabs:
   - {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
+  - {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
   setSpawnPoint: {fileID: 1528240463}
 --- !u!43 &1781611499
 Mesh:

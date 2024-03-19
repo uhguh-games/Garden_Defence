@@ -116,10 +116,10 @@ GameObject:
   - component: {fileID: 2553709292635554910}
   - component: {fileID: 1866912247512004452}
   - component: {fileID: 2078623466321161270}
-  - component: {fileID: 5638219191015364751}
   - component: {fileID: 1497720351399795338}
   - component: {fileID: 6294369897199969494}
   - component: {fileID: 6690669747414516532}
+  - component: {fileID: -1685709617394219053}
   m_Layer: 7
   m_Name: Weevil
   m_TagString: Monster
@@ -210,22 +210,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5638219191015364751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2276906020059104230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f915a767a76be42b78d34523d3499c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  maxHealth: 2
-  currentHealth: 0
-  hitTarget: {fileID: 3306933845622971492}
 --- !u!114 &1497720351399795338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movement: {fileID: 1497720351399795338}
   Agent: {fileID: 6690669747414516532}
+  EnemyScriptableObject: {fileID: 11400000, guid: bb0952492d25a5c4ba1834e415a6374e,
+    type: 2}
+  Health: 5
 --- !u!195 &6690669747414516532
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -274,7 +261,23 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 0
+--- !u!114 &-1685709617394219053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2276906020059104230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee9b92ba5f486f4e916669f41ca5433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+  maxHealth: 5
+  currentHealth: 0
+  hitTarget: {fileID: 3306933845622971492}
 --- !u!1 &3002664420675875981
 GameObject:
   m_ObjectHideFlags: 0
