@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour
     {
         if (blockedLayers == (blockedLayers | (1 << collision.gameObject.layer))) 
         {
-            // print ("Tower collided with " + collision.gameObject.name);
+            print ("Tower collided with " + collision.gameObject.name);
             towerSpawner.spaceBlocked = true;
         }
     }

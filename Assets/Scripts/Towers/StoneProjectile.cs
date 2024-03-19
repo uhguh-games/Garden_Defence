@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CannonBall : AutoDestroyPoolableObject
+public class StoneProjectile : AutoDestroyPoolableObject
 {
     [SerializeField] float cannonSpeed = 5f;
     // float rotationSpeed = 360f;

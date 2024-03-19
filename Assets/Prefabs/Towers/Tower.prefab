@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8877811060870311888}
-  - component: {fileID: 3451786120057907558}
-  - component: {fileID: -7591540427305344808}
   - component: {fileID: -7264162286976317660}
   - component: {fileID: 6647646451748835360}
   - component: {fileID: 4818932259237547425}
+  - component: {fileID: -7591540427305344808}
+  - component: {fileID: 3451786120057907558}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -38,43 +38,6 @@ Transform:
   - {fileID: 4442700895908096282}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3451786120057907558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2204349404975903633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd377dbb126053e418559b0da1802da9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 3.5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  enemiesInRange: []
-  targetedEnemy: {fileID: 0}
-  scanningDelay: 0.1
-  fireDelay: 1
-  firePoint: {fileID: 4442700895908096282}
---- !u!114 &-7591540427305344808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2204349404975903633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df73150b60978046a197d4e61664e1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerActive: 0
-  blockedLayers:
-    serializedVersion: 2
-    m_Bits: 320
 --- !u!23 &-7264162286976317660
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -165,6 +128,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &-7591540427305344808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204349404975903633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df73150b60978046a197d4e61664e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerActive: 0
+  blockedLayers:
+    serializedVersion: 2
+    m_Bits: 320
+--- !u!114 &3451786120057907558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204349404975903633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd377dbb126053e418559b0da1802da9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemiesInRange: []
+  targetedEnemy: {fileID: 0}
+  scanningDelay: 0.1
+  fireDelay: 1
+  firePoint: {fileID: 4442700895908096282}
 --- !u!1 &5751630017066653891
 GameObject:
   m_ObjectHideFlags: 0

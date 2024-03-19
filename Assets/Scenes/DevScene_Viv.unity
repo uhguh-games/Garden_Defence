@@ -270,7 +270,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2914076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -60870,7 +60870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481213fa9d6a67c40864d792b4216290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallPrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
+  stonePrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
     type: 3}
   junkPrefab: {fileID: 3261530027318942942, guid: c72c1b152d66e624cac996877c346792,
     type: 3}

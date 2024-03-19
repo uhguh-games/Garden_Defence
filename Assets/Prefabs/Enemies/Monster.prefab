@@ -191,8 +191,8 @@ GameObject:
   - component: {fileID: 1767129315497908200}
   - component: {fileID: 4840666780730564240}
   - component: {fileID: 7172025063018024707}
-  - component: {fileID: 1650467238764360039}
   - component: {fileID: 2694526060579305941}
+  - component: {fileID: 6985758261319750095}
   - component: {fileID: 3245208777338401791}
   m_Layer: 7
   m_Name: Monster
@@ -284,22 +284,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1650467238764360039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984126549882779747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62f915a767a76be42b78d34523d3499c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  maxHealth: 2
-  currentHealth: 0
-  hitTarget: {fileID: 3795463032311767885}
 --- !u!195 &2694526060579305941
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -322,6 +306,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &6985758261319750095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984126549882779747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee9b92ba5f486f4e916669f41ca5433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+  maxHealth: 5
+  currentHealth: 0
+  hitTarget: {fileID: 3795463032311767885}
 --- !u!114 &3245208777338401791
 MonoBehaviour:
   m_ObjectHideFlags: 0

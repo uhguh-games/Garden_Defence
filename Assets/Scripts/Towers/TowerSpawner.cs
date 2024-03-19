@@ -56,7 +56,6 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
-            hexGrid.ToggleGridVisibility(false);
             towerIndicator = null;
             spawnerActive = false;
         }
@@ -66,6 +65,8 @@ public class TowerSpawner : MonoBehaviour
             CancelTower();
             Invoke("TextAway", 2.5f);
         }
+        
+        hexGrid.ToggleGridVisibility(false);
     }
 
     public void TextAway() // will be moved later
