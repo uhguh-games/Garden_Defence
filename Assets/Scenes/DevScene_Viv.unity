@@ -60872,7 +60872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stonePrefab: {fileID: -721869806762949626, guid: 9e0bec6c80438a947acd662e8abbd3c3,
     type: 3}
-  junkPrefab: {fileID: 3261530027318942942, guid: c72c1b152d66e624cac996877c346792,
+  junkPrefab: {fileID: 3929680827884114211, guid: 02de2337b82267f48bc8da7cf5a70edc,
     type: 3}
 --- !u!1001 &1560594444
 PrefabInstance:

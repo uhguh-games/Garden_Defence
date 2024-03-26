@@ -17,7 +17,6 @@ public class StoneSlinger : MonoBehaviour
     [SerializeField] float fireDelay = 1.0f;
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject towerTop;
-    [SerializeField] float topRotationSpeed = 5.0f;
     private PoolManager poolManager;
 
 

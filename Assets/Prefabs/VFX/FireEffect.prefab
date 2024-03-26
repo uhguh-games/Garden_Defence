@@ -14614,7 +14614,7 @@ GameObject:
   - component: {fileID: 3697786012033922376}
   - component: {fileID: 4430365704184084777}
   m_Layer: 0
-  m_Name: FirePit
+  m_Name: FireEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
