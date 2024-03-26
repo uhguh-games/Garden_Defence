@@ -8,6 +8,17 @@ public class Tower : MonoBehaviour
     private TowerSpawner towerSpawner;
     [SerializeField] LayerMask blockedLayers;
 
+    [Space]
+
+    [Header("Enemy Detection")]
+    Collider[] colliders;
+    [SerializeField] public float range = 3.5f;
+    [SerializeField] public LayerMask enemyLayer;
+    [SerializeField] public List<Monster> enemiesInRange;
+    [SerializeField] public Monster targetedEnemy;
+    [SerializeField] public float scanningDelay = 0.1f;
+    public float scanningTimer;
+
     void Awake() 
     {
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
@@ -30,5 +41,34 @@ public class Tower : MonoBehaviour
     void OnCollisionExit(Collision collision) 
     {
         towerSpawner.spaceBlocked = false;
+    }
+
+    public void ScanForEnemies()
+    {
+        colliders = Physics.OverlapSphere(transform.position, range, enemyLayer);
+
+        enemiesInRange.Clear();
+
+        foreach(Collider collider in colliders) 
+        {
+            enemiesInRange.Add(collider.GetComponent<Monster>());
+        }
+
+        if (enemiesInRange.Count != 0) 
+        {
+            targetedEnemy = enemiesInRange[0];
+        }
+    }
+
+    public void ResetEnemyList() // when an object is disabled like the firepit
+    {
+        enemiesInRange.Clear();
+        targetedEnemy = null;
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

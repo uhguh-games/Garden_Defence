@@ -143,6 +143,14 @@ MonoBehaviour:
   blockedLayers:
     serializedVersion: 2
     m_Bits: 320
+  range: 3.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  enemiesInRange: []
+  targetedEnemy: {fileID: 0}
+  scanningDelay: 0.1
+  scanningTimer: 0
 --- !u!114 &2980969073780779727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,17 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd377dbb126053e418559b0da1802da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  enemiesInRange: []
-  targetedEnemy: {fileID: 0}
-  scanningDelay: 0.1
   fireDelay: 1
   firePoint: {fileID: 377001327717085622}
   towerTop: {fileID: 900718367851740719}
-  rotationSpeed: 5
 --- !u!1 &7970777284477677533
 GameObject:
   m_ObjectHideFlags: 0
