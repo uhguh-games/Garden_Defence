@@ -51,7 +51,7 @@ public class Weevil : MonoBehaviour
         return hitTarget;
     }
 
-    private void DropJunk()
+    public void DropJunk()
     {
         PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
