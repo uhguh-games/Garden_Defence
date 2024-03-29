@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Fire Pit functionality idea:
+- since all towers share the tower class which stores the available enemies into a list ->
+- give the stone slinger tower access to those lists ->
+- then compare if an enemy is in stone slingers list and on one of the firepits lists -> shoot that enemy
+*/
+
 public class StoneSlinger : MonoBehaviour
 {
     [Header("Shooting")]
     
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
+    
+    [Tooltip("Empty Object on the tower")]
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject towerTop;
     Tower tower;
@@ -45,8 +54,6 @@ public class StoneSlinger : MonoBehaviour
         }
     }
 
-   
-    
     private void Fire()
     {
        if (tower.targetedEnemy != null) 

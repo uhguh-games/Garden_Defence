@@ -48,8 +48,6 @@ public class FirePit : MonoBehaviour
         if (tower.towerActive && fireActive) 
         {
             SetupFire(); // handles visuals and audio
-            // I wish I could just start the coroutine here but for some reason it does not work
-            
             fireActiveTimer -= Time.deltaTime;
 
             tower.scanningTimer += Time.deltaTime;
@@ -83,6 +81,7 @@ public class FirePit : MonoBehaviour
             fireActiveTimer = fireActiveTimerValue;
         }
     }
+    
     void SetupFire() // visuals and audio go here
     {
         fireEffect.SetActive(true);
@@ -93,16 +92,21 @@ public class FirePit : MonoBehaviour
     {
         fireEffect.SetActive(false);
     }
+
     IEnumerator SetupFireRoutine() 
     {
-        while (fireActiveTimer >= 0) 
+        ResetFireActiveTimer();
+        fireActive = true;
+
+        SetupFire();
+
+        while (fireActiveTimer > 0)
         {
-            ResetFireActiveTimer();
-            fireActive = true;
-            fireEffect.SetActive(true); // I wish I could call SetupFire() here but for some reason it does not work
             fireActiveTimer -= Time.deltaTime;
-            fireEffect.SetActive(false); // I wish I could call DisableFire() here but for some reason it does not work
-            yield break;
+            yield return null;
         }
+
+        fireActive = false;
+        DisableFire();
     }
 }

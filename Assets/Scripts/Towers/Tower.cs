@@ -8,8 +8,6 @@ public class Tower : MonoBehaviour
     private TowerSpawner towerSpawner;
     [SerializeField] LayerMask blockedLayers;
 
-    [Space]
-
     [Header("Enemy Detection")]
     Collider[] colliders;
     [SerializeField] public float range = 3.5f;

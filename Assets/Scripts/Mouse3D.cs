@@ -47,3 +47,13 @@ public class Mouse3D : MonoBehaviour
         }
     }
 }
+
+/*
+
+Vector position = new Vector3(0, 0, 0);
+this.gameObject.transform.position = position;
+Transform myTransform = this.gameObject.transform;
+
+// -> myTransform
+
+*/
