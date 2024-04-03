@@ -22,6 +22,8 @@ public class LootCollectionUI : MonoBehaviour
     [SerializeField] private Quaternion[] initialRotation;
     [SerializeField] private int coinNumber;
 
+ 
+
     void Start()
     {
         if (coinNumber == 0)
@@ -38,12 +40,16 @@ public class LootCollectionUI : MonoBehaviour
         }
     }
 
-    public void Reset(Transform lootSpawnPosition)
+    public void Reset(Transform lootSpawnPosition, Vector3 lootSpawnPoint)
     {
+        
+
         for(int i = 0; i < goldStackParent.transform.childCount; i++)
         {
             goldStackParent.transform.GetChild(i).position = lootSpawnPosition.transform.position;
             goldStackParent.transform.GetChild(i).rotation = initialRotation[i];
+
+            lootSpawnPosition.transform.position = lootSpawnPoint;
         }
     }
 

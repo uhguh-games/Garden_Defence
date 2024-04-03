@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weevil : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    private Transform deathPos;
+    public Transform deathPos;
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;

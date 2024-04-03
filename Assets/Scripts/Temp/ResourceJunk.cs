@@ -32,7 +32,7 @@ public class ResourceJunk : AutoDestroyPoolableObject
 
         if (Input.GetMouseButtonDown(0))
         {
-            lootCollectionUI.Reset(this.transform);
+            lootCollectionUI.Reset(this.transform, this.transform.position);
             lootCollectionUI.RewardGoldStack(10);
             Debug.Log("Collected junk");
             eventManager.LootCollected();
