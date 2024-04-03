@@ -71,13 +71,14 @@ public class TowerSpawner : MonoBehaviour
     }
 
     public void PlaceItem() 
-    {
-        if (spawnerActive == true) // placeholder // if dropped in a position where a firepit is
+    { 
+        if (spawnerActive)
         {
             towerIndicator = null;
             spawnerActive = false;
-
         }
+
+        hexGrid.FindItemInList();
 
     }
 

@@ -23,8 +23,9 @@ public class HexGrid : MonoBehaviour
 
     [Header("Objects placed in the map")]
     private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
-    [SerializedDictionary("Position", "Object")]
-    public SerializedDictionary<Vector3, GameObject> ItemsInScene = new SerializedDictionary<Vector3, GameObject>();
+
+    [SerializedDictionary("Object", "Position")]
+    public SerializedDictionary<GameObject, Vector3> ItemsInScene = new SerializedDictionary<GameObject, Vector3>();
 
     private class GridObject
     {
@@ -73,8 +74,12 @@ public class HexGrid : MonoBehaviour
 
     public void UpdatePositionDictionary(GameObject placedObject) 
     {
-        ItemsInScene.Add(currentWorldPosition, placedObject);
-        // how do I access the specific value?
+        ItemsInScene.Add(placedObject, currentWorldPosition);
+
+        foreach(KeyValuePair<GameObject, Vector3> kvp in ItemsInScene)  
+        {
+            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+        }
     }
 
 
@@ -114,6 +119,23 @@ public class HexGrid : MonoBehaviour
                 // Debug.Log("Can place");
                 lastGridObject.Show("Selected");
                 canPlace = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            FindItemInList();
+        }
+    }
+
+    public void FindItemInList() 
+    {
+        foreach (var kpv in ItemsInScene) 
+        {
+            if (kpv.Key.name == "FirePit(Clone)") 
+            {
+                Vector3 position = kpv.Value;
+                Debug.Log($"FirePit found in the Dictionary. It's position is {position}");
             }
         }
     }
