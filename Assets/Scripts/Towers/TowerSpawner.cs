@@ -56,6 +56,7 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
+            hexGrid.UpdatePositionDictionary(towerIndicator);
             towerIndicator = null;
             spawnerActive = false;
         }
@@ -67,6 +68,17 @@ public class TowerSpawner : MonoBehaviour
         }
         
         hexGrid.ToggleGridVisibility(false);
+    }
+
+    public void PlaceItem() 
+    {
+        if (spawnerActive == true) // placeholder // if dropped in a position where a firepit is
+        {
+            towerIndicator = null;
+            spawnerActive = false;
+
+        }
+
     }
 
     public void TextAway() // will be moved later

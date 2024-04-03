@@ -74,6 +74,11 @@ public class FirePit : MonoBehaviour
         }
     }
 
+    public void ReActivateFire() 
+    {
+        StartCoroutine(SetupFireRoutine());
+    }
+
     public void ResetFireActiveTimer() 
     {
         if (!fireActive) 

@@ -8,6 +8,9 @@ TagManager:
   - CannonBall
   - Undefined
   - Temp
+  - Projectile
+  - Tower
+  - Resource
   layers:
   - Default
   - TransparentFX

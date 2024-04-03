@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 
 public class HexGrid : MonoBehaviour
 {
@@ -14,15 +15,16 @@ public class HexGrid : MonoBehaviour
     private GridHexXZ<GridObject> gridHexXZ;
     private GridObject lastGridObject;
     private TowerSpawner towerSpawner;
-
     public Vector3 currentWorldPosition;
-
-    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
-
     private GameObject hexGridContainer;
     public bool currentPositionEmpty;
     public bool canPlace;
     public bool testFlag;
+
+    [Header("Objects placed in the map")]
+    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+    [SerializedDictionary("Position", "Object")]
+    public SerializedDictionary<Vector3, GameObject> ItemsInScene = new SerializedDictionary<Vector3, GameObject>();
 
     private class GridObject
     {
@@ -68,6 +70,13 @@ public class HexGrid : MonoBehaviour
     {
         occupiedPositions.Add(currentWorldPosition);
     }
+
+    public void UpdatePositionDictionary(GameObject placedObject) 
+    {
+        ItemsInScene.Add(currentWorldPosition, placedObject);
+        // how do I access the specific value?
+    }
+
 
     private void Update()
     {
