@@ -78,7 +78,7 @@ public class HexGrid : MonoBehaviour
 
         foreach(KeyValuePair<GameObject, Vector3> kvp in ItemsInScene)  
         {
-            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+            // Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
         }
     }
 
@@ -128,14 +128,27 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-    public void FindItemInList() 
+    public void FindItemInList()
     {
-        foreach (var kpv in ItemsInScene) 
+        foreach (var kvp in ItemsInScene) 
         {
-            if (kpv.Key.name == "FirePit(Clone)") 
+            if (kvp.Key.name == "FirePit(Clone)") 
             {
-                Vector3 position = kpv.Value;
-                Debug.Log($"FirePit found in the Dictionary. It's position is {position}");
+                Vector3 position = kvp.Value;
+          
+                if (currentWorldPosition == position) 
+                {
+                    Debug.Log($"Position match found. Current World Position = {currentWorldPosition} Fire Pit position = {position}");
+                 
+                    GameObject firePit = kvp.Key;
+            
+                    FirePit firePitScript = firePit.GetComponent<FirePit>();
+                  
+                    if (firePitScript != null) 
+                    {
+                        firePitScript.ReActivateFire();
+                    }
+                }
             }
         }
     }

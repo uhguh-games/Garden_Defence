@@ -74,11 +74,11 @@ public class TowerSpawner : MonoBehaviour
     { 
         if (spawnerActive)
         {
-            towerIndicator = null;
-            spawnerActive = false;
+            CancelTower();
         }
 
-        hexGrid.FindItemInList();
+        hexGrid.FindItemInList(); // Scans through the towers placed in the scene. If a firepit is found and the current mouse pos matches with the fire pits pos the firepit is reignited
+        hexGrid.ToggleGridVisibility(false);
 
     }
 

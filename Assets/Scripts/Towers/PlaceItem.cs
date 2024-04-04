@@ -65,7 +65,6 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         } 
         else if (itemToPlace.tag == "Resource") 
         {
-            Debug.Log($"Picking up object {itemToPlace.name}");
             towerSpawner.PreviewTower();
         }
 
