@@ -43,6 +43,5 @@ public class ResourceJunk : AutoDestroyPoolableObject
             this.gameObject.SetActive(false); // loot object returns to the pool
 
         }
-        Debug.Log(this.transform.position);
     }
 }

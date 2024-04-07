@@ -3,11 +3,22 @@ using DG.Tweening;
 
 public class LootAnimation : MonoBehaviour
 {
+    [Header("Animation Configs")]
+
+    [SerializeField] private float lootScale = 0.5f;
+    [SerializeField] private float scaleDuration = 0.3f;
+    [SerializeField] private float moveDuration = 0.5f;
+    [SerializeField] private float moveDelay = 0.5f;
+    [SerializeField] private float lootDelayMultiplier = 0.5f;
+    [SerializeField] private int amountOfLoot;
+
+    [Space]
+
     [SerializeField] private Transform targetPosition;
     [SerializeField] private float speed = 1000f;
     [SerializeField] private GameObject mainCanvas;
     private RectTransform canvasRect;
-
+    [SerializeField] GameObject lootStackParent;
     void Awake() 
     {
         mainCanvas = GameObject.Find("Main Canvas");
@@ -22,9 +33,10 @@ public class LootAnimation : MonoBehaviour
         canvasRect = canvas.GetComponent<RectTransform>();
 
         // Move the object to the target position
-        MoveToTargetPosition();
+        // MoveToTargetPosition();
+        AnimateLoot(10);
     }
-
+/*
     void MoveToTargetPosition()
     {
         canvasRect = mainCanvas.GetComponent<RectTransform>();
@@ -35,6 +47,8 @@ public class LootAnimation : MonoBehaviour
         // Move the object to the target position
         transform.DOMove(targetPosOnCanvas, speed).SetEase(Ease.OutQuad);
     }
+
+    */
 
     Vector2 GetCanvasPosition(Vector3 worldPosition)
     {
@@ -49,4 +63,28 @@ public class LootAnimation : MonoBehaviour
 
         return canvasPosition;
     }
+
+    public void AnimateLoot(int lootAmount) 
+    {
+        var delay = 0f;
+
+        for (int i = 0; i < lootStackParent.transform.childCount; i++)
+        {
+            print ("this does something woooooo");
+            lootStackParent.transform.GetChild(i).DOScale(endValue: lootScale, duration: scaleDuration).SetEase(Ease.OutBack);
+
+            lootStackParent.transform.GetChild(i).GetComponent<RectTransform>().DOMove(targetPosition.transform.position, duration: moveDuration).SetDelay(delay + moveDelay).SetEase(Ease.OutBack);
+
+            lootStackParent.transform.GetChild(i).DOScale(endValue: 0f, duration: 0f).SetDelay(delay + 1f).SetEase(Ease.OutBack);
+
+            delay += lootDelayMultiplier;
+        }
+
+
+
+    }
+
+
+
+
 }
