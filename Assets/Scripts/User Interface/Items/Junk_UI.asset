@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e94b65521dbb8243a68a7be88e38c44, type: 3}
+  m_Name: Junk_UI
+  m_EditorClassIdentifier: 
+  id: 3
+  itemName: Junk
+  description: Junk can be used to craft towers and re-fuel the Fire Pit
+  type: 1
+  prefab: {fileID: 649248169516072583, guid: e0982f3594288bf48b0a88e3d9ab0363, type: 3}
+  icon: {fileID: 2800000, guid: 6a2fde361dfcf064b8af1741bb9cea97, type: 3}
+  value: 1

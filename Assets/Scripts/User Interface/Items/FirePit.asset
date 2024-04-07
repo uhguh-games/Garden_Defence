@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Fire Pit
   description: 'A basic firepit. Needs to be re-fueled now and then. Cost: 3$'
   type: 0
-  prefab: {fileID: 7516272948307198591, guid: 61865c85ff35c62458ef9782f94555d5, type: 3}
+  prefab: {fileID: 881422633925716235, guid: 40f045663776ac644a36a1bb670ec828, type: 3}
   icon: {fileID: 2800000, guid: 081304ca7ca887b40b39170d2d1af7c5, type: 3}
   value: 3
