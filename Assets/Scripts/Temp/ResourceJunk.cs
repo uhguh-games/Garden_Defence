@@ -6,15 +6,14 @@ public class ResourceJunk : AutoDestroyPoolableObject
 {
     [SerializeField] EventManagerSO eventManager;
     private GameObject mouseObj;
-    private LootCollectionUI lootCollectionUI;
-    
+  
 
 
     private void Awake()
     {
         mouseObj = GameObject.Find("Mouse3D");
-        lootCollectionUI = GameObject.Find("Main Canvas").GetComponent<LootCollectionUI>();
        
+
     }
     public override void OnEnable()
     {
@@ -28,17 +27,13 @@ public class ResourceJunk : AutoDestroyPoolableObject
 
     private void OnMouseDown()
     {
-        
-
         if (Input.GetMouseButtonDown(0))
         {
-            lootCollectionUI.Reset(this.transform, this.transform.position);
-            lootCollectionUI.RewardGoldStack(10);
+            
             Debug.Log("Collected junk");
             eventManager.LootCollected();
             this.gameObject.SetActive(false); // loot object returns to the pool
 
         }
-        Debug.Log(this.transform.position);
     }
 }
