@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6405297672724371988}
   - component: {fileID: 1244541498350100755}
   - component: {fileID: 7240922457574905341}
+  - component: {fileID: -7244624138799341184}
   m_Layer: 5
   m_Name: LootCanvas
   m_TagString: Untagged
@@ -102,6 +103,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-7244624138799341184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496443431202397486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1483f407376131445a19c0264202ef3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {fileID: 0}
 --- !u!1 &5433151394650486126
 GameObject:
   m_ObjectHideFlags: 0

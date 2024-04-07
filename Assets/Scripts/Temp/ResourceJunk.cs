@@ -9,10 +9,12 @@ public class ResourceJunk : AutoDestroyPoolableObject
     private GameObject mouseObj;
     [SerializeField] private GameObject lootImage;
     [SerializeField] private GameObject lootCanvas;
+    [SerializeField] private Transform targetPosition;
 
     private void Awake()
     {
         mouseObj = GameObject.Find("Mouse3D");
+        targetPosition = GameObject.Find("lootTarget").transform;
     }
     public override void OnEnable()
     {
@@ -29,6 +31,10 @@ public class ResourceJunk : AutoDestroyPoolableObject
         if (Input.GetMouseButtonDown(0))
         {   
             GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity);
+            LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
+            animation.Initialize(targetPosition);
+
+
             // lootImageInstance.transform.SetParent(lootCanvas.transform);
             Debug.Log("Collected junk");
             eventManager.LootCollected();
