@@ -41,6 +41,8 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.transform.position = GetMousePosition();
         }
+
+        hexGrid.GetLitEnemies(); // Why am I calling this here?
     }
 
     public void PreviewTower()
@@ -56,6 +58,7 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
+            hexGrid.UpdatePositionDictionary(towerIndicator);
             towerIndicator = null;
             spawnerActive = false;
         }
@@ -67,6 +70,18 @@ public class TowerSpawner : MonoBehaviour
         }
         
         hexGrid.ToggleGridVisibility(false);
+    }
+
+    public void PlaceItem() 
+    { 
+        if (spawnerActive)
+        {
+            CancelTower();
+        }
+
+        hexGrid.FindItemInList(); // Scans through the towers placed in the scene. If a firepit is found and the current mouse pos matches with the fire pits pos the firepit is reignited
+        hexGrid.ToggleGridVisibility(false);
+
     }
 
     public void TextAway() // will be moved later

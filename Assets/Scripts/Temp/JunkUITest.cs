@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class JunkUITest : MonoBehaviour
 {
-
     GameManager gameManager;
     [SerializeField] private TextMeshProUGUI text;
 
@@ -18,6 +17,6 @@ public class JunkUITest : MonoBehaviour
 
     void Update()
     {
-        text.text = $"Junkies: {gameManager.junk}";
+        text.text = $"{gameManager.junk}";
     }
 }

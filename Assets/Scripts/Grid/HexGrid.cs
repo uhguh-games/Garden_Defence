@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 
 public class HexGrid : MonoBehaviour
 {
@@ -14,15 +15,18 @@ public class HexGrid : MonoBehaviour
     private GridHexXZ<GridObject> gridHexXZ;
     private GridObject lastGridObject;
     private TowerSpawner towerSpawner;
-
     public Vector3 currentWorldPosition;
-
-    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
-
     private GameObject hexGridContainer;
     public bool currentPositionEmpty;
     public bool canPlace;
     public bool testFlag;
+    public List<Monster> litEnemies = new List<Monster>(); // I feel like this should be handled in the tower script
+
+    [Header("Objects placed in the map")]
+    private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+
+    [SerializedDictionary("Object", "Position")]
+    public SerializedDictionary<GameObject, Vector3> ItemsInScene = new SerializedDictionary<GameObject, Vector3>();
 
     private class GridObject
     {
@@ -69,6 +73,16 @@ public class HexGrid : MonoBehaviour
         occupiedPositions.Add(currentWorldPosition);
     }
 
+    public void UpdatePositionDictionary(GameObject placedObject) 
+    {
+        ItemsInScene.Add(placedObject, currentWorldPosition);
+
+        foreach(KeyValuePair<GameObject, Vector3> kvp in ItemsInScene)  
+        {
+            // Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
+        }
+    }
+
     private void Update()
     {
         if (lastGridObject != null)
@@ -105,6 +119,53 @@ public class HexGrid : MonoBehaviour
                 // Debug.Log("Can place");
                 lastGridObject.Show("Selected");
                 canPlace = true;
+            }
+        }
+    }
+
+    public void GetLitEnemies()
+    {
+        litEnemies.Clear();
+
+        foreach (var kvp in ItemsInScene) 
+        {
+            if (kvp.Key.name == "FirePit(Clone)") // in the future other light towers can be added here
+            {
+                GameObject firePit = kvp.Key;
+                Tower towerScript = firePit.GetComponent<Tower>();
+
+                if (towerScript != null) 
+                {
+                    for (int i = 0; i < towerScript.enemiesInRange.Count; i++) 
+                    {
+                        litEnemies.Add(towerScript.enemiesInRange[i]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void FindItemInList()
+    {
+        foreach (var kvp in ItemsInScene) 
+        {
+            if (kvp.Key.name == "FirePit(Clone)") 
+            {
+                Vector3 position = kvp.Value;
+          
+                if (currentWorldPosition == position) 
+                {
+                    Debug.Log($"Position match found. Current World Position = {currentWorldPosition} Fire Pit position = {position}");
+                 
+                    GameObject firePit = kvp.Key;
+            
+                    FirePit firePitScript = firePit.GetComponent<FirePit>();
+                  
+                    if (firePitScript != null) 
+                    {
+                        firePitScript.ReActivateFire();
+                    }
+                } 
             }
         }
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d7c825aeccf904eafcb3ebaa14e066, type: 3}
   m_Name: Weevil
   m_EditorClassIdentifier: 
-  Health: 5
+  Health: 1
   AIUpdateInterval: 0.1
   Acceleration: 8
   AngularSpeed: 120
