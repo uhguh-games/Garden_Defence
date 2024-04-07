@@ -28,6 +28,8 @@ public class ResourceJunk : AutoDestroyPoolableObject
 
     private void OnMouseDown()
     {
+        
+
         if (Input.GetMouseButtonDown(0))
         {   
             GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity);
@@ -39,6 +41,8 @@ public class ResourceJunk : AutoDestroyPoolableObject
             Debug.Log("Collected junk");
             eventManager.LootCollected();
             this.gameObject.SetActive(false); // loot object returns to the pool
+
         }
+        Debug.Log(this.transform.position);
     }
 }

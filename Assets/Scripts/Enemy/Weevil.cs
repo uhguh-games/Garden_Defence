@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weevil : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    private Transform deathPos;
+    public Transform deathPos;
     public float maxHealth = 10f;
     public float currentHealth;
     private HealthBar healthBar;
@@ -51,7 +51,7 @@ public class Weevil : MonoBehaviour
         return hitTarget;
     }
 
-    private void DropJunk()
+    public void DropJunk()
     {
         PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
