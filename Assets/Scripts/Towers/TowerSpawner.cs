@@ -41,6 +41,8 @@ public class TowerSpawner : MonoBehaviour
         {
             towerIndicator.transform.position = GetMousePosition();
         }
+
+        hexGrid.GetLitEnemies(); // Why am I calling this here?
     }
 
     public void PreviewTower()

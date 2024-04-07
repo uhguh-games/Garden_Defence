@@ -20,6 +20,7 @@ public class HexGrid : MonoBehaviour
     public bool currentPositionEmpty;
     public bool canPlace;
     public bool testFlag;
+    public List<Monster> litEnemies = new List<Monster>(); // I feel like this should be handled in the tower script
 
     [Header("Objects placed in the map")]
     private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
@@ -82,7 +83,6 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (lastGridObject != null)
@@ -121,10 +121,27 @@ public class HexGrid : MonoBehaviour
                 canPlace = true;
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+    public void GetLitEnemies()
+    {
+        litEnemies.Clear();
+
+        foreach (var kvp in ItemsInScene) 
         {
-            FindItemInList();
+            if (kvp.Key.name == "FirePit(Clone)") // in the future other light towers can be added here
+            {
+                GameObject firePit = kvp.Key;
+                Tower towerScript = firePit.GetComponent<Tower>();
+
+                if (towerScript != null) 
+                {
+                    for (int i = 0; i < towerScript.enemiesInRange.Count; i++) 
+                    {
+                        litEnemies.Add(towerScript.enemiesInRange[i]);
+                    }
+                }
+            }
         }
     }
 
@@ -148,7 +165,7 @@ public class HexGrid : MonoBehaviour
                     {
                         firePitScript.ReActivateFire();
                     }
-                }
+                } 
             }
         }
     }

@@ -186,7 +186,7 @@ MonoBehaviour:
   fireEffect: {fileID: 7222356339549685015}
   fireActive: 1
   fireActiveTimer: 0
-  fireActiveTimerValue: 4
+  fireActiveTimerValue: 15
 --- !u!1001 &1290683854921227879
 PrefabInstance:
   m_ObjectHideFlags: 0

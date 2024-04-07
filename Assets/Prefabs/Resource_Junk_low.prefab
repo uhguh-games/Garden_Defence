@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c32b8f4d1af873b45b74e9e868b5dd89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2
+      value: 15.995951
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c32b8f4d1af873b45b74e9e868b5dd89,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.761
+      value: 0.10000038
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c32b8f4d1af873b45b74e9e868b5dd89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 39.061497
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c32b8f4d1af873b45b74e9e868b5dd89,
         type: 3}
@@ -99,8 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618234542e9537140b614942531eabff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoDestroyTime: 5
+  autoDestroyTime: 60
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+  lootImage: {fileID: 496443431202397486, guid: cae86f11870914f44a20cee15f21d55e,
+    type: 3}
+  lootCanvas: {fileID: 496443431202397486, guid: cae86f11870914f44a20cee15f21d55e,
+    type: 3}
 --- !u!65 &3105580699956965890
 BoxCollider:
   m_ObjectHideFlags: 0

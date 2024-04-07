@@ -19,6 +19,7 @@ public class StoneSlinger : MonoBehaviour
     [Tooltip("Empty Object on the tower")]
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject towerTop;
+    public bool isNight;
     Tower tower;
     PoolManager poolManager;
 
@@ -33,6 +34,8 @@ public class StoneSlinger : MonoBehaviour
     {
         if (tower.towerActive)
         {
+            tower.CompareEnemyList();
+            
             tower.scanningTimer += Time.deltaTime;
 
             if (tower.scanningTimer >= tower.scanningDelay)

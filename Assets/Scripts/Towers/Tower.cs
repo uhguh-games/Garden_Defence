@@ -58,6 +58,21 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public void CompareEnemyList() 
+    {
+        for (int i = 0; i < enemiesInRange.Count; i++) 
+        {
+            /*
+            if (enemiesInRange[i] == hexGridScript.litEnemies[i]) 
+            {
+                print("Match found");
+                // flag true
+            }
+
+            */
+        }
+    }
+
     public void ResetEnemyList() // when an object is disabled like the firepit
     {
         enemiesInRange.Clear();

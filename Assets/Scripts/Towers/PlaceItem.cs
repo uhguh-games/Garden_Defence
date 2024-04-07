@@ -80,12 +80,12 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     {
         if (itemToPlace.tag == "Tower") 
         {
-            Debug.Log($"Tower object {itemToPlace.name} is placed");
+            // Debug.Log($"Tower object {itemToPlace.name} is placed");
             towerSpawner.PlaceTower();
         } 
         else if (itemToPlace.tag == "Resource") 
         {
-            Debug.Log($"Resource object {itemToPlace.name} is placed");
+            // Debug.Log($"Resource object {itemToPlace.name} is placed");
             towerSpawner.PlaceItem();
         }
     }

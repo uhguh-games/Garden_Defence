@@ -82076,6 +82076,9 @@ MonoBehaviour:
   currentPositionEmpty: 0
   canPlace: 0
   testFlag: 0
+  litEnemies: []
+  ItemsInScene:
+    _serializedList: []
 --- !u!1001 &2956013127534091690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82438,7 +82441,7 @@ PrefabInstance:
     - target: {fileID: 6115747249579473721, guid: da858ab31c929cc42a9ccee66233337d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
