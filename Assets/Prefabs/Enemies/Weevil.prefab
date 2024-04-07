@@ -239,7 +239,7 @@ MonoBehaviour:
   Agent: {fileID: 6690669747414516532}
   EnemyScriptableObject: {fileID: 11400000, guid: bb0952492d25a5c4ba1834e415a6374e,
     type: 2}
-  Health: 5
+  Health: 1
 --- !u!195 &6690669747414516532
 NavMeshAgent:
   m_ObjectHideFlags: 0
