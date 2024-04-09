@@ -15,7 +15,7 @@ public class LootAnimation : MonoBehaviour
     [Space]
 
     [SerializeField] private Transform targetPosition;
-    [SerializeField] private float speed = 1000f;
+    // [SerializeField] private float speed = 1000f;
     [SerializeField] private GameObject mainCanvas;
     private RectTransform canvasRect;
     [SerializeField] GameObject lootStackParent;

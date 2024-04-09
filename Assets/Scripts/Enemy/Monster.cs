@@ -28,11 +28,9 @@ public class Monster : MonoBehaviour
         {
             deathPos = this.transform;
 
-            // print ("Killed " + this.gameObject.name);
-
             DropJunk();
 
-            this.gameObject.SetActive(false); // Enemy gets returned into its' pool
+            this.gameObject.SetActive(false); // Enemy gets returned into the pool
         }
     }
 
@@ -56,13 +54,5 @@ public class Monster : MonoBehaviour
         PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
         instance.transform.position = deathPos.position;
-    }
-
-    void OnTriggerEnter(Collider other) // temporary cringy solution
-    {
-        if (other.tag == "Temp")
-        {
-            this.gameObject.SetActive(false); // Enemy gets returned into its' pool
-        }
     }
 }

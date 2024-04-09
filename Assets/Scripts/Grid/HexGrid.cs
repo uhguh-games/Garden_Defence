@@ -19,8 +19,7 @@ public class HexGrid : MonoBehaviour
     private GameObject hexGridContainer;
     public bool currentPositionEmpty;
     public bool canPlace;
-    public bool testFlag;
-    public List<Monster> litEnemies = new List<Monster>(); // I feel like this should be handled in the tower script
+    public bool insideBounds;
 
     [Header("Objects placed in the map")]
     private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
@@ -49,7 +48,7 @@ public class HexGrid : MonoBehaviour
         int height = verticalCellAmount;
         float cellSize = 2f;
 
-        hexGridContainer = GameObject.Find("HexGrid");
+        hexGridContainer = GameObject.Find("HexGridContainer");
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
 
         gridHexXZ = new GridHexXZ<GridObject>(width, height, cellSize, Vector3.zero, (GridHexXZ<GridObject> g, int x, int y) => new GridObject());
@@ -90,7 +89,7 @@ public class HexGrid : MonoBehaviour
             lastGridObject.Hide();
         }
 
-        if (testFlag) 
+        if (insideBounds) 
         {
             currentPositionEmpty = true; 
             canPlace = false;
@@ -110,37 +109,13 @@ public class HexGrid : MonoBehaviour
 
             if (occupiedPositions.Contains(currentWorldPosition) || currentPositionEmpty) 
             {
-                // Debug.Log("Can't place");
                 lastGridObject.Show("Unavailable");
                 canPlace = false;
             } 
             else 
             {
-                // Debug.Log("Can place");
                 lastGridObject.Show("Selected");
                 canPlace = true;
-            }
-        }
-    }
-
-    public void GetLitEnemies() // move this whole method to thetower class?
-    {
-        litEnemies.Clear();
-
-        foreach (var kvp in ItemsInScene) 
-        {
-            if (kvp.Key.name == "FirePit(Clone)") // in the future other light towers can be added here
-            {
-                GameObject firePit = kvp.Key;
-                Tower towerScript = firePit.GetComponent<Tower>();
-
-                if (towerScript != null) 
-                {
-                    for (int i = 0; i < towerScript.enemiesInRange.Count; i++) 
-                    {
-                        litEnemies.Add(towerScript.enemiesInRange[i]);
-                    }
-                }
             }
         }
     }

@@ -34,14 +34,13 @@ public class StoneSlinger : MonoBehaviour
     {
         if (tower.towerActive)
         {
-            tower.CompareEnemyList();
-            
             tower.scanningTimer += Time.deltaTime;
 
             if (tower.scanningTimer >= tower.scanningDelay)
             {
                 tower.scanningTimer = 0;
                 tower.ScanForEnemies();
+                tower.GetLitEnemies();
             }
             
             if (tower.targetedEnemy)
