@@ -123,7 +123,7 @@ public class HexGrid : MonoBehaviour
         }
     }
 
-    public void GetLitEnemies()
+    public void GetLitEnemies() // move this whole method to thetower class?
     {
         litEnemies.Clear();
 

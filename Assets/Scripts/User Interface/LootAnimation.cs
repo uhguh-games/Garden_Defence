@@ -70,7 +70,6 @@ public class LootAnimation : MonoBehaviour
 
         for (int i = 0; i < lootStackParent.transform.childCount; i++)
         {
-            print ("this does something woooooo");
             lootStackParent.transform.GetChild(i).DOScale(endValue: lootScale, duration: scaleDuration).SetEase(Ease.OutBack);
 
             lootStackParent.transform.GetChild(i).GetComponent<RectTransform>().DOMove(targetPosition.transform.position, duration: moveDuration).SetDelay(delay + moveDelay).SetEase(Ease.OutBack);
@@ -79,12 +78,5 @@ public class LootAnimation : MonoBehaviour
 
             delay += lootDelayMultiplier;
         }
-
-
-
     }
-
-
-
-
 }
