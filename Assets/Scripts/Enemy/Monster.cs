@@ -55,4 +55,12 @@ public class Monster : MonoBehaviour
         ResourceJunk junkPrefab = instance as ResourceJunk;
         instance.transform.position = deathPos.position;
     }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.tag == "Temp") 
+        {
+            this.gameObject.SetActive(false); // Enemy gets returned into the pool
+        }
+    }
 }

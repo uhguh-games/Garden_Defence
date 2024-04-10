@@ -11,7 +11,7 @@ public class TowerSpawner : MonoBehaviour
     private PlaceItem placeItem;
     [SerializeField] LayerMask groundLayer;
     private bool spawnerActive;
-    public GameObject towerIndicator;
+    public GameObject towerIndicator = null;
     Vector3 worldPosition;
     public bool spaceBlocked;
 
@@ -39,8 +39,15 @@ public class TowerSpawner : MonoBehaviour
       
         if (spawnerActive) 
         {
-            towerIndicator.transform.position = GetMousePosition();
+            // towerIndicator.transform.position = GetMousePosition();
+            towerIndicator.transform.position = worldPosition;
         }
+
+        if (towerIndicator != null) 
+        {
+            Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
+        }
+
     }
 
     public void PreviewTower()

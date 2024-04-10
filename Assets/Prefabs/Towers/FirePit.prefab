@@ -145,8 +145,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.019684479, y: 0.01023134, z: 0.02163758}
-  m_Center: {x: 0.00088233955, y: 0.0046894215, z: 0.000057516994}
+  m_Size: {x: 0.02934845, y: 0.017885761, z: 0.026882427}
+  m_Center: {x: 0.00085010234, y: 0.008516626, z: -0.00084800425}
 --- !u!114 &8280781206280885608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +168,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   enemiesInRange: []
+  litEnemies: []
   targetedEnemy: {fileID: 0}
   scanningDelay: 0.1
   scanningTimer: 0

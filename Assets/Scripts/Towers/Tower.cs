@@ -96,7 +96,9 @@ public class Tower : MonoBehaviour
         {
             if (enemiesInRange[i] == litEnemies[i])
             {
-                print("Match found");
+                print($"{enemiesInRange[i].name}");
+                break;
+            
                 // get the matching enemy 
                 // set it to targeted enemy
 
