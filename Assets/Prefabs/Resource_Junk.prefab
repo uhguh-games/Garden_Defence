@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDestroyTime: 10
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  lootImage: {fileID: 2244402103826194750, guid: 6bba163dd9fdd8046808c088f8f8d4d1,
+  lootImage: {fileID: 2244402103826194750, guid: 63bb42eb743a2df4d88826e3eba462c3,
     type: 3}
-  lootCanvas: {fileID: 2244402103826194750, guid: 6bba163dd9fdd8046808c088f8f8d4d1,
+  lootCanvas: {fileID: 2244402103826194750, guid: 63bb42eb743a2df4d88826e3eba462c3,
     type: 3}
   targetPosition: {fileID: 0}
 --- !u!65 &7485303991760289873

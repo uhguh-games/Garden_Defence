@@ -45,7 +45,7 @@ public class TowerSpawner : MonoBehaviour
 
         if (towerIndicator != null) 
         {
-            Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
+            // Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
         }
 
     }

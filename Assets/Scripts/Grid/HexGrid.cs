@@ -130,7 +130,7 @@ public class HexGrid : MonoBehaviour
           
                 if (currentWorldPosition == position) 
                 {
-                    Debug.Log($"Position match found. Current World Position = {currentWorldPosition} Fire Pit position = {position}");
+                    // Debug.Log($"Position match found. Current World Position = {currentWorldPosition} Fire Pit position = {position}");
                  
                     GameObject firePit = kvp.Key;
             

@@ -20,6 +20,8 @@ public class Tower : MonoBehaviour
     public float scanningTimer;
     private HexGrid hexGrid;
 
+    public bool canFire;
+
     void Awake() 
     {
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
@@ -96,15 +98,20 @@ public class Tower : MonoBehaviour
         {
             if (enemiesInRange[i] == litEnemies[i])
             {
-                print($"{enemiesInRange[i].name}");
-                break;
-            
-                // get the matching enemy 
+                // get the matching enemy
                 // set it to targeted enemy
+                targetedEnemy = enemiesInRange[i];
+                canFire = true;
 
-                // flag true <- what flag?
-          
+                // print($"{enemiesInRange[i].name}");
+                break;
             }
+        }
+
+        if(targetedEnemy == null) 
+        {
+            canFire = false;
+
         }
     }
 

@@ -21,7 +21,7 @@ public class StoneSlinger : MonoBehaviour
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
         tower = GetComponent<Tower>();
     }
-
+ 
     private void Update() 
     {
         if (tower.towerActive)
@@ -34,16 +34,19 @@ public class StoneSlinger : MonoBehaviour
                 tower.ScanForEnemies();
                 tower.GetLitEnemies();
             }
-            
-            if (tower.targetedEnemy)
-            {
-                fireTimer += Time.deltaTime;
-            }
 
-            if (fireTimer >= fireDelay)
+            if (tower.canFire) 
             {
-                fireTimer = 0f;
-                Fire();
+                if (tower.targetedEnemy)
+                {
+                    fireTimer += Time.deltaTime;
+                }
+
+                if (fireTimer >= fireDelay)
+                {
+                    fireTimer = 0f;
+                    Fire();
+                }
             }
         }
     }
