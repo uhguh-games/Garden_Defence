@@ -6,28 +6,11 @@ public class Crop : MonoBehaviour
 {
     [SerializeField] private EventManagerSO eventManager;
 
-    [SerializeField] private int eatingTime;
 
-
-
-    private void OnTriggerEnter(Collider other)
+    public void GetEaten()
     {
-         if (other.gameObject.tag == "Monster")
-         {
-             Debug.Log("AAFGAAGFAFAWFAEWFAEWSFRWEAFRWAESOIFRWESIOGFHUWERIOGFHUWSIOEJHUFIOWEJHFRIOWEHJFIOWSEJUIOGVFJHUEWRIOGJHUIOWSEJHU");
-            StartCoroutine(eating());
-         }
+        Destroy(this.gameObject); //simply delete itself once monster's eatingTime has elapsed
+        eventManager.CropEaten();
     }
-
- IEnumerator eating()
- {
-    yield return new WaitForSeconds(eatingTime);
-    Destroy(this.gameObject);
-     eventManager.CropEaten();
- }
 }
 
-public void YeatCrop()
-{
-    StartCoroutine(eating());
-}
