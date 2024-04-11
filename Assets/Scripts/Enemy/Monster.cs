@@ -64,5 +64,9 @@ public class Monster : MonoBehaviour
         {
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
         }
+        if (other.tag == "Crop")
+        {
+            Crop.YeatCrop();
+        }
     }
 }

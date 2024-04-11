@@ -18,6 +18,7 @@ public class JunkUITest : MonoBehaviour
 
     void Update()
     {
-        text.text = $"Junkies: {gameManager.junk}";
+        text.text = $@"Junkies: {gameManager.junk}
+        Crop Health:  {gameManager.cropHealth}";
     }
 }
