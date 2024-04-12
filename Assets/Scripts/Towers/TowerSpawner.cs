@@ -64,8 +64,10 @@ public class TowerSpawner : MonoBehaviour
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
+            towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
             towerIndicator = null;
             spawnerActive = false;
+      
         }
         else 
         {

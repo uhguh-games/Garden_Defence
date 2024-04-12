@@ -17,6 +17,7 @@ public class Tower : MonoBehaviour
     public List<Monster> litEnemies = new List<Monster>();
     [SerializeField] public Monster targetedEnemy;
     [SerializeField] public float scanningDelay = 0.1f;
+    public GameObject dustEffect;
     public float scanningTimer;
     private HexGrid hexGrid;
 

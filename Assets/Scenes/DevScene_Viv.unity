@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.15759796, g: 0.18113077, b: 0.19674958, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 42bed7a1d8195cb49a1bb9ebc63f1a98,
+    type: 2}
   m_LightingSettings: {fileID: 1580505891}
 --- !u!196 &4
 NavMeshSettings:
@@ -382,7 +383,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6ac429a46462e8442b8170d22a9b0926, type: 2}
+      objectReference: {fileID: 2100000, guid: bc15e1274963d2746aa81558bf0739e2, type: 2}
     - target: {fileID: 6313074861513076994, guid: a4b78bd8ea5180848834d282f889dde3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -24733,10 +24734,10 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.08
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -24782,13 +24783,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24825,10 +24826,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 410087040}
-  lerpSpeed: 0.6
-  morningRotation: {x: 0.9998477, y: 0, z: 0, w: 0.017452383}
+  lerpSpeed: 1
+  morningRotation: {x: -0.99619466, y: 0.000000039735347, z: 0.000000039735347, w: -0.08715588}
   dayRotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
-  eveningRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
+  eveningRotation: {x: 0.1305262, y: 0, z: 0, w: 0.9914449}
   nightRotation: {x: 0.017452406, y: 0, z: 0, w: 0.9998477}
 --- !u!1001 &410804555
 PrefabInstance:
@@ -30332,6 +30333,10 @@ MonoBehaviour:
   timeText: {fileID: 592033192}
   timeCounterText: {fileID: 1406795194}
   gameTime: 0
+  morningDuration: 10
+  dayDuration: 10
+  eveningDuration: 20
+  nightDuration: 10
   fireFlies:
   - {fileID: 1254417953}
   - {fileID: 1372654697}
@@ -32544,7 +32549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -331, y: 222}
+  m_AnchoredPosition: {x: -331, y: 767.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592033192
@@ -32567,7 +32572,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time of day: '
+  m_text: 'Time of day: Morning'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -35763,7 +35768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 18d5016ea855ffd44b70251978658daf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48974,6 +48979,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2113946834}
     m_Modifications:
+    - target: {fileID: 6623222108923324595, guid: 30922a5f104c73843958d7ecaf53a3f3,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7790801123712028079, guid: 30922a5f104c73843958d7ecaf53a3f3,
         type: 3}
       propertyPath: m_Name
@@ -48987,7 +48997,7 @@ PrefabInstance:
     - target: {fileID: 8458247387887795392, guid: 30922a5f104c73843958d7ecaf53a3f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1
+      value: 8.31
       objectReference: {fileID: 0}
     - target: {fileID: 8458247387887795392, guid: 30922a5f104c73843958d7ecaf53a3f3,
         type: 3}
@@ -48997,7 +49007,7 @@ PrefabInstance:
     - target: {fileID: 8458247387887795392, guid: 30922a5f104c73843958d7ecaf53a3f3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.46
+      value: 16.68
       objectReference: {fileID: 0}
     - target: {fileID: 8458247387887795392, guid: 30922a5f104c73843958d7ecaf53a3f3,
         type: 3}
@@ -55098,7 +55108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -264.3, y: 113.8}
+  m_AnchoredPosition: {x: -264.3, y: 659.50006}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406795194
