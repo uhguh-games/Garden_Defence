@@ -20,8 +20,8 @@ public class Tower : MonoBehaviour
     public GameObject dustEffect;
     public float scanningTimer;
     private HexGrid hexGrid;
-
     public bool canFire;
+  
 
     void Awake() 
     {
@@ -109,10 +109,9 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if(targetedEnemy == null) 
+        if (targetedEnemy == null) 
         {
             canFire = false;
-
         }
     }
 

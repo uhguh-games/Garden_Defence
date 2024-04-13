@@ -14,11 +14,13 @@ public class StoneSlinger : MonoBehaviour
     public bool isNight;
     Tower tower;
     PoolManager poolManager;
+    private DayNightState dayNightState;
 
 
     private void Awake() 
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
+        dayNightState = GameObject.Find("TimeManager").GetComponent<DayNightState>();
         tower = GetComponent<Tower>();
     }
  
@@ -35,7 +37,23 @@ public class StoneSlinger : MonoBehaviour
                 tower.GetLitEnemies();
             }
 
-            if (tower.canFire) 
+            if (dayNightState.currentState == TimeState.Night) 
+            {
+                if (tower.canFire)
+                {
+                    if (tower.targetedEnemy)
+                    {
+                        fireTimer += Time.deltaTime;
+                    }
+
+                    if (fireTimer >= fireDelay)
+                    {
+                        fireTimer = 0f;
+                        Fire();
+                    }
+                }
+            } 
+            else 
             {
                 if (tower.targetedEnemy)
                 {

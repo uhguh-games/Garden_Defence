@@ -34,7 +34,6 @@ public class DayNightState : MonoBehaviour
         lightCycle = GameObject.Find("Directional Light").GetComponent<LightCycle>();
         maxGameDuration = morningDuration + dayDuration + eveningDuration + nightDuration;
         // Time.timeScale = 4f;
-
     }
 
     void Update() 
@@ -52,7 +51,6 @@ public class DayNightState : MonoBehaviour
         else 
         {
             gameTime = maxGameDuration;
-            // GameTimer();
         }
     }
 
@@ -85,7 +83,6 @@ public class DayNightState : MonoBehaviour
 
     public void ChangeState(TimeState newState)
     {
-        // Add any additional logic you need when changing states
         currentState = newState;
 
         timeText.text = $"Time of day: {currentState}";
@@ -117,7 +114,7 @@ public class DayNightState : MonoBehaviour
             case TimeState.Night:
                 
                 lightCycle.StartLightRoutine(lightCycle.nightRotation);
-                
+                                
                 foreach (GameObject particleEffect in fireFlies)
                 {
                     particleEffect.SetActive(true);
