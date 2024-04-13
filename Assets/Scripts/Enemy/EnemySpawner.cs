@@ -84,4 +84,18 @@ public class EnemySpawner : MonoBehaviour
             enemy.Movement.StartChasing();
         }
     }
+
+    // Method to spawn an enemy based on the provided enemy prefab
+    public void SpawnEnemy(Enemy enemyPrefab)
+    {
+        int prefabIndex = enemyPrefabs.IndexOf(enemyPrefab);
+        if (prefabIndex != -1)
+        {
+            DoSpawnEnemy(prefabIndex);
+        }
+        else
+        {
+            Debug.LogWarning("Enemy prefab not found in the list.");
+        }
+    }
 }

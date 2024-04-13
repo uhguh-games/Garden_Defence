@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f82832229ee4c46b030a29f5ed953f, type: 3}
+  m_Name: ModerateWave
+  m_EditorClassIdentifier: 
+  description: 'Moderate difficulty wave of night enemies. '
+  EnemiesToSpawn:
+    _serializedList:
+    - Key: {fileID: -1685709617394219053, guid: 27ffb5149951ed044a02bcdb5bd38550,
+        type: 3}
+      Value: 6
+  BossToSpawn:
+    _serializedList:
+    - Key: {fileID: 6985758261319750095, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
+      Value: 1
