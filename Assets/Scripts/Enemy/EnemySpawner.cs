@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private EventManagerSO eventManager;
     public Transform target;
     public int enemySpawnAmount = 5; // how many enemies we want to spawn
     public float spawnDelay = 1f;
@@ -36,8 +37,12 @@ public class EnemySpawner : MonoBehaviour
             
             enemySpawnCounter++;
 
+            eventManager.EnemySummation();
+
             yield return wait;
         }
+
+        
     }
 
     void SetSpawnEnemy()

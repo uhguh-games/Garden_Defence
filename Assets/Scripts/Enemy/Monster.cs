@@ -32,6 +32,8 @@ public class Monster : MonoBehaviour
 
             // print ("Killed " + this.gameObject.name);
 
+            eventManager.OnKill();
+
             DropJunk();
 
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
@@ -69,7 +71,7 @@ public class Monster : MonoBehaviour
         if (other.tag == "CropEaten") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
         {
             cropToEat = other.GetComponent<Crop>();
-            Debug.Log("Collided with crop");
+           // Debug.Log("Collided with crop");
             StartCoroutine(eating());
             
 
@@ -80,8 +82,10 @@ public class Monster : MonoBehaviour
     IEnumerator eating() //eat for n seconds
     {
         yield return new WaitForSeconds(eatingTime);
-        Debug.Log("Eating finished");
+       // Debug.Log("Eating finished");
         cropToEat.GetEaten(); //tell crop to delete itself and to add the points to the game manager
+        
+
     }
 
 

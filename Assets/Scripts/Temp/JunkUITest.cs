@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class JunkUITest : MonoBehaviour
 {
-
+    [SerializeField] private EventManagerSO eventmanager;
     GameManager gameManager;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI textWinLose;
 
     void Start() 
     {
@@ -20,5 +21,12 @@ public class JunkUITest : MonoBehaviour
     {
         text.text = $@"Junkies: {gameManager.junk}
         Crop Health:  {gameManager.cropHealth}";
+    }
+
+    public void Win()
+    {
+        Debug.Log("Win UI");
+        textWinLose.enabled= true;
+        textWinLose.text = "You win";
     }
 }

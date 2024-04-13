@@ -43026,8 +43026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
   junk: 0
-  cropHealth: 60
-  damageToCrops: 20
+  textybit: {fileID: 0}
+  cropHealth: 100
   junkAmount: 10
 --- !u!1001 &973798023
 PrefabInstance:
@@ -65129,7 +65129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd210322145f0b48804eb5347a92f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventmanager: {fileID: 0}
   text: {fileID: 1662887381}
+  textWinLose: {fileID: 0}
 --- !u!1001 &1681188249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73132,6 +73134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb79c62875e1b409792665b137cc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventManager: {fileID: 0}
   target: {fileID: 1278186079}
   enemySpawnAmount: 15
   spawnDelay: 4
