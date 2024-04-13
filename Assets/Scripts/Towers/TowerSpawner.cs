@@ -11,7 +11,7 @@ public class TowerSpawner : MonoBehaviour
     private PlaceItem placeItem;
     [SerializeField] LayerMask groundLayer;
     private bool spawnerActive;
-    public GameObject towerIndicator;
+    public GameObject towerIndicator = null;
     Vector3 worldPosition;
     public bool spaceBlocked;
 
@@ -39,10 +39,15 @@ public class TowerSpawner : MonoBehaviour
       
         if (spawnerActive) 
         {
-            towerIndicator.transform.position = GetMousePosition();
+            // towerIndicator.transform.position = GetMousePosition();
+            towerIndicator.transform.position = worldPosition;
         }
 
-        hexGrid.GetLitEnemies(); // Why am I calling this here?
+        if (towerIndicator != null) 
+        {
+            // Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
+        }
+
     }
 
     public void PreviewTower()
@@ -59,8 +64,10 @@ public class TowerSpawner : MonoBehaviour
             towerIndicator.GetComponent<Tower>().ActivateTower();
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
+            towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
             towerIndicator = null;
             spawnerActive = false;
+      
         }
         else 
         {
@@ -81,7 +88,6 @@ public class TowerSpawner : MonoBehaviour
 
         hexGrid.FindItemInList(); // Scans through the towers placed in the scene. If a firepit is found and the current mouse pos matches with the fire pits pos the firepit is reignited
         hexGrid.ToggleGridVisibility(false);
-
     }
 
     public void TextAway() // will be moved later
@@ -109,13 +115,12 @@ public class TowerSpawner : MonoBehaviour
             if (cellPosition.x >= 0 && cellPosition.x < hexGrid.Width && cellPosition.y >= 0 && cellPosition.y < hexGrid.Height) // is current position of the mouse within the grid bounds
             {
                 Vector3 worldPosition = tilemap.GetCellCenterWorld(cellPosition);
-                hexGrid.testFlag = false; // rename "testflag" (•‿•)
+                hexGrid.insideBounds = false;
                 return worldPosition;
             } 
             else 
             {
-                hexGrid.testFlag = true;
-                // turn towerIndicator red 
+                hexGrid.insideBounds = true;
                 return hit.point;
             }
         }

@@ -36,9 +36,6 @@ public class ResourceJunk : AutoDestroyPoolableObject
             LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
             animation.Initialize(targetPosition);
 
-
-            // lootImageInstance.transform.SetParent(lootCanvas.transform);
-            Debug.Log("Collected junk");
             eventManager.LootCollected();
             this.gameObject.SetActive(false); // loot object returns to the pool
 

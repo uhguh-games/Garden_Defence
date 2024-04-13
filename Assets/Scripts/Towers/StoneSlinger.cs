@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-Fire Pit functionality idea:
-- since all towers share the tower class which stores the available enemies into a list ->
-- give the stone slinger tower access to those lists ->
-- then compare if an enemy is in stone slingers list and on one of the firepits lists -> shoot that enemy
-*/
-
 public class StoneSlinger : MonoBehaviour
 {
     [Header("Shooting")]
-    
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
     
@@ -22,37 +14,57 @@ public class StoneSlinger : MonoBehaviour
     public bool isNight;
     Tower tower;
     PoolManager poolManager;
+    private DayNightState dayNightState;
 
 
     private void Awake() 
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
+        dayNightState = GameObject.Find("TimeManager").GetComponent<DayNightState>();
         tower = GetComponent<Tower>();
     }
-
+ 
     private void Update() 
     {
         if (tower.towerActive)
         {
-            tower.CompareEnemyList();
-            
             tower.scanningTimer += Time.deltaTime;
 
             if (tower.scanningTimer >= tower.scanningDelay)
             {
                 tower.scanningTimer = 0;
                 tower.ScanForEnemies();
-            }
-            
-            if (tower.targetedEnemy)
-            {
-                fireTimer += Time.deltaTime;
+                tower.GetLitEnemies();
             }
 
-            if (fireTimer >= fireDelay)
+            if (dayNightState.currentState == TimeState.Night) 
             {
-                fireTimer = 0f;
-                Fire();
+                if (tower.canFire)
+                {
+                    if (tower.targetedEnemy)
+                    {
+                        fireTimer += Time.deltaTime;
+                    }
+
+                    if (fireTimer >= fireDelay)
+                    {
+                        fireTimer = 0f;
+                        Fire();
+                    }
+                }
+            } 
+            else 
+            {
+                if (tower.targetedEnemy)
+                {
+                    fireTimer += Time.deltaTime;
+                }
+
+                if (fireTimer >= fireDelay)
+                {
+                    fireTimer = 0f;
+                    Fire();
+                }
             }
         }
     }

@@ -16,7 +16,7 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     EventSystem m_EventSystem;
 
     // private GameObject selectedItem;
-    public GameObject itemToPlace;
+    public GameObject itemToPlace = null;
     private ResourceControls resourceControls;
     private HexGrid hexGrid;
 
@@ -55,8 +55,14 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         foreach (RaycastResult result in results)
         {
             GameObject selectedItem = result.gameObject;
-            // Debug.Log(selectedItem.GetComponent<Slot>().ItemInSlot.itemName);
-            itemToPlace = selectedItem.GetComponent<Slot>().ItemInSlot.prefab;
+            Slot slot = selectedItem.GetComponent<Slot>();
+
+            if (slot != null) 
+            {
+                itemToPlace = slot.ItemInSlot.prefab;
+                //itemToPlace = selectedItem.GetComponent<Slot>().ItemInSlot.prefab;
+                break;
+            }
         }
 
         if (itemToPlace.tag == "Tower") 
@@ -78,15 +84,16 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
 
     public void OnPointerUp(PointerEventData eventData) 
     {
-        if (itemToPlace.tag == "Tower") 
+        if (itemToPlace != null) 
         {
-            // Debug.Log($"Tower object {itemToPlace.name} is placed");
-            towerSpawner.PlaceTower();
-        } 
-        else if (itemToPlace.tag == "Resource") 
-        {
-            // Debug.Log($"Resource object {itemToPlace.name} is placed");
-            towerSpawner.PlaceItem();
+            if (itemToPlace.tag == "Tower") 
+            {
+                towerSpawner.PlaceTower();
+            }
+            else if (itemToPlace.tag == "Resource")
+            {
+                towerSpawner.PlaceItem();
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Tower : MonoBehaviour
 {
@@ -13,13 +14,19 @@ public class Tower : MonoBehaviour
     [SerializeField] public float range = 3.5f;
     [SerializeField] public LayerMask enemyLayer;
     [SerializeField] public List<Monster> enemiesInRange;
+    public List<Monster> litEnemies = new List<Monster>();
     [SerializeField] public Monster targetedEnemy;
     [SerializeField] public float scanningDelay = 0.1f;
+    public GameObject dustEffect;
     public float scanningTimer;
+    private HexGrid hexGrid;
+    public bool canFire;
+  
 
     void Awake() 
     {
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
+        hexGrid = GameObject.Find("HexGrid").GetComponent<HexGrid>();
     }
 
     public void ActivateTower() 
@@ -31,7 +38,6 @@ public class Tower : MonoBehaviour
     {
         if (blockedLayers == (blockedLayers | (1 << collision.gameObject.layer))) 
         {
-            // print ("Tower collided with " + collision.gameObject.name);
             towerSpawner.spaceBlocked = true;
         }
     }
@@ -56,21 +62,64 @@ public class Tower : MonoBehaviour
         {
             targetedEnemy = enemiesInRange[0];
         }
+
+        ClearDestroyedEnemies();
     }
 
-    public void CompareEnemyList() 
+    public void GetLitEnemies()
     {
-        for (int i = 0; i < enemiesInRange.Count; i++) 
-        {
-            /*
-            if (enemiesInRange[i] == hexGridScript.litEnemies[i]) 
-            {
-                print("Match found");
-                // flag true
-            }
+        litEnemies.Clear();
 
-            */
+        foreach (var kvp in hexGrid.ItemsInScene)
+        {
+            if (kvp.Key.name == "FirePit(Clone)") // in the future other light towers can be added here
+            {
+                GameObject firePit = kvp.Key;
+
+                Tower towerScript = firePit.GetComponent<Tower>();
+
+                if (towerScript != null) 
+                {
+                    for (int i = 0; i < towerScript.enemiesInRange.Count; i++) 
+                    {
+                        litEnemies.Add(towerScript.enemiesInRange[i]);
+                    }
+                }
+            }
         }
+
+        CompareEnemyList();
+    }
+
+    public void CompareEnemyList() // compares towers enemy list to all light source objects enemy lists
+    {
+        int minLength = Mathf.Min(enemiesInRange.Count, litEnemies.Count);
+    
+        for (int i = 0; i < minLength; i++) 
+        {
+            if (enemiesInRange[i] == litEnemies[i])
+            {
+                // get the matching enemy
+                // set it to targeted enemy
+                targetedEnemy = enemiesInRange[i];
+                canFire = true;
+
+                // print($"{enemiesInRange[i].name}");
+                break;
+            }
+        }
+
+        if (targetedEnemy == null) 
+        {
+            canFire = false;
+        }
+    }
+
+    public void ClearDestroyedEnemies() // removes dead enemies from the list
+    {
+        List<Monster> remainingEnemies = enemiesInRange.Where(enemy => enemy != null && enemy.gameObject.activeSelf).ToList();
+        enemiesInRange.Clear();
+        enemiesInRange.AddRange(remainingEnemies);
     }
 
     public void ResetEnemyList() // when an object is disabled like the firepit
@@ -79,7 +128,7 @@ public class Tower : MonoBehaviour
         targetedEnemy = null;
     }
 
-    private void OnDrawGizmosSelected() 
+    private void OnDrawGizmosSelected() // visualises towers radius in the scene
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
