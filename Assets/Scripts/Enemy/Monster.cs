@@ -7,10 +7,12 @@ public class Monster : MonoBehaviour
     [SerializeField] EventManagerSO eventManager;
     private Transform deathPos;
     public float maxHealth = 10f;
+    public int eatingTime;
     public float currentHealth;
     private HealthBar healthBar;
     [SerializeField] Transform hitTarget; // empty object on the enemy
     private PoolManager poolManager;
+    private Crop cropToEat;
     private void Awake()
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
@@ -27,6 +29,10 @@ public class Monster : MonoBehaviour
         if (currentHealth <= 0) 
         {
             deathPos = this.transform;
+
+            // print ("Killed " + this.gameObject.name);
+
+            eventManager.OnKill();
 
             DropJunk();
 
@@ -56,11 +62,32 @@ public class Monster : MonoBehaviour
         instance.transform.position = deathPos.position;
     }
 
-    void OnTriggerEnter(Collider other) 
+    void OnTriggerEnter(Collider other) // temporary cringy solution 
     {
         if (other.tag == "Temp") 
         {
-            this.gameObject.SetActive(false); // Enemy gets returned into the pool
+            this.gameObject.SetActive(false); // Enemy gets returned into its' pool
         }
+        if (other.tag == "CropEaten") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
+        {
+            cropToEat = other.GetComponent<Crop>();
+           // Debug.Log("Collided with crop");
+            StartCoroutine(eating());
+            
+
+        }
+       
     }
+
+    IEnumerator eating() //eat for n seconds
+    {
+        yield return new WaitForSeconds(eatingTime);
+       // Debug.Log("Eating finished");
+        cropToEat.GetEaten(); //tell crop to delete itself and to add the points to the game manager
+        
+
+    }
+
+
 }
+

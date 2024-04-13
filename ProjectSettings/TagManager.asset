@@ -11,6 +11,9 @@ TagManager:
   - Projectile
   - Tower
   - Resource
+  - Projectile
+  - Crop
+  - CropEaten
   layers:
   - Default
   - TransparentFX
