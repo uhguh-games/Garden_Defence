@@ -15,10 +15,7 @@ MonoBehaviour:
   description: 'Moderate difficulty wave of night enemies. '
   EnemiesToSpawn:
     _serializedList:
-    - Key: {fileID: -1685709617394219053, guid: 27ffb5149951ed044a02bcdb5bd38550,
-        type: 3}
+    - Key: {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
       Value: 6
   BossToSpawn:
-    _serializedList:
-    - Key: {fileID: 6985758261319750095, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
-      Value: 1
+    _serializedList: []

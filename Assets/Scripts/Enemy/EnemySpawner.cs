@@ -1,15 +1,20 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using AYellowpaper.SerializedCollections;
+
 
 public class EnemySpawner : MonoBehaviour
 {
     public Transform target;
-    public int enemySpawnAmount = 5; // how many enemies we want to spawn
-    public float spawnDelay = 1f;
-    public List<Enemy> enemyPrefabs = new List<Enemy>();
+    public float spawnDelay = 1.5f;
+    [SerializeField] private List<Enemy> enemyPrefabs = new List<Enemy>();
+    private List<int> enemyAmounts = new List<int>();
+    public int enemySpawnAmount = 15;
     public Transform setSpawnPoint;
-    private Dictionary<int, ObjectPool> EnemyObjectPools = new Dictionary<int, ObjectPool>();
+
+    [SerializedDictionary("Enemy Amount", "Enemy Pool")]
+    public SerializedDictionary<int, ObjectPool> EnemyObjectPools = new SerializedDictionary<int, ObjectPool>();
 
     void Awake()
     {
@@ -19,83 +24,51 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    void Start()
+    public void SetEnemyTypesAndAmounts(List<Enemy> enemyTypes, List<int> amounts)
     {
-        StartCoroutine(SpawnEnemies());
+        enemyPrefabs = enemyTypes;
+        enemyAmounts = amounts;
     }
 
-    IEnumerator SpawnEnemies()
+    public IEnumerator SpawnEnemies()
     {
         WaitForSeconds wait = new WaitForSeconds(spawnDelay);
 
-        int enemySpawnCounter = 0; // keeps track of the amount of enemies that have spawned
-
-        while (enemySpawnCounter < enemySpawnAmount)
+        for (int i = 0; i < enemyPrefabs.Count; i++)
         {
-            SetSpawnEnemy();
-            
-            enemySpawnCounter++;
-
-            yield return wait;
+            for (int j = 0; j < enemyAmounts[i]; j++)
+            {
+                SetSpawnEnemy(i);
+                yield return wait;
+            }
         }
     }
 
-    void SetSpawnEnemy()
+    void SetSpawnEnemy(int prefabIndex)
     {
-        DoSpawnEnemy(-1);
+        DoSpawnEnemy(prefabIndex);
     }
 
-    void DoSpawnEnemy(int spawnIndex)
+    void DoSpawnEnemy(int prefabIndex)
     {
-        PoolableObject poolableObject;
-
-        if (spawnIndex >= 0)
+        if (prefabIndex < 0 || prefabIndex >= enemyPrefabs.Count)
         {
-            poolableObject = EnemyObjectPools[spawnIndex].GetObject();
+            Debug.LogWarning("Invalid prefab index.");
+            return;
         }
-        else // Spawn at set spawn point
-        {
-            Vector3 spawnPosition = setSpawnPoint.position;
-            UnityEngine.AI.NavMeshHit hit;
 
-            if (UnityEngine.AI.NavMesh.SamplePosition(spawnPosition, out hit, 50f, UnityEngine.AI.NavMesh.AllAreas))
-            {
-                spawnPosition = hit.position;
-            }
-            else
-            {
-                Debug.LogWarning("Failed to find valid position on NavMesh for spawn point.");
-            }
-
-            // poolableObject = EnemyObjectPools[0].GetObject(); // Assuming the first enemy prefab is the one to spawn
-            int randomIndex = Random.Range(0, enemyPrefabs.Count);
-            poolableObject = EnemyObjectPools[randomIndex].GetObject();
-            poolableObject.transform.position = spawnPosition;
-        }
+        PoolableObject poolableObject = EnemyObjectPools[prefabIndex].GetObject();
 
         if (poolableObject != null)
         {
             Enemy enemy = poolableObject.GetComponent<Enemy>();
 
+            Vector3 spawnPosition = setSpawnPoint.position;
             enemy.transform.position = setSpawnPoint.position;
 
             enemy.Movement.target = target;
             enemy.Agent.enabled = true;
             enemy.Movement.StartChasing();
-        }
-    }
-
-    // Method to spawn an enemy based on the provided enemy prefab
-    public void SpawnEnemy(Enemy enemyPrefab)
-    {
-        int prefabIndex = enemyPrefabs.IndexOf(enemyPrefab);
-        if (prefabIndex != -1)
-        {
-            DoSpawnEnemy(prefabIndex);
-        }
-        else
-        {
-            Debug.LogWarning("Enemy prefab not found in the list.");
         }
     }
 }

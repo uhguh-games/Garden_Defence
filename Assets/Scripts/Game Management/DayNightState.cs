@@ -15,6 +15,7 @@ public enum TimeState
 
 public class DayNightState : MonoBehaviour
 {
+    public event Action<TimeState> OnTimeStateChanged;
     public TimeState currentState;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI timeCounterText;
@@ -24,6 +25,7 @@ public class DayNightState : MonoBehaviour
     [SerializeField] float dayDuration = 30f;
     [SerializeField] float eveningDuration = 15f;
     [SerializeField] float nightDuration = 30f;
+
 
     [SerializeField] List<GameObject> fireFlies = new List<GameObject>();
 
@@ -74,6 +76,12 @@ public class DayNightState : MonoBehaviour
         }
     }
 
+    public void SetTimeOfDay(TimeState newTimeOfDay)
+    {
+        currentState = newTimeOfDay;
+        OnTimeStateChanged?.Invoke(currentState);
+    }
+
     public void GameTimer() 
     {
         gameTime += Time.deltaTime;
@@ -122,5 +130,7 @@ public class DayNightState : MonoBehaviour
                 
                 break;
         }
+
+        OnTimeStateChanged?.Invoke(currentState);
     }
 }

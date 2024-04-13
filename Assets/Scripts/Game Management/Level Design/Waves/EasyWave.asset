@@ -15,5 +15,8 @@ MonoBehaviour:
   description: Easy wave of day monsters
   EnemiesToSpawn:
     _serializedList:
-    - Key: {fileID: 6985758261319750095, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
-      Value: 3
+    - Key: {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07,
+        type: 3}
+      Value: 2
+  BossToSpawn:
+    _serializedList: []

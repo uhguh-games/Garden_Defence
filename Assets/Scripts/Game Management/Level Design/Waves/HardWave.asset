@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f82832229ee4c46b030a29f5ed953f, type: 3}
   m_Name: HardWave
   m_EditorClassIdentifier: 
-  waveNumber: 0
   description: 
-  wave: 0
   EnemiesToSpawn:
-    _serializedList: []
+    _serializedList:
+    - Key: {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
+      Value: 10
+  BossToSpawn:
+    _serializedList:
+    - Key: {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
+      Value: 1

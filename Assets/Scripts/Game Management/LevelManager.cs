@@ -1,29 +1,36 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
 public class LevelManager : MonoBehaviour
 {
     public Level_SO[] levels;
-    private DayNightState dayNightState; 
+    [SerializeField] private DayNightState dayNightState;
     private EnemySpawner enemySpawner;
-
-    // Index to keep track of the current level
-    private int currentLevelIndex = 0;
+    [SerializeField] private int currentLevelIndex = 0;
 
     void Start()
     {
         dayNightState = GameObject.Find("TimeManager").GetComponent<DayNightState>();
         enemySpawner = GameObject.Find("EnemyManager").GetComponent<EnemySpawner>();
         
+        // Subscribe to the OnTimeStateChanged event
+        dayNightState.OnTimeStateChanged += OnTimeStateChangedHandler;
+
+        // Load the initial level
         LoadLevel(currentLevelIndex);
     }
+
 
     void LoadLevel(int levelIndex)
     {
         Level_SO level = levels[levelIndex];
+        
         // Spawn enemies for the current time of day
         SpawnEnemiesForTimeOfDay(dayNightState.currentState, level);
+    }
+    void OnTimeStateChangedHandler(TimeState newState)
+    {
+        LoadLevel(currentLevelIndex);
     }
 
     void SpawnEnemiesForTimeOfDay(TimeState timeOfDay, Level_SO level)
@@ -58,25 +65,22 @@ public class LevelManager : MonoBehaviour
 
     void SpawnEnemiesFromWave(Wave_SO wave)
     {
+        List<Enemy> enemiesToSpawn = new List<Enemy>();
+        List<int> amounts = new List<int>();
+
         foreach (var enemyAmountPair in wave.EnemiesToSpawn)
         {
-            for (int i = 0; i < enemyAmountPair.Value; i++)
-            {
-                SpawnEnemy(enemyAmountPair.Key);
-            }
+            enemiesToSpawn.Add(enemyAmountPair.Key);
+            amounts.Add(enemyAmountPair.Value);
         }
 
         foreach (var bossAmountPair in wave.BossToSpawn)
         {
-            for (int i = 0; i < bossAmountPair.Value; i++)
-            {
-                // SpawnEnemy(bossAmountPair.Key);
-            }
+            enemiesToSpawn.Add(bossAmountPair.Key);
+            amounts.Add(bossAmountPair.Value);
         }
-    }
 
-    void SpawnEnemy(Enemy enemyPrefab)
-    {
-        enemySpawner.SpawnEnemy(enemyPrefab);
+        enemySpawner.SetEnemyTypesAndAmounts(enemiesToSpawn, amounts);
+        StartCoroutine(enemySpawner.SpawnEnemies());
     }
 }
