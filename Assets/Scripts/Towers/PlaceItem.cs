@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using System.Collections;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -14,11 +15,14 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
+    EconomyManager economyManager;
 
     // private GameObject selectedItem;
     public GameObject itemToPlace = null;
     private ResourceControls resourceControls;
     private HexGrid hexGrid;
+    public int currentCost; // maybe use get set here instead of public
+    [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later :)
 
     void Start() 
     {
@@ -36,6 +40,7 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
         resourceControls = GetComponent<ResourceControls>();
         m_EventSystem = GetComponent<EventSystem>();
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
     }
 
    public void OnPointerClick(PointerEventData eventData) 
@@ -60,14 +65,27 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
             if (slot != null) 
             {
                 itemToPlace = slot.ItemInSlot.prefab;
+                currentCost = slot.ItemInSlot.value;
+
+                // Debug.Log($"{slot.ItemInSlot.name} costs {slot.ItemInSlot.value}");
                 //itemToPlace = selectedItem.GetComponent<Slot>().ItemInSlot.prefab;
                 break;
             }
         }
 
-        if (itemToPlace.tag == "Tower") 
+        if (itemToPlace.tag == "Tower")
         {
-            towerSpawner.PreviewTower();
+            if (economyManager.playersJunk >= currentCost) 
+            {
+                towerSpawner.PreviewTower();
+                // economyManager.SpendJunk(currentCost);
+                Invoke("TextAway", 2.5f);
+            } 
+            else 
+            {
+                tooltipText.text =  "Not enough funds.";
+                Invoke("TextAway", 2.5f);
+            }
         } 
         else if (itemToPlace.tag == "Resource") 
         {
@@ -95,5 +113,10 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
                 towerSpawner.PlaceItem();
             }
         }
+    }
+
+    public void TextAway() // will be moved later
+    {
+        tooltipText.text = " ";
     }
 }

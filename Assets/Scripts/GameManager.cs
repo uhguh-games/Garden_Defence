@@ -6,15 +6,22 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    public int junk = 0;
+    public int junk = 5;
     [SerializeField] private TextMeshProUGUI textybit; 
 
     public float cropHealth;
     private float baseCropHealth;
     private int numberOfCrops;
-    public int junkAmount = 10;
+    public int junkAmount = 5;
     private int enemiesInScene;
     private int kills;
+
+    EconomyManager economyManager;
+
+    void Start() 
+    {
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+    }
 
     private void Update()
     {
@@ -52,6 +59,7 @@ public class GameManager : MonoBehaviour
     private void CollectJunk()
     {
         junk += junkAmount;
+        economyManager.AddJunk(junkAmount);
     }
 
     private void DamageCrops()

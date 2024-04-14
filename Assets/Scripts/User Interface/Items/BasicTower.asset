@@ -18,4 +18,4 @@ MonoBehaviour:
   type: 0
   prefab: {fileID: 6700861164244369912, guid: 8a40e1ca951802140a51bf0feced41ee, type: 3}
   icon: {fileID: 2800000, guid: e9559f2381648704e85ac1e17f1c471e, type: 3}
-  value: 2
+  value: 3
