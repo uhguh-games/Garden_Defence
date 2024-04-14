@@ -32694,6 +32694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - {fileID: 11400000, guid: 77fb94d267e606e4bb9671da3282b959, type: 2}
   - {fileID: 11400000, guid: 7ac9cf304fa6ab54d8440ee03b5f19d2, type: 2}
   - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
   dayNightState: {fileID: 494425370}
@@ -73734,7 +73735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1278186079}
   setSpawnPoint: {fileID: 1528240463}
-  spawnDelay: 3
+  spawnDelay: 4
   enemyPrefabs:
   - {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
   - {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}

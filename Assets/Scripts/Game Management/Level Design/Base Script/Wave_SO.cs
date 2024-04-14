@@ -15,7 +15,8 @@ public class Wave_SO: ScriptableObject
     [SerializedDictionary("Enemy", "Amount")]
     public SerializedDictionary<Enemy, int> EnemiesToSpawn = new SerializedDictionary<Enemy, int>();
 
-    [SerializedDictionary("Boss Enemy", "Amount")]
+    /*[SerializedDictionary("Boss Enemy", "Amount")]
     public SerializedDictionary<Enemy, int> BossToSpawn = new SerializedDictionary<Enemy, int>();
+    */
 
 }
