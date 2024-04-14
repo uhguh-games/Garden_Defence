@@ -75,9 +75,10 @@ public class EnemySpawner : MonoBehaviour
 
             enemy.Movement.target = target;
             enemy.Agent.enabled = true;
+
             enemy.Movement.StartChasing();
 
-            eventManager.EnemySummation();
+            // eventManager.EnemySummation();
 
             yield return wait;
         }
