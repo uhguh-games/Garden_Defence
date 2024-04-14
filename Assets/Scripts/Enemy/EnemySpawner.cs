@@ -1,41 +1,81 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EventManagerSO eventManager;
     public Transform target;
-    public int enemySpawnAmount = 5; // how many enemies we want to spawn
-    public float spawnDelay = 1f;
-    public List<Enemy> enemyPrefabs = new List<Enemy>();
     public Transform setSpawnPoint;
-    private Dictionary<int, ObjectPool> EnemyObjectPools = new Dictionary<int, ObjectPool>();
+    public float spawnDelay;
+    [SerializeField] private List<Enemy> enemyPrefabs = new List<Enemy>();
+    private List<int> enemyAmounts = new List<int>();
+
+    [Tooltip("Size of each enemy pool")]
+    public int enemySpawnAmount = 50; // the amount of each enemy reserved in the POOL
+    Dictionary<int, ObjectPool> EnemyObjectPools = new Dictionary<int, ObjectPool>();
 
     void Awake()
     {
-        for (int i = 0; i < enemyPrefabs.Count; i++)
+        CreateEnemyPools();
+    }
+
+    public void CreateEnemyPools() 
+    {
+        // EnemyObjectPools.Clear();
+
+        foreach (Enemy enemyPrefab in enemyPrefabs) 
         {
-            EnemyObjectPools.Add(i, ObjectPool.CreateInstance(enemyPrefabs[i], enemySpawnAmount));
+            int prefabIndex = enemyPrefabs.IndexOf(enemyPrefab);
+            EnemyObjectPools.Add(prefabIndex, ObjectPool.CreateInstance(enemyPrefab, enemySpawnAmount));
         }
     }
 
-    void Start()
+    public void SpawnEnemiesFromPools(List<Enemy> enemiesToSpawn, List<int> amounts)
     {
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies(enemiesToSpawn, amounts));
     }
 
-    IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemies(List<Enemy> enemiesToSpawn, List<int> amounts)
     {
+        for (int i = 0; i < enemiesToSpawn.Count; i++)
+        {
+            int prefabIndex = enemyPrefabs.IndexOf(enemiesToSpawn[i]);
+            int amount = amounts[i];
+
+            yield return StartCoroutine(SpawnEnemiesFromPool(prefabIndex, amount));
+        }
+    }
+    
+    IEnumerator SpawnEnemiesFromPool(int prefabIndex, int amount)
+    {
+        if (!EnemyObjectPools.ContainsKey(prefabIndex))
+        {
+            Debug.LogWarning("Enemy pool for prefab index " + prefabIndex + " does not exist.");
+            yield break;
+        }
+
+        ObjectPool pool = EnemyObjectPools[prefabIndex];
         WaitForSeconds wait = new WaitForSeconds(spawnDelay);
 
-        int enemySpawnCounter = 0; // keeps track of the amount of enemies that have spawned
-
-        while (enemySpawnCounter < enemySpawnAmount)
+        for (int i = 0; i < amount; i++)
         {
-            SetSpawnEnemy();
-            
-            enemySpawnCounter++;
+            PoolableObject poolableObject = pool.GetObject();
+
+            if (poolableObject == null)
+            {
+                Debug.LogWarning("Object pool is empty.");
+                yield break;
+            }
+
+            Enemy enemy = poolableObject.GetComponent<Enemy>();
+
+            Vector3 spawnPosition = setSpawnPoint.position;
+            enemy.transform.position = spawnPosition;
+
+            enemy.Movement.target = target;
+            enemy.Agent.enabled = true;
+            enemy.Movement.StartChasing();
 
             eventManager.EnemySummation();
 
@@ -45,48 +85,10 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    void SetSpawnEnemy()
+
+    public void ClearEnemyPools()
     {
-        DoSpawnEnemy(-1);
-    }
-
-    void DoSpawnEnemy(int spawnIndex)
-    {
-        PoolableObject poolableObject;
-
-        if (spawnIndex >= 0)
-        {
-            poolableObject = EnemyObjectPools[spawnIndex].GetObject();
-        }
-        else // Spawn at set spawn point
-        {
-            Vector3 spawnPosition = setSpawnPoint.position;
-            UnityEngine.AI.NavMeshHit hit;
-
-            if (UnityEngine.AI.NavMesh.SamplePosition(spawnPosition, out hit, 50f, UnityEngine.AI.NavMesh.AllAreas))
-            {
-                spawnPosition = hit.position;
-            }
-            else
-            {
-                Debug.LogWarning("Failed to find valid position on NavMesh for spawn point.");
-            }
-
-            // poolableObject = EnemyObjectPools[0].GetObject(); // Assuming the first enemy prefab is the one to spawn
-            int randomIndex = Random.Range(0, enemyPrefabs.Count);
-            poolableObject = EnemyObjectPools[randomIndex].GetObject();
-            poolableObject.transform.position = spawnPosition;
-        }
-
-        if (poolableObject != null)
-        {
-            Enemy enemy = poolableObject.GetComponent<Enemy>();
-
-            enemy.transform.position = setSpawnPoint.position;
-
-            enemy.Movement.target = target;
-            enemy.Agent.enabled = true;
-            enemy.Movement.StartChasing();
-        }
+        // Clear the existing enemy pools
+        EnemyObjectPools.Clear();
     }
 }
