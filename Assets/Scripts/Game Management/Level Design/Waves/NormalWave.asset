@@ -15,8 +15,7 @@ MonoBehaviour:
   description: Normal wave of day enemies
   EnemiesToSpawn:
     _serializedList:
-    - Key: {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07,
-        type: 3}
-      Value: 5
+    - Key: {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
+      Value: 3
   BossToSpawn:
     _serializedList: []

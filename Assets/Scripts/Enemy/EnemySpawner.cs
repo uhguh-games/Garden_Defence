@@ -1,74 +1,76 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
-
 
 public class EnemySpawner : MonoBehaviour
 {
     public Transform target;
+    public Transform setSpawnPoint;
     public float spawnDelay = 1.5f;
     [SerializeField] private List<Enemy> enemyPrefabs = new List<Enemy>();
     private List<int> enemyAmounts = new List<int>();
-    public int enemySpawnAmount = 15;
-    public Transform setSpawnPoint;
-
-    [SerializedDictionary("Enemy Amount", "Enemy Pool")]
-    public SerializedDictionary<int, ObjectPool> EnemyObjectPools = new SerializedDictionary<int, ObjectPool>();
+    public int enemySpawnAmount = 50; // the amount of each enemy reserved in the POOL not the amount that will spawn (that is handled through the level)
+    Dictionary<int, ObjectPool> EnemyObjectPools = new Dictionary<int, ObjectPool>();
 
     void Awake()
     {
-        for (int i = 0; i < enemyPrefabs.Count; i++)
+        CreateEnemyPools();
+    }
+
+    public void CreateEnemyPools() 
+    {
+        // EnemyObjectPools.Clear();
+
+        foreach (Enemy enemyPrefab in enemyPrefabs) 
         {
-            EnemyObjectPools.Add(i, ObjectPool.CreateInstance(enemyPrefabs[i], enemySpawnAmount));
+            int prefabIndex = enemyPrefabs.IndexOf(enemyPrefab);
+            EnemyObjectPools.Add(prefabIndex, ObjectPool.CreateInstance(enemyPrefab, enemySpawnAmount));
         }
     }
 
-    public void SetEnemyTypesAndAmounts(List<Enemy> enemyTypes, List<int> amounts)
+    public void SpawnEnemiesFromPools(List<Enemy> enemiesToSpawn, List<int> amounts)
     {
-        enemyPrefabs = enemyTypes;
-        enemyAmounts = amounts;
-    }
-
-    public IEnumerator SpawnEnemies()
-    {
-        WaitForSeconds wait = new WaitForSeconds(spawnDelay);
-
-        for (int i = 0; i < enemyPrefabs.Count; i++)
+        for (int i = 0; i < enemiesToSpawn.Count; i++)
         {
-            for (int j = 0; j < enemyAmounts[i]; j++)
-            {
-                SetSpawnEnemy(i);
-                yield return wait;
-            }
+            int prefabIndex = enemyPrefabs.IndexOf(enemiesToSpawn[i]);
+            int amount = amounts[i];
+            SpawnEnemiesFromPool(prefabIndex, amount);
         }
     }
 
-    void SetSpawnEnemy(int prefabIndex)
+    void SpawnEnemiesFromPool(int prefabIndex, int amount)
     {
-        DoSpawnEnemy(prefabIndex);
-    }
-
-    void DoSpawnEnemy(int prefabIndex)
-    {
-        if (prefabIndex < 0 || prefabIndex >= enemyPrefabs.Count)
+        if (!EnemyObjectPools.ContainsKey(prefabIndex))
         {
-            Debug.LogWarning("Invalid prefab index.");
+            Debug.LogWarning("Enemy pool for prefab index " + prefabIndex + " does not exist.");
             return;
         }
 
-        PoolableObject poolableObject = EnemyObjectPools[prefabIndex].GetObject();
+        ObjectPool pool = EnemyObjectPools[prefabIndex];
 
-        if (poolableObject != null)
+        for (int i = 0; i < amount; i++)
         {
+            PoolableObject poolableObject = pool.GetObject();
+            if (poolableObject == null)
+            {
+                Debug.LogWarning("Object pool is empty.");
+                return;
+            }
+
             Enemy enemy = poolableObject.GetComponent<Enemy>();
 
             Vector3 spawnPosition = setSpawnPoint.position;
-            enemy.transform.position = setSpawnPoint.position;
+            enemy.transform.position = spawnPosition;
 
             enemy.Movement.target = target;
             enemy.Agent.enabled = true;
             enemy.Movement.StartChasing();
         }
+    }
+
+    public void ClearEnemyPools()
+    {
+        // Clear the existing enemy pools
+        EnemyObjectPools.Clear();
     }
 }

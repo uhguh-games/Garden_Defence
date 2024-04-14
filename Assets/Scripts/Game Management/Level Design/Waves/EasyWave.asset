@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f82832229ee4c46b030a29f5ed953f, type: 3}
   m_Name: EasyWave
   m_EditorClassIdentifier: 
-  description: Easy wave of day monsters
+  description: Easy wave of day enemies
   EnemiesToSpawn:
     _serializedList:
     - Key: {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07,
         type: 3}
-      Value: 2
+      Value: 3
   BossToSpawn:
     _serializedList: []

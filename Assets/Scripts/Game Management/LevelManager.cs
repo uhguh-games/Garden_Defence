@@ -20,17 +20,25 @@ public class LevelManager : MonoBehaviour
         LoadLevel(currentLevelIndex);
     }
 
+    void OnTimeStateChangedHandler(TimeState newState)
+    {
+        // Optionally, you can clear existing enemy pools when time state changes
+        // If you want to keep the enemy pools throughout the game, you can skip this step
+        // ClearEnemyPools();
+
+        LoadLevel(currentLevelIndex);
+    }
 
     void LoadLevel(int levelIndex)
     {
         Level_SO level = levels[levelIndex];
+
+        // Optionally, you can clear existing enemy pools when loading a new level
+        // If you want to keep the enemy pools throughout the game, you can skip this step
+        // ClearEnemyPools();
         
         // Spawn enemies for the current time of day
         SpawnEnemiesForTimeOfDay(dayNightState.currentState, level);
-    }
-    void OnTimeStateChangedHandler(TimeState newState)
-    {
-        LoadLevel(currentLevelIndex);
     }
 
     void SpawnEnemiesForTimeOfDay(TimeState timeOfDay, Level_SO level)
@@ -80,7 +88,12 @@ public class LevelManager : MonoBehaviour
             amounts.Add(bossAmountPair.Value);
         }
 
-        enemySpawner.SetEnemyTypesAndAmounts(enemiesToSpawn, amounts);
-        StartCoroutine(enemySpawner.SpawnEnemies());
+        enemySpawner.SpawnEnemiesFromPools(enemiesToSpawn, amounts); // Spawn enemies from pools
+    }
+
+    // Optionally, if you want to clear enemy pools at certain points
+    void ClearEnemyPools()
+    {
+        enemySpawner.ClearEnemyPools();
     }
 }

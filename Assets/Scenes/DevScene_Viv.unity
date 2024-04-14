@@ -73733,14 +73733,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1278186079}
-  spawnDelay: 4
+  setSpawnPoint: {fileID: 1528240463}
+  spawnDelay: 3
   enemyPrefabs:
   - {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07, type: 3}
   - {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
-  enemySpawnAmount: 15
-  setSpawnPoint: {fileID: 1528240463}
-  EnemyObjectPools:
-    _serializedList: []
+  - {fileID: 9008996355338545528, guid: 564b434369995e74bb95224cd8d7c1a0, type: 3}
+  enemySpawnAmount: 50
 --- !u!43 &1781611499
 Mesh:
   m_ObjectHideFlags: 0
@@ -83152,7 +83151,7 @@ PrefabInstance:
     - target: {fileID: 6115747249579473721, guid: da858ab31c929cc42a9ccee66233337d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
