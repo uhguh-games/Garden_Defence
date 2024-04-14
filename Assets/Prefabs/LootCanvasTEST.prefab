@@ -160,7 +160,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1440885314499389635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +197,6 @@ MonoBehaviour:
   lootDelayMultiplier: 1
   amountOfLoot: 10
   targetPosition: {fileID: 0}
-  speed: 1000
   mainCanvas: {fileID: 0}
   lootStackParent: {fileID: 4109076138060803881}
 --- !u!1 &2483310815236166087
