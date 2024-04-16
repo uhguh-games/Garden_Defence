@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 1024352361385635776}
   - component: {fileID: 8026237318705769772}
   m_Layer: 7
-  m_Name: Beetle
+  m_Name: Beetle_OLD
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

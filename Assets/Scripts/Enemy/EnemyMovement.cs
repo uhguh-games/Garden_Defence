@@ -58,7 +58,7 @@ public class EnemyMovement : MonoBehaviour
           
             else
             {
-                Debug.LogWarning("Enemy is not on NavMesh.");
+                // Debug.LogWarning("Enemy is not on NavMesh.");
             }
             yield return wait;
         }
