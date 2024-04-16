@@ -45239,7 +45239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  junk: 200
+  junk: 5
   textybit: {fileID: 414518903}
   cropHealth: 0
   junkAmount: 5
@@ -54999,6 +54999,9 @@ MonoBehaviour:
   fuelCost: 1
   firePitCost: 2
   stoneSlingerCost: 3
+  aphidDrop: 1
+  weevilDrop: 2
+  beetleDrop: 3
 --- !u!1001 &1313872472
 PrefabInstance:
   m_ObjectHideFlags: 0

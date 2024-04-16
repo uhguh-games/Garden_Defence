@@ -50,8 +50,11 @@ public class FirePit : MonoBehaviour
     }
     public void ReActivateFire() 
     {
-        StartCoroutine(SetupFireRoutine());
-        economyManager.SpendJunk(1); // just testing
+        if (economyManager.playersJunk >= 1) 
+        {
+            economyManager.SpendJunk(1); // just testing
+            StartCoroutine(SetupFireRoutine());
+        }
     }
 
     public void ResetFireActiveTimer() 
