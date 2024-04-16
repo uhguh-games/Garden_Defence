@@ -25526,6 +25526,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1291824600}
     m_Modifications:
+    - target: {fileID: 4621589085309116145, guid: 80df80ff5fee4c8449163c11e2a11716,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.010897105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621589085309116145, guid: 80df80ff5fee4c8449163c11e2a11716,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0003493182
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621589085309116145, guid: 80df80ff5fee4c8449163c11e2a11716,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0000000014652666
+      objectReference: {fileID: 0}
     - target: {fileID: 7287711786109007826, guid: 80df80ff5fee4c8449163c11e2a11716,
         type: 3}
       propertyPath: m_Name
@@ -45224,7 +45239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  junk: 5
+  junk: 200
   textybit: {fileID: 414518903}
   cropHealth: 0
   junkAmount: 5
@@ -64355,7 +64370,7 @@ GameObject:
   m_Layer: 6
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -84626,26 +84641,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bush_0 (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7287711786109007826, guid: 80df80ff5fee4c8449163c11e2a11716,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955881341021859176, guid: 80df80ff5fee4c8449163c11e2a11716,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 82.19654
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955881341021859176, guid: 80df80ff5fee4c8449163c11e2a11716,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 82.19654
-      objectReference: {fileID: 0}
-    - target: {fileID: 7955881341021859176, guid: 80df80ff5fee4c8449163c11e2a11716,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 82.19654
       objectReference: {fileID: 0}
     - target: {fileID: 7955881341021859176, guid: 80df80ff5fee4c8449163c11e2a11716,
         type: 3}
