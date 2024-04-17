@@ -7,10 +7,9 @@ using UnityEngine;
 // All prices for things can be modified from the same place
 public class EconomyManager : MonoBehaviour
 {
-    GameManager gameManager;
     [Header("Players Resources")] // later these could be fetched from a json or something that stores the players stats like funds across different levels/play sessions
     
-    public int playersJunk; // use get set to make this available instead of public?
+    public int playersJunk = 10; // use get set to make this available instead of public?
     // public int playersGold;
 
     [Space]
@@ -28,11 +27,16 @@ public class EconomyManager : MonoBehaviour
     public int weevilDrop = 2;
     public int beetleDrop = 3;
 
+    [SerializeField] EventManagerSO eventManager;
 
-    void Start() 
+    void OnEnable() 
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        playersJunk = gameManager.junk;
+        eventManager.junkCollect += CollectJunk;
+    }
+
+    void OnDisable() 
+    {
+        eventManager.junkCollect -= CollectJunk;
     }
 
     public void SpendJunk(int cost) 
@@ -40,8 +44,9 @@ public class EconomyManager : MonoBehaviour
         playersJunk -= cost;
     }
 
-    public void AddJunk(int amount) 
+    public void CollectJunk(int amount) 
     {
+        print (amount);
         playersJunk += amount;
     }
 }

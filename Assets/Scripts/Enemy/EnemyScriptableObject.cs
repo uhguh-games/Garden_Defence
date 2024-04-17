@@ -7,6 +7,7 @@ public class EnemyScriptableObject : ScriptableObject
 {
     [Header("Enemy Stats")]
     public int Health;
+    public int JunkDropAmount; // how can I get this to be set by the EconomyManager?
     // other stats drop types, drop rates, behavior, how much damage they deal etc.
 
     [Header("NavMeshAgent Configuration")]

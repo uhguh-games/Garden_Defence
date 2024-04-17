@@ -717,8 +717,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
   maxHealth: 4
+  eatingTime: 0
   currentHealth: 0
   hitTarget: {fileID: 8488474584383425461}
+  enemyJunkValue: 1993
 --- !u!114 &8026237318705769772
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -577,6 +577,7 @@ MonoBehaviour:
   eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 3795463032311767885}
+  enemyJunkValue: 3
 --- !u!114 &3245208777338401791
 MonoBehaviour:
   m_ObjectHideFlags: 0

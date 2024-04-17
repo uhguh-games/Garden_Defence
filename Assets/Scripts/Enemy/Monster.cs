@@ -13,6 +13,8 @@ public class Monster : MonoBehaviour
     [SerializeField] Transform hitTarget; // empty object on the enemy
     private PoolManager poolManager;
     private Crop cropToEat;
+    [SerializeField] private int enemyJunkValue; // set by the economy manager
+
     private void Awake()
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
@@ -59,6 +61,7 @@ public class Monster : MonoBehaviour
     {
         PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
+        instance.GetComponent<ResourceJunk>().SetJunkValue(enemyJunkValue);
         instance.transform.position = deathPos.position;
     }
 
@@ -73,10 +76,7 @@ public class Monster : MonoBehaviour
             cropToEat = other.GetComponent<Crop>();
            // Debug.Log("Collided with crop");
             StartCoroutine(eating());
-            
-
         }
-       
     }
 
     IEnumerator eating() //eat for n seconds

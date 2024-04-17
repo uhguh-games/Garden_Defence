@@ -45239,10 +45239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  junk: 5
   textybit: {fileID: 414518903}
   cropHealth: 0
-  junkAmount: 5
 --- !u!1001 &973798023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54995,13 +54993,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersJunk: 0
+  playersJunk: 10
   fuelCost: 1
   firePitCost: 2
   stoneSlingerCost: 3
   aphidDrop: 1
   weevilDrop: 2
   beetleDrop: 3
+  eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
 --- !u!1001 &1313872472
 PrefabInstance:
   m_ObjectHideFlags: 0
