@@ -7,13 +7,13 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private GameObject mainCanvas;
-    [SerializeField] private GameObject settingsCanvas;
+    [SerializeField] private GameObject optionsCanvas;
     [SerializeField] private GameObject controlsCanvas;
     [SerializeField] private int SceneID;
 
     private void Start()
     {
-        settingsCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
         mainCanvas.SetActive(true);
         controlsCanvas.SetActive(false);
     }
@@ -24,12 +24,12 @@ public class MainMenu : MonoBehaviour
 
     public void ShowSettings()
     {
-        settingsCanvas.SetActive(true);
-        mainCanvas.SetActive(false);
+        optionsCanvas.SetActive(true);
+        // mainCanvas.SetActive(false);
     }
     public void HideSettings()
     {
-        settingsCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
         mainCanvas.SetActive(true);
     }
     public void ShowControls()

@@ -43,7 +43,6 @@ public class ResourceJunk : AutoDestroyPoolableObject
             animation.Initialize(targetPosition);
 
             eventManager.LootCollected(junkValue);
-            print ($"blaablaa {junkValue}");
             this.gameObject.SetActive(false); // loot object returns to the pool
 
         }
