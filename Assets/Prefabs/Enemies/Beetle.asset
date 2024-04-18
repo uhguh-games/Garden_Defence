@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Beetle
   m_EditorClassIdentifier: 
   Health: 0
+  Type: 2
   AIUpdateInterval: 0.1
   Acceleration: 8
   AngularSpeed: 120
