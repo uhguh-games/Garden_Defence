@@ -20,6 +20,8 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] Tilemap tilemap;
     private Vector3Int cellPosition;
 
+    EconomyManager economyManager;
+
     [Header("UI & UX")]
     [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later :)
 
@@ -28,6 +30,7 @@ public class TowerSpawner : MonoBehaviour
         spawnerActive = false;
         hexGrid = FindObjectOfType<HexGrid>();
         placeItem = GameObject.Find("Main Canvas").GetComponent<PlaceItem>();
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
     }
 
     private void FixedUpdate() 
@@ -65,9 +68,11 @@ public class TowerSpawner : MonoBehaviour
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
             towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
+            economyManager.SpendJunk(placeItem.currentCost);
+
             towerIndicator = null;
             spawnerActive = false;
-      
+
         }
         else 
         {

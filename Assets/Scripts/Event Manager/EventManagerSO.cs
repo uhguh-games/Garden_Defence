@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EventManager", menuName = "Create new Manager/EventManager")]
 public class EventManagerSO : ScriptableObject
 {
-    public event Action junkCollect;
+    public event Action<int> junkCollect;
     public event Action allEnemiesKilled;
     public event Action onCropEaten;
     public event Action winCondition;
@@ -16,9 +16,9 @@ public class EventManagerSO : ScriptableObject
     {
         onKill?.Invoke();
     }
-    public void LootCollected()
+    public void LootCollected(int amount)
     {
-        junkCollect?.Invoke();
+        junkCollect?.Invoke(amount);
     }
 
     public void CropEaten()

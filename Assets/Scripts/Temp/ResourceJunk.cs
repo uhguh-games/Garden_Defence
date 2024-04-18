@@ -7,14 +7,17 @@ public class ResourceJunk : AutoDestroyPoolableObject
 {
     [SerializeField] EventManagerSO eventManager;
     private GameObject mouseObj;
-    [SerializeField] private GameObject lootImage;
     [SerializeField] private GameObject lootCanvas;
     [SerializeField] private Transform targetPosition;
+    EconomyManager economyManager;
+    
+    public int junkValue = 0;
 
     private void Awake()
     {
         mouseObj = GameObject.Find("Mouse3D");
         targetPosition = GameObject.Find("lootTarget").transform;
+        economyManager = FindObjectOfType<EconomyManager>();
     }
     public override void OnEnable()
     {
@@ -26,17 +29,21 @@ public class ResourceJunk : AutoDestroyPoolableObject
         base.OnDisable();
     }
 
+    public void SetJunkValue(int amount) 
+    {
+        junkValue += amount;
+    }
+
     private void OnMouseDown()
     {
-        
-
         if (Input.GetMouseButtonDown(0))
         {   
             GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity);
             LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
             animation.Initialize(targetPosition);
 
-            eventManager.LootCollected();
+            eventManager.LootCollected(junkValue);
+            print ($"blaablaa {junkValue}");
             this.gameObject.SetActive(false); // loot object returns to the pool
 
         }

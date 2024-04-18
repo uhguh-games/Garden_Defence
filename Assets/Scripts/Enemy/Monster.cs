@@ -13,15 +13,25 @@ public class Monster : MonoBehaviour
     [SerializeField] Transform hitTarget; // empty object on the enemy
     private PoolManager poolManager;
     private Crop cropToEat;
+    private int enemyJunkValue; // set by the economy manager
+    EconomyManager economyManager;
+
+    [Tooltip("Scriptable Object of the enemy")]
+    [SerializeField] EnemyScriptableObject enemyStats;
+    private EnemyType enemyType;
+
     private void Awake()
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
     }
     void Start()
     {
+        enemyType = enemyStats.Type;
         healthBar = GetComponentInChildren<HealthBar>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        UpdateEnemyJunkValue();
     }
 
     void Update() 
@@ -29,23 +39,32 @@ public class Monster : MonoBehaviour
         if (currentHealth <= 0) 
         {
             deathPos = this.transform;
-
-            // print ("Killed " + this.gameObject.name);
-
             eventManager.OnKill();
-
             DropJunk();
-
             this.gameObject.SetActive(false); // Enemy gets returned into the pool
         }
     }
 
+    void OnEnable() 
+    {
+        economyManager.OnEnemyJunkValueChange += UpdateEnemyJunkValue;
+    }
+
+    void OnDisable() 
+    {
+        economyManager.OnEnemyJunkValueChange -= UpdateEnemyJunkValue;
+    }
+
+    private void UpdateEnemyJunkValue() 
+    {
+        string enemyTypeString = enemyType.ToString();
+        enemyJunkValue = economyManager.GetEnemyJunkValue(enemyTypeString);
+    }
     public void TakeDamage(float damage) 
     {
         float percentage = damage / maxHealth;
-
         float actualDamage = maxHealth * percentage;
-        
+    
         currentHealth -= actualDamage;
         healthBar.SetHealth(currentHealth);
     }
@@ -59,6 +78,7 @@ public class Monster : MonoBehaviour
     {
         PoolableObject instance = poolManager.junkPool.GetObject();
         ResourceJunk junkPrefab = instance as ResourceJunk;
+        instance.GetComponent<ResourceJunk>().SetJunkValue(enemyJunkValue);
         instance.transform.position = deathPos.position;
     }
 
@@ -73,10 +93,7 @@ public class Monster : MonoBehaviour
             cropToEat = other.GetComponent<Crop>();
            // Debug.Log("Collided with crop");
             StartCoroutine(eating());
-            
-
         }
-       
     }
 
     IEnumerator eating() //eat for n seconds
@@ -84,10 +101,6 @@ public class Monster : MonoBehaviour
         yield return new WaitForSeconds(eatingTime);
        // Debug.Log("Eating finished");
         cropToEat.GetEaten(); //tell crop to delete itself and to add the points to the game manager
-        
-
     }
-
-
 }
 

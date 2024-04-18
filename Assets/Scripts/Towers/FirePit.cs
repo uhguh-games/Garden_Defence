@@ -11,12 +11,16 @@ public class FirePit : MonoBehaviour
     [Tooltip("How long does the fire last")]
     [SerializeField] float fireActiveTimerValue;
     private Tower tower;
+    EconomyManager economyManager;
+
 
     void Awake() 
     {
         tower = GetComponent<Tower>();
         fireEffect.SetActive(false);
         fireActiveTimer = fireActiveTimerValue;
+        
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
     }
 
     void Update() 
@@ -46,7 +50,11 @@ public class FirePit : MonoBehaviour
     }
     public void ReActivateFire() 
     {
-        StartCoroutine(SetupFireRoutine());
+        if (economyManager.playersJunk >= 1) 
+        {
+            economyManager.SpendJunk(1); // just testing
+            StartCoroutine(SetupFireRoutine());
+        }
     }
 
     public void ResetFireActiveTimer() 

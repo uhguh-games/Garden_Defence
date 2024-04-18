@@ -12,17 +12,20 @@ public class Slot : MonoBehaviour
    public TextMeshProUGUI valueText;
    public GameObject prefab;
    public TextMeshProUGUI nameText;
-   public int valueAmount;
+   private int valueAmount; // set by economy manager
+   private EconomyManager economyManager;
 
    private void Start() 
    {
+      economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
       SetStats();
    }
  
    private void SetStats() 
    {
       icon.texture = ItemInSlot.icon;
-      valueAmount = ItemInSlot.value;
+      // valueAmount = ItemInSlot.value;
+      valueAmount = economyManager.GetItemValue(ItemInSlot.itemName);
       prefab = ItemInSlot.prefab;
       nameText.text = $"{ItemInSlot.itemName}";
       valueText.text = $"{valueAmount}";
