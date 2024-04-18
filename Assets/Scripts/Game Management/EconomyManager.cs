@@ -4,12 +4,12 @@ using UnityEngine;
 
 // This class manages everything to do with game economy.
 // Keeps track of the players resources
-// All prices for things can be modified from the same place
+// All prices and drops for things can be modified from the same place
 public class EconomyManager : MonoBehaviour
 {
     [Header("Players Resources")] // later these could be fetched from a json or something that stores the players stats like funds across different levels/play sessions
-    public int playersJunk = 10; // use get set to make this available instead of public?
-    // public int playersGold;
+    public int playersJunk = 10;
+    public int playersGold = 0;
 
     [Space]
 
@@ -22,9 +22,9 @@ public class EconomyManager : MonoBehaviour
     [Space]
 
     [Header("Enemy Drops")]
-    public int easyDrop = 1;
-    public int normalDrop = 2;
-    public int hardDrop = 3;
+    public int easyDrop = 0;
+    public int normalDrop = 0;
+    public int hardDrop = 0;
     [SerializeField] EventManagerSO eventManager;
 
     public delegate void EnemyJunkValueChangeAction();
@@ -42,6 +42,22 @@ public class EconomyManager : MonoBehaviour
                 return hardDrop;
             default:
                 Debug.LogWarning($"Enemy type: {enemyType} not found");
+                return 0;
+        }
+    }
+
+    public int GetItemValue(string itemName) 
+    {
+        switch (itemName) 
+        {
+            case "Stone Slinger":
+                return stoneSlingerCost;
+            case "Fire Pit":
+                return firePitCost;
+            case "Junk":
+                return fuelCost;
+            default:
+                Debug.LogWarning($"Item type: {itemName} not found");
                 return 0;
         }
     }

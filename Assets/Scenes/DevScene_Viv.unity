@@ -41171,7 +41171,6 @@ MonoBehaviour:
   valueText: {fileID: 560022593}
   prefab: {fileID: 0}
   nameText: {fileID: 129829354}
-  valueAmount: 2
 --- !u!114 &755964459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54993,13 +54992,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersJunk: 10
+  playersJunk: 5
+  playersGold: 0
   fuelCost: 1
-  firePitCost: 20
-  stoneSlingerCost: 123
-  aphidDrop: 5
-  weevilDrop: 7890
-  beetleDrop: 88
+  firePitCost: 2
+  stoneSlingerCost: 3
+  easyDrop: 2
+  normalDrop: 4
+  hardDrop: 6
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
 --- !u!1001 &1313872472
 PrefabInstance:
@@ -78352,7 +78352,6 @@ MonoBehaviour:
   valueText: {fileID: 1605703919}
   prefab: {fileID: 0}
   nameText: {fileID: 737894307}
-  valueAmount: 3
 --- !u!114 &1786644385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86839,7 +86838,6 @@ MonoBehaviour:
   valueText: {fileID: 1069727365}
   prefab: {fileID: 0}
   nameText: {fileID: 1960587767}
-  valueAmount: 0
 --- !u!114 &2099166120
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour
     private int enemyJunkValue; // set by the economy manager
     EconomyManager economyManager;
 
-    [Tooltip("Drag in enemys scriptable object")]
+    [Tooltip("Scriptable Object of the enemy")]
     [SerializeField] EnemyScriptableObject enemyStats;
     private EnemyType enemyType;
 

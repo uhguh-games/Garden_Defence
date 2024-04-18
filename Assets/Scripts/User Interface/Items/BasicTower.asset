@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BasicTower
   m_EditorClassIdentifier: 
   id: 1
-  itemName: Basic Tower
-  description: 'Basic Tower that shoots rocks. Cost: 2$'
-  type: 0
+  itemName: Stone Slinger
+  description: Basic Tower that shoots rocks.
   prefab: {fileID: 6700861164244369912, guid: 8a40e1ca951802140a51bf0feced41ee, type: 3}
   icon: {fileID: 2800000, guid: df531c6d4803181448f214b6d3139a54, type: 3}
   value: 3
+  type: 0

@@ -68,7 +68,6 @@ public class TowerSpawner : MonoBehaviour
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
             towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
-            // testing
             economyManager.SpendJunk(placeItem.currentCost);
 
             towerIndicator = null;
