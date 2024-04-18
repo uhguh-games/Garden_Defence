@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Monster
   m_EditorClassIdentifier: 
   Health: 4
+  Type: 1
+  JunkDropAmount: 0
   AIUpdateInterval: 0.1
   Acceleration: 8
   AngularSpeed: 120

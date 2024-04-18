@@ -279,7 +279,7 @@ MonoBehaviour:
   eatingTime: 3
   currentHealth: 0
   hitTarget: {fileID: 3306933845622971492}
-  enemyJunkValue: 17
+  enemyStats: {fileID: 11400000, guid: bb0952492d25a5c4ba1834e415a6374e, type: 2}
 --- !u!1 &3002664420675875981
 GameObject:
   m_ObjectHideFlags: 0
