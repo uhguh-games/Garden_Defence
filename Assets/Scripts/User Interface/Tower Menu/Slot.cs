@@ -24,9 +24,18 @@ public class Slot : MonoBehaviour
    private void SetStats() 
    {
       icon.texture = ItemInSlot.icon;
-      // valueAmount = ItemInSlot.value;
-      valueAmount = economyManager.GetItemValue(ItemInSlot.itemName);
+    
       prefab = ItemInSlot.prefab;
+
+      if (ItemInSlot.itemName == "Junk") // if item is junk economy manager defines the value
+      {
+         valueAmount = economyManager.GetItemValue(ItemInSlot.itemName);
+      } 
+      else // if item is something else e.g. health or gold the sriptable object defines the value
+      {
+         valueAmount = ItemInSlot.value;
+      }
+
       nameText.text = $"{ItemInSlot.itemName}";
       valueText.text = $"{valueAmount}";
    }

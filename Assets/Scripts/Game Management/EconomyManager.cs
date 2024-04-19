@@ -83,7 +83,6 @@ public class EconomyManager : MonoBehaviour
     }
     public void CollectJunk(int amount) 
     {
-        print (amount);
         playersJunk += amount;
     }
 }

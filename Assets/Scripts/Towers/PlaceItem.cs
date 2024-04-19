@@ -106,6 +106,8 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
             {
                 towerSpawner.PlaceItem();
             }
+            
+            itemToPlace = null;
         }
     }
     public void TextAway() // will be moved later
