@@ -4,16 +4,16 @@ using System.Collections.Generic;
 public class LevelManager : MonoBehaviour
 {
     public Level_SO[] levels;
-    [SerializeField] private DayNightState dayNightState;
+    [SerializeField] private TimeManager timeManager;
     private EnemySpawner enemySpawner;
     [SerializeField] private int currentLevelIndex = 0;
 
     void Start()
     {
-        dayNightState = GameObject.Find("TimeManager").GetComponent<DayNightState>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         enemySpawner = GameObject.Find("EnemyManager").GetComponent<EnemySpawner>();
         
-        dayNightState.OnTimeStateChanged += OnTimeStateChangedHandler;
+        timeManager.OnTimeStateChanged += OnTimeStateChangedHandler;
 
         LoadLevel(currentLevelIndex);
     }
@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
         // ClearEnemyPools();
         
         // Spawn enemies for the current time of day
-        SpawnEnemiesForTimeOfDay(dayNightState.currentState, level);
+        SpawnEnemiesForTimeOfDay(timeManager.currentState, level);
     }
 
     void SpawnEnemiesForTimeOfDay(TimeState timeOfDay, Level_SO level)

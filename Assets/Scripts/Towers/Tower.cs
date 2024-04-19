@@ -13,9 +13,9 @@ public class Tower : MonoBehaviour
     Collider[] colliders;
     [SerializeField] public float range = 3.5f;
     [SerializeField] public LayerMask enemyLayer;
-    [SerializeField] public List<Monster> enemiesInRange;
-    public List<Monster> litEnemies = new List<Monster>();
-    [SerializeField] public Monster targetedEnemy;
+    [SerializeField] public List<Enemy> enemiesInRange;
+    public List<Enemy> litEnemies = new List<Enemy>();
+    [SerializeField] public Enemy targetedEnemy;
     [SerializeField] public float scanningDelay = 0.1f;
     public GameObject dustEffect;
     public float scanningTimer;
@@ -55,7 +55,7 @@ public class Tower : MonoBehaviour
 
         foreach(Collider collider in colliders) 
         {
-            enemiesInRange.Add(collider.GetComponent<Monster>());
+            enemiesInRange.Add(collider.GetComponent<Enemy>());
         }
 
         if (enemiesInRange.Count != 0) 
@@ -117,7 +117,7 @@ public class Tower : MonoBehaviour
 
     public void ClearDestroyedEnemies() // removes dead enemies from the list
     {
-        List<Monster> remainingEnemies = enemiesInRange.Where(enemy => enemy != null && enemy.gameObject.activeSelf).ToList();
+        List<Enemy> remainingEnemies = enemiesInRange.Where(enemy => enemy != null && enemy.gameObject.activeSelf).ToList();
         enemiesInRange.Clear();
         enemiesInRange.AddRange(remainingEnemies);
     }

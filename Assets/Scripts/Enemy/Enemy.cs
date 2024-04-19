@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
     private Transform deathPos;

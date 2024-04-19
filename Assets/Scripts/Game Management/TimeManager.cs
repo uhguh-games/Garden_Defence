@@ -13,7 +13,7 @@ public enum TimeState
     Night
 }
 
-public class DayNightState : MonoBehaviour
+public class TimeManager : MonoBehaviour
 {
     public event Action<TimeState> OnTimeStateChanged;
     public TimeState currentState;

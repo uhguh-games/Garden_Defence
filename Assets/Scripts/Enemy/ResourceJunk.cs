@@ -38,7 +38,7 @@ public class ResourceJunk : AutoDestroyPoolableObject
     {
         if (Input.GetMouseButtonDown(0))
         {   
-            GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity);
+            GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity); // animation UI object
             LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
             animation.Initialize(targetPosition);
 

@@ -23,7 +23,7 @@ public class TowerSpawner : MonoBehaviour
     EconomyManager economyManager;
 
     [Header("UI & UX")]
-    [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later :)
+    [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later
 
     private void Awake() 
     {
@@ -50,7 +50,6 @@ public class TowerSpawner : MonoBehaviour
         {
             // Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
         }
-
     }
 
     public void PreviewTower()
@@ -67,7 +66,11 @@ public class TowerSpawner : MonoBehaviour
     {
         if (hexGrid.canPlace && !spaceBlocked) 
         {
-            towerIndicator.GetComponent<Tower>().ActivateTower();
+            if (towerIndicator != null) 
+            {
+                towerIndicator.GetComponent<Tower>().ActivateTower();
+            }
+
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
             towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
@@ -75,7 +78,6 @@ public class TowerSpawner : MonoBehaviour
 
             towerIndicator = null;
             spawnerActive = false;
-
         }
         else 
         {
@@ -98,14 +100,18 @@ public class TowerSpawner : MonoBehaviour
         hexGrid.ToggleGridVisibility(false);
     }
 
-    public void TextAway() // will be moved later
+    public void TextAway() // will be moved to its own class later
     {
         tooltipText.text = " ";
     }
 
     public void CancelTower() 
     {
-        Destroy(towerIndicator.gameObject);
+        if (towerIndicator != null) 
+        {
+            Destroy(towerIndicator.gameObject);
+        }
+
         spawnerActive = false;
     }
 

@@ -22,7 +22,6 @@ public class LootAnimation : MonoBehaviour
     void Awake() 
     {
         mainCanvas = GameObject.Find("Main Canvas");
-
     }
 
     public void Initialize(Transform target)

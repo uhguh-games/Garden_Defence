@@ -6,13 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class StoneProjectile : AutoDestroyPoolableObject
 {
-    [SerializeField] float cannonSpeed = 5f;
+    [SerializeField] float projectileSpeed = 5f;
     // float rotationSpeed = 360f;
-    [SerializeField] float cannonDamage = 1f;
+    [SerializeField] float projectileDamage = 1f;
     [SerializeField] LayerMask groundLayers;
     [SerializeField] float waitTime = 0.1f;
     private Rigidbody rb;
-    private Monster targetedEnemy;
+    private Enemy targetedEnemy;
     private Vector3 lastDirection;
     [SerializeField] GameObject impact;
     public bool onGround;
@@ -37,17 +37,17 @@ public class StoneProjectile : AutoDestroyPoolableObject
             transform.position = Vector3.MoveTowards(
                     transform.position,
                     targetedEnemy.getHitTarget().position,
-                    cannonSpeed * Time.deltaTime);
+                    projectileSpeed * Time.deltaTime);
         }
         else if (rb.isKinematic) // Target is gone, and Rigidbody is not yet active
         {
             ActivateRigidbody();
         }
 
-        Invoke("DeleteCannonBall", 3f);
+        Invoke("DeleteProjectile", 3f);
     }
 
-    public void Setup(Vector3 enemyDirection, Monster incomingTargetedEnemy)
+    public void Setup(Vector3 enemyDirection, Enemy incomingTargetedEnemy)
     {
         targetedEnemy = incomingTargetedEnemy; // who to chase?
         lastDirection = (targetedEnemy.getHitTarget().position - transform.position).normalized;
@@ -70,7 +70,7 @@ public class StoneProjectile : AutoDestroyPoolableObject
             transform.rotation = Quaternion.Euler(0f, randomYRotation, 0f);
 
             // Apply continuous angular velocity for spinning effect
-            // rb.angularVelocity = Random.insideUnitSphere * rotationSpeed; // Adjust rotation speed as needed
+            // rb.angularVelocity = Random.insideUnitSphere * rotationSpeed;
            
             yield return new WaitForSeconds(waitTime);
         }
@@ -86,7 +86,7 @@ public class StoneProjectile : AutoDestroyPoolableObject
         base.OnDisable();
     }
 
-    private void DeleteCannonBall() 
+    private void DeleteProjectile() 
     {
         // sound effect
         // vfx
@@ -96,14 +96,14 @@ public class StoneProjectile : AutoDestroyPoolableObject
     private void ActivateRigidbody()
     {
         rb.isKinematic = false; // Allow the Rigidbody to be affected by physics
-        rb.velocity = lastDirection * cannonSpeed; // Continue in the last known direction
+        rb.velocity = lastDirection * projectileSpeed; // Continue in the last known direction
     }
  
     private void OnTriggerEnter(Collider other)
     {
         if (targetedEnemy != null && other.gameObject == targetedEnemy.gameObject)
         {
-            targetedEnemy.TakeDamage(cannonDamage);
+            targetedEnemy.TakeDamage(projectileDamage);
             this.gameObject.SetActive(false);
 
             // VFX
@@ -112,6 +112,6 @@ public class StoneProjectile : AutoDestroyPoolableObject
         }
  
         // Get destroyed anyway
-        DeleteCannonBall();
+        DeleteProjectile();
     }
 }
