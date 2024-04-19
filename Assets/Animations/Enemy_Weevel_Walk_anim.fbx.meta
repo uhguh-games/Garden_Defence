@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f948750d81c8b424f93f4c842f72f8ee
+guid: 861b6a39f80d6a745ab87602666800aa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Enemy_Aphid_Walk
+      name: Enemy_Weevil_Walk
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 1
-      lastFrame: 224
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,7 +60,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -120,7 +120,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: C_Thorax
+    rootMotionBoneName: C_Chest_jnt
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
