@@ -19,7 +19,6 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
 
     // private GameObject selectedItem;
     public GameObject itemToPlace = null;
-    private ResourceControls resourceControls;
     private HexGrid hexGrid;
     public int currentCost; // should be set by the economy manager
     [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later :)
@@ -40,7 +39,6 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
 
         towerSpawner = GameObject.Find("TowerSpawner").GetComponent<TowerSpawner>();
         economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
-        resourceControls = GetComponent<ResourceControls>();
         m_EventSystem = GetComponent<EventSystem>();
     }
 

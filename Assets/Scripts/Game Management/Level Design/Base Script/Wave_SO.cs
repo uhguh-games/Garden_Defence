@@ -13,7 +13,7 @@ public class Wave_SO: ScriptableObject
     [Header("Enemies")]
 
     [SerializedDictionary("Enemy", "Amount")]
-    public SerializedDictionary<Enemy, int> EnemiesToSpawn = new SerializedDictionary<Enemy, int>();
+    public SerializedDictionary<Enemy_AI, int> EnemiesToSpawn = new SerializedDictionary<Enemy_AI, int>();
 
     /*[SerializedDictionary("Boss Enemy", "Amount")]
     public SerializedDictionary<Enemy, int> BossToSpawn = new SerializedDictionary<Enemy, int>();

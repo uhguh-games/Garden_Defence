@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6690669747414516532}
   - component: {fileID: -1685709617394219053}
   m_Layer: 7
-  m_Name: Weevil
+  m_Name: Enemy_Weevil
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

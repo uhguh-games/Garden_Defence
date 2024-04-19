@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform target;
     public Transform setSpawnPoint;
     public float spawnDelay;
-    [SerializeField] private List<Enemy> enemyPrefabs = new List<Enemy>();
+    [SerializeField] private List<Enemy_AI> enemyPrefabs = new List<Enemy_AI>();
     private List<int> enemyAmounts = new List<int>();
 
     [Tooltip("Size of each enemy pool")]
@@ -24,19 +24,19 @@ public class EnemySpawner : MonoBehaviour
     {
         // EnemyObjectPools.Clear();
 
-        foreach (Enemy enemyPrefab in enemyPrefabs) 
+        foreach (Enemy_AI enemyPrefab in enemyPrefabs) 
         {
             int prefabIndex = enemyPrefabs.IndexOf(enemyPrefab);
             EnemyObjectPools.Add(prefabIndex, ObjectPool.CreateInstance(enemyPrefab, enemySpawnAmount));
         }
     }
 
-    public void SpawnEnemiesFromPools(List<Enemy> enemiesToSpawn, List<int> amounts)
+    public void SpawnEnemiesFromPools(List<Enemy_AI> enemiesToSpawn, List<int> amounts)
     {
         StartCoroutine(SpawnEnemies(enemiesToSpawn, amounts));
     }
 
-    private IEnumerator SpawnEnemies(List<Enemy> enemiesToSpawn, List<int> amounts)
+    private IEnumerator SpawnEnemies(List<Enemy_AI> enemiesToSpawn, List<int> amounts)
     {
         for (int i = 0; i < enemiesToSpawn.Count; i++)
         {
@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
                 yield break;
             }
 
-            Enemy enemy = poolableObject.GetComponent<Enemy>();
+            Enemy_AI enemy = poolableObject.GetComponent<Enemy_AI>();
 
             Vector3 spawnPosition = setSpawnPoint.position;
             enemy.transform.position = spawnPosition;

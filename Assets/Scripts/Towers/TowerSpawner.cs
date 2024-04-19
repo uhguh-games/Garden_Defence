@@ -55,9 +55,12 @@ public class TowerSpawner : MonoBehaviour
 
     public void PreviewTower()
     {
-        towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
-        hexGrid.ToggleGridVisibility(true);
-        spawnerActive = true;
+        if (placeItem.itemToPlace != null) 
+        {
+            towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
+            hexGrid.ToggleGridVisibility(true);
+            spawnerActive = true;
+        }
     }
 
     public void PlaceTower() 

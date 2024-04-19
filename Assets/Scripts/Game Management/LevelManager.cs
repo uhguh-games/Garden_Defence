@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
 
     void SpawnEnemiesFromWave(Wave_SO wave)
     {
-        List<Enemy> enemiesToSpawn = new List<Enemy>();
+        List<Enemy_AI> enemiesToSpawn = new List<Enemy_AI>();
         List<int> amounts = new List<int>();
 
         foreach (var enemyAmountPair in wave.EnemiesToSpawn)

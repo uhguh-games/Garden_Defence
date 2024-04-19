@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
-public class Enemy : PoolableObject
+public class Enemy_AI : PoolableObject
 {
     public EnemyMovement Movement;
     public NavMeshAgent Agent;
