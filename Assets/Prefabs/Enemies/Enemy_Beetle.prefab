@@ -529,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
   maxHealth: 4
-  eatingTime: 0
+  eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 7876964546858684752}
   enemyStats: {fileID: 11400000, guid: 4fd0867a703a5574ca6c987b28fa0f89, type: 2}

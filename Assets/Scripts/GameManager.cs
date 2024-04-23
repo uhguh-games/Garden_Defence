@@ -8,19 +8,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] EventManagerSO eventManager;
     // public int junk = 5;
     [SerializeField] private TextMeshProUGUI textybit; 
-
     public float cropHealth;
     private float baseCropHealth;
     private int numberOfCrops;
-    // public int junkAmount = 5;
     private int enemiesInScene;
     private int kills;
 
-    // EconomyManager economyManager;
+    private TimeManager timeManager;
 
     void Start() 
     {
-        // economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
     }
 
     private void Update()
@@ -32,7 +30,7 @@ public class GameManager : MonoBehaviour
             cropHealth= 0; 
         }
         
-        if (kills == enemiesInScene) // win condition would be something like: timer is out and cropHealth < 0
+        if (timeManager.timeIsUp && cropHealth > 0) // win condition would be something like: timer is out and cropHealth < 0
         {
             Win();
         }
@@ -75,16 +73,18 @@ public class GameManager : MonoBehaviour
 
     private void EnemySummation() // not sure this is needed
     {
-        enemiesInScene++;
+        // enemiesInScene++;
     }
     private void KillCounter()
     {
-        kills++;
+        // kills++;
     }
 
     private void Win()
     {
-    
+        textybit.enabled = true;
+        textybit.text = "You win";
+        textybit.color = Color.green;
     }
     private void Lose()
     {

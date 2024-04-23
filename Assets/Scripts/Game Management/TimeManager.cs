@@ -25,7 +25,7 @@ public class TimeManager : MonoBehaviour
     public float dayDuration = 30f;
     public float eveningDuration = 15f;
     public float nightDuration = 30f;
-
+    public bool timeIsUp = false;
 
     [SerializeField] List<GameObject> fireFlies = new List<GameObject>();
 
@@ -35,7 +35,7 @@ public class TimeManager : MonoBehaviour
     {
         lightCycle = GameObject.Find("Directional Light").GetComponent<LightCycle>();
         maxGameDuration = morningDuration + dayDuration + eveningDuration + nightDuration;
-        // Time.timeScale = 4f;
+        Time.timeScale = 2f;
     }
 
     void Update() 
@@ -53,6 +53,11 @@ public class TimeManager : MonoBehaviour
         else 
         {
             gameTime = maxGameDuration;
+        }
+
+        if (gameTime >= maxGameDuration) 
+        {
+            timeIsUp = true;
         }
     }
 

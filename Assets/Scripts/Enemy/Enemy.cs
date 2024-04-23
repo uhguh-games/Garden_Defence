@@ -19,11 +19,13 @@ public class Enemy : MonoBehaviour
     [Tooltip("Scriptable Object of the enemy")]
     [SerializeField] EnemyScriptableObject enemyStats;
     private EnemyType enemyType;
+    private EnemyMovement enemyMovement;
 
     private void Awake()
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
         economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+        enemyMovement = GetComponent<EnemyMovement>();
     }
     void Start()
     {
@@ -88,19 +90,23 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
         }
-        if (other.tag == "CropEaten") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
+        if (other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
         {
             cropToEat = other.GetComponent<Crop>();
            // Debug.Log("Collided with crop");
-            StartCoroutine(eating());
+            StartCoroutine(EatRoutine());
         }
     }
 
-    IEnumerator eating() //eat for n seconds
+    IEnumerator EatRoutine() //eat for n seconds
     {
         yield return new WaitForSeconds(eatingTime);
        // Debug.Log("Eating finished");
+
         cropToEat.GetEaten(); //tell crop to delete itself and to add the points to the game manager
+
+        yield return new WaitForSeconds(eatingTime);
+        enemyMovement.WalkOffScreen(); // walk off screen and despawn
     }
 }
 
