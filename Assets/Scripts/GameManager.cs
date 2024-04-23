@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -12,12 +14,19 @@ public class GameManager : MonoBehaviour
     private int numberOfCrops;
     private int enemiesInScene;
     private int kills;
-
     private TimeManager timeManager;
+
+    // should PROBABLY put this somewhere else :) but its ok for now
+    [SerializeField] private GameObject winLosePanel;
+    [SerializeField] private TextMeshProUGUI feedbackText;
+    [SerializeField] private RawImage winLoseImage;
+    [SerializeField] private Texture loseTexture;
+    [SerializeField] private Texture winTexture;
 
     void Start() 
     {
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        winLosePanel.SetActive(false);
     }
 
     private void Update()
@@ -26,7 +35,7 @@ public class GameManager : MonoBehaviour
 
         if (cropHealth < 0)
         { 
-            cropHealth= 0; 
+            cropHealth = 0; 
         }
         
         if (timeManager.timeIsUp && cropHealth > 0)
@@ -81,14 +90,23 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
+        winLosePanel.SetActive(true);
+        timeManager.StopTimer();
         textybit.enabled = true;
-        textybit.text = "You win";
-        textybit.color = Color.green;
+        textybit.text = "Victory!";
+        feedbackText.text = $"You made {cropHealth} Gold.";
+        winLoseImage.texture = winTexture;
+   
+        textybit.color = Color.white;
     }
     private void Lose()
     {
+        winLosePanel.SetActive(true);
+        timeManager.StopTimer();
         textybit.enabled = true;
-        textybit.text = "You lose";
+        textybit.text = "Defeat!";
+        feedbackText.text = "Bugged Out!";
+        winLoseImage.texture = loseTexture;
         textybit.color = Color.red;
     }
 }

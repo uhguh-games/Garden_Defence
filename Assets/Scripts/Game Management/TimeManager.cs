@@ -27,6 +27,8 @@ public class TimeManager : MonoBehaviour
     public float nightDuration = 30f;
     public bool timeIsUp = false;
 
+    public bool timeGo = true;
+
     [SerializeField] List<GameObject> fireFlies = new List<GameObject>();
 
     private LightCycle lightCycle;
@@ -35,29 +37,34 @@ public class TimeManager : MonoBehaviour
     {
         lightCycle = GameObject.Find("Directional Light").GetComponent<LightCycle>();
         maxGameDuration = morningDuration + dayDuration + eveningDuration + nightDuration;
-        Time.timeScale = 2f;
+        Time.timeScale = 3f;
     }
 
     void Update() 
     {
-        if (gameTime <= maxGameDuration)
+        if (timeGo) 
         {
-            GameTimer();
-            TimeState nextState = CalculateState(gameTime);
-            
-            if (nextState != currentState)
+            if (gameTime < maxGameDuration)
             {
-                ChangeState(nextState);
+                GameTimer();
+                TimeState nextState = CalculateState(gameTime);
+                
+                if (nextState != currentState)
+                {
+                    ChangeState(nextState);
+                }
+            } 
+            else 
+            {
+                gameTime = maxGameDuration;
             }
-        } 
-        else 
-        {
-            gameTime = maxGameDuration;
         }
 
         if (gameTime >= maxGameDuration) 
         {
             timeIsUp = true;
+            timeGo = false;
+            gameTime = maxGameDuration;
         }
     }
 
@@ -92,6 +99,12 @@ public class TimeManager : MonoBehaviour
         gameTime += Time.deltaTime;
         TimeSpan timeSpan = TimeSpan.FromSeconds(gameTime);
         timeCounterText.text = $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds:000}";
+    }
+
+    public void StopTimer() 
+    {
+        timeGo = false;
+        timeIsUp = true;
     }
 
     public void ChangeState(TimeState newState)

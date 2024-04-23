@@ -19,16 +19,19 @@ public class Clock : MonoBehaviour
     }
     void Update() 
     {
-        if (timeManager.currentState == TimeState.Morning || timeManager.currentState == TimeState.Evening) 
+        if (!timeManager.timeIsUp) 
         {
-            pointerSpeed = shortDuration;
-        } 
-        else if (timeManager.currentState == TimeState.Day || timeManager.currentState == TimeState.Night) 
-        {
-            pointerSpeed = longDuration;
-        } 
+            if (timeManager.currentState == TimeState.Morning || timeManager.currentState == TimeState.Evening) 
+            {
+                pointerSpeed = shortDuration;
+            } 
+            else if (timeManager.currentState == TimeState.Day || timeManager.currentState == TimeState.Night) 
+            {
+                pointerSpeed = longDuration;
+            } 
 
-        rectTransform.Rotate(new Vector3(0, 0, -45) * Time.deltaTime * pointerSpeed);
+            rectTransform.Rotate(new Vector3(0, 0, -45) * Time.deltaTime * pointerSpeed);
+        }
     }
 }
 
