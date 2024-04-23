@@ -8,8 +8,7 @@ public class UI_InGameUIManager : MonoBehaviour
 
     private List<UI_ItemSlot> ui_ItemSlots;
     private Canvas canvas;
-    private UI_CollectedItemAnimSpawner collectableItem; // rename this
-
+    private UI_CollectedItemAnimSpawner collectableItem;
     private void OnEnable()
     {
         eventManager.onLootCollected += PlayPulseAnimation;

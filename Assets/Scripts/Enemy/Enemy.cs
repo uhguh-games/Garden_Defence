@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= 0) 
         {
             deathPos = this.transform;
+            enemyMovement.OnEnemyDeath();
             eventManager.OnKill();
             DropJunk();
             this.gameObject.SetActive(false); // Enemy gets returned into the pool

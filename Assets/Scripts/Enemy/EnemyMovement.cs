@@ -37,6 +37,11 @@ public class EnemyMovement : MonoBehaviour
             Debug.LogWarning("Called StartChasing on Enemy that is already chasing.");
         }
     }
+    
+    public void OnEnemyDeath() 
+    {
+        healthManager.AddCrop(cropToEat);
+    }
 
     public void WalkOffScreen()
     {

@@ -19,6 +19,11 @@ public class HealthManager : MonoBehaviour
         cropList.Remove(crop);
     }
 
+    public void AddCrop(GameObject crop) 
+    {
+        cropList.Add(crop);
+    }
+
     public GameObject GetRandomCrop()
     {
         if (cropList.Count > 0)
