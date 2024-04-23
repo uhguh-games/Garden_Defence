@@ -9,15 +9,45 @@ public class ResourceJunk : AutoDestroyPoolableObject
     private GameObject mouseObj;
     [SerializeField] private GameObject lootCanvas;
     [SerializeField] private Transform targetPosition;
+    [SerializeField] LayerMask collectableLayers;
+    private Camera cam;
     EconomyManager economyManager;
     
     public int junkValue = 0;
 
     private void Awake()
     {
+        cam = Camera.main;
         mouseObj = GameObject.Find("Mouse3D");
         targetPosition = GameObject.Find("lootTarget").transform;
         economyManager = FindObjectOfType<EconomyManager>();
+    }
+
+    void Update() 
+    {
+        if (Input.GetMouseButtonDown(0))
+        {   
+            // old animation
+            // GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity); // animation UI object
+            // LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
+            // animation.Initialize(targetPosition);
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            
+            if (Physics.Raycast(ray, out hit, 100f, collectableLayers))
+            {
+                if (hit.collider.gameObject.TryGetComponent<Collectable>(out Collectable loot))
+                {
+                    eventManager.LootCollected(loot);
+                }
+
+            }
+
+            eventManager.LootCollected(junkValue);
+
+            this.gameObject.SetActive(false); // loot resource object returns to the pool
+        }
     }
     public override void OnEnable()
     {
@@ -35,16 +65,31 @@ public class ResourceJunk : AutoDestroyPoolableObject
     }
 
     private void OnMouseDown()
-    {
+    { /*
         if (Input.GetMouseButtonDown(0))
         {   
-            GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity); // animation UI object
-            LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
-            animation.Initialize(targetPosition);
+            // old animation
+            // GameObject lootImageInstance = Instantiate(lootCanvas, this.transform.position, Quaternion.identity); // animation UI object
+            // LootAnimation animation = lootImageInstance.GetComponent<LootAnimation>();
+            // animation.Initialize(targetPosition);
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            
+            if (Physics.Raycast(ray, out hit, 100f, collectableLayers))
+            {
+                if (hit.collider.gameObject.TryGetComponent<Collectable>(out Collectable loot))
+                {
+                    eventManager.LootCollected(loot);
+                }
+
+                print ("Thizzzzz workz");
+            }
 
             eventManager.LootCollected(junkValue);
-            this.gameObject.SetActive(false); // loot object returns to the pool
 
+            this.gameObject.SetActive(false); // loot resource object returns to the pool
         }
+        */
     }
 }

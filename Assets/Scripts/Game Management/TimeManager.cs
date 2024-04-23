@@ -21,10 +21,10 @@ public class TimeManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeCounterText;
     [SerializeField] float gameTime;
     float maxGameDuration;
-    [SerializeField] float morningDuration = 15f;
-    [SerializeField] float dayDuration = 30f;
-    [SerializeField] float eveningDuration = 15f;
-    [SerializeField] float nightDuration = 30f;
+    public float morningDuration = 15f;
+    public float dayDuration = 30f;
+    public float eveningDuration = 15f;
+    public float nightDuration = 30f;
 
 
     [SerializeField] List<GameObject> fireFlies = new List<GameObject>();

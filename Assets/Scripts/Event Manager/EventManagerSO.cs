@@ -11,6 +11,8 @@ public class EventManagerSO : ScriptableObject
     public event Action loseCondition;
     public event Action addEnemy;
     public event Action onKill;
+    public event Action<Collectable> onLootCollected; // loot animation
+    public void LootCollected(Collectable collectable) => onLootCollected?.Invoke(collectable); // loot animation
 
     public void OnKill()
     {
@@ -44,4 +46,6 @@ public class EventManagerSO : ScriptableObject
     {
         loseCondition?.Invoke();
     }
+
+
 }

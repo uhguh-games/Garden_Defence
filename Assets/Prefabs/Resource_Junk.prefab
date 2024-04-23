@@ -80,6 +80,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7485303991760289873}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c32b8f4d1af873b45b74e9e868b5dd89,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2424944541284785695}
   m_SourcePrefab: {fileID: 100100000, guid: c32b8f4d1af873b45b74e9e868b5dd89, type: 3}
 --- !u!1 &1656667306465994060 stripped
 GameObject:
@@ -101,11 +105,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoDestroyTime: 10
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  lootImage: {fileID: 2244402103826194750, guid: 63bb42eb743a2df4d88826e3eba462c3,
-    type: 3}
   lootCanvas: {fileID: 2244402103826194750, guid: 63bb42eb743a2df4d88826e3eba462c3,
     type: 3}
   targetPosition: {fileID: 0}
+  collectableLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  junkValue: 0
 --- !u!65 &7485303991760289873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,3 +133,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.027309611, y: 0.006454246, z: 0.027325483}
   m_Center: {x: 0.000008806586, y: 0.0023399764, z: -0.0000005476177}
+--- !u!114 &-2424944541284785695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656667306465994060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05929a64d4297ff4d928ef708ca52de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collectableType: 1
+  _eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
+  _UI_collectableItem: {fileID: 4055563963604609513, guid: 8504467245bc4794e977b43249451da0,
+    type: 3}
+  value: 2

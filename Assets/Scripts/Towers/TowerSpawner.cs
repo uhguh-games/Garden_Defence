@@ -73,6 +73,8 @@ public class TowerSpawner : MonoBehaviour
 
             hexGrid.UpdatePositionList();
             hexGrid.UpdatePositionDictionary(towerIndicator);
+            // towerIndicator.transform.rotation = Quaternion.Euler(0, Random.Range(0, 220f), 0);
+            
             towerIndicator.GetComponent<Tower>().dustEffect.SetActive(true);
             economyManager.SpendJunk(placeItem.currentCost);
 
