@@ -12,12 +12,8 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine FollowCoroutine;
     [SerializeField] private GameObject cropToEat;
     private bool foundCrop;
-    private bool eatenCrops;
-    private int cropIndex;
 
-    // [SerializeField] HealthManager healthManager;
-
-    // [SerializeField] HealthManager healthManager;
+    [SerializeField] HealthManager healthManager;
 
     void Awake() 
     {
@@ -25,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.enabled = true; // Ensure NavMeshAgent is enabled
 
-        //healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
+        healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
 
         foundCrop = false;
     }
@@ -42,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void WalkOffScreen() // dirty test
+    public void WalkOffScreen()
     {
         agent.SetDestination(target.transform.position);
     }
@@ -53,11 +49,10 @@ public class EnemyMovement : MonoBehaviour
         
         while(enabled) 
         {
-            /*if (agent.isOnNavMesh) // Check if agent is on NavMesh before setting destination
+            if (agent.isOnNavMesh) // Check if agent is on NavMesh before setting destination
             {
                 if (healthManager.cropList.Count > 0 && !foundCrop)
                 {
-                    //Debug.Log(agent.destination);
                     foundCrop = true; //tell it not to set the destination to MonsterTarget anymore
 
                     cropToEat = healthManager.GetRandomCrop();
@@ -66,13 +61,18 @@ public class EnemyMovement : MonoBehaviour
                     {
                         healthManager.RemoveCrop(cropToEat);
                         agent.SetDestination(cropToEat.transform.position); //go to crop
+                    } 
+                    else 
+                    {
+
+                        Debug.LogWarning("No crops available");
+                        WalkOffScreen();
                     }
 
                     if (healthManager.cropList.Count == 0)
                     {
                         break;
                     }
-
                 }
             }
             else
@@ -80,12 +80,7 @@ public class EnemyMovement : MonoBehaviour
                 Debug.LogWarning("Enemy is not on NavMesh.");
             }
 
-        */
             yield return wait;
         }
-
-
-        // Once reach target (the crops): perform animation, play nomnom sound
-        // Walk off screen and despawn.
     }
 }

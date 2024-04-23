@@ -93,7 +93,6 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
         {
             cropToEat = other.GetComponent<Crop>();
-           // Debug.Log("Collided with crop");
             StartCoroutine(EatRoutine());
         }
     }
@@ -101,12 +100,16 @@ public class Enemy : MonoBehaviour
     IEnumerator EatRoutine() //eat for n seconds
     {
         yield return new WaitForSeconds(eatingTime);
-       // Debug.Log("Eating finished");
 
-        cropToEat.GetEaten(); //tell crop to delete itself and to add the points to the game manager
+        Invoke("Eat", 2f); //tell crop to delete itself and to add the points to the game manager
 
         yield return new WaitForSeconds(eatingTime);
         enemyMovement.WalkOffScreen(); // walk off screen and despawn
+    }
+
+    public void Eat() 
+    {
+        cropToEat.GetEaten();
     }
 }
 

@@ -29,7 +29,7 @@ public class UI_InGameUIManager : MonoBehaviour
 
         foreach (var item in ui_ItemSlots)
         {
-            Debug.Log($"UI Item initialized with collectable type {item.CollectableType}");
+            // Debug.Log($"UI Item initialized with collectable type {item.CollectableType}");
         }
 
         canvas = GetComponent<Canvas>();

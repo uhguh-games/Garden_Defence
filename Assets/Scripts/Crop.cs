@@ -8,25 +8,16 @@ public class Crop : MonoBehaviour
     private MeshRenderer render;
     private Collider col;
 
-    public bool cropTaken;
-
     private void Start()
     {
         render = this.GetComponent<MeshRenderer>();
         col = this.GetComponent<BoxCollider>();
     }
 
-    public void RemoveCrop() 
-    {
-        Debug.Log("RRRRARAAAAAA");
-        cropTaken = true;
-    }
     public void GetEaten()
     {
         eventManager.CropEaten();
-        this.gameObject.tag = "CropEaten";
-        // this.gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
         this.enabled = false;
     }
 }

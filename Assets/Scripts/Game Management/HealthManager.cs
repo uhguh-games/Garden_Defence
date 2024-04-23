@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CropManager : MonoBehaviour
+public class HealthManager : MonoBehaviour
 {
-    private List<GameObject> cropList = new List<GameObject>();
-
+    public List<GameObject> cropList = new List<GameObject>();
     void Awake() 
     {
 
@@ -15,14 +14,11 @@ public class CropManager : MonoBehaviour
             cropList.Add(GameObject.FindGameObjectsWithTag("Crop")[i]);
         }
     }
-
-    // Method to remove a crop from the list
     public void RemoveCrop(GameObject crop)
     {
         cropList.Remove(crop);
     }
 
-    // Method to get a random crop from the list
     public GameObject GetRandomCrop()
     {
         if (cropList.Count > 0)
@@ -32,7 +28,7 @@ public class CropManager : MonoBehaviour
         }
         else
         {
-            return null; // Return null if the list is empty
+            return null; 
         }
     }
 }

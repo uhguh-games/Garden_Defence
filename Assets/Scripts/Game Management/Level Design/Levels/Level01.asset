@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level01
   m_EditorClassIdentifier: 
   levelNumber: 1
-  morningWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
-  dayWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
-  eveningWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
-  nightWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
+  morningWave: {fileID: 11400000, guid: 5918df4e7a4ac2a4eb386f41cd5463ed, type: 2}
+  dayWave: {fileID: 11400000, guid: 5918df4e7a4ac2a4eb386f41cd5463ed, type: 2}
+  eveningWave: {fileID: 11400000, guid: 5918df4e7a4ac2a4eb386f41cd5463ed, type: 2}
+  nightWave: {fileID: 11400000, guid: 5918df4e7a4ac2a4eb386f41cd5463ed, type: 2}

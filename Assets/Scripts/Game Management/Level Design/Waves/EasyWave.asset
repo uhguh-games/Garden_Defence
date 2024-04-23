@@ -16,4 +16,4 @@ MonoBehaviour:
   EnemiesToSpawn:
     _serializedList:
     - Key: {fileID: 6294369897199969494, guid: 27ffb5149951ed044a02bcdb5bd38550, type: 3}
-      Value: 5
+      Value: 4

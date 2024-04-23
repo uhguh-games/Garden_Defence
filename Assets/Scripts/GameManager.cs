@@ -6,7 +6,6 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    // public int junk = 5;
     [SerializeField] private TextMeshProUGUI textybit; 
     public float cropHealth;
     private float baseCropHealth;
@@ -30,7 +29,7 @@ public class GameManager : MonoBehaviour
             cropHealth= 0; 
         }
         
-        if (timeManager.timeIsUp && cropHealth > 0) // win condition would be something like: timer is out and cropHealth < 0
+        if (timeManager.timeIsUp && cropHealth > 0)
         {
             Win();
         }
