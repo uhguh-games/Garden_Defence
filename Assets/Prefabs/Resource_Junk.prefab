@@ -147,6 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collectableType: 1
   _eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  _UI_collectableItem: {fileID: 2244402103826194750, guid: 63bb42eb743a2df4d88826e3eba462c3,
+  _UI_collectableItem: {fileID: 4055563963604609513, guid: 8504467245bc4794e977b43249451da0,
     type: 3}
   value: 2

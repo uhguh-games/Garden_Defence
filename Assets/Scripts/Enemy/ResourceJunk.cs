@@ -39,7 +39,6 @@ public class ResourceJunk : AutoDestroyPoolableObject
             {
                 if (hit.collider.gameObject.TryGetComponent<Collectable>(out Collectable loot))
                 {
-                    print ("Thizzzzz workz");
                     eventManager.LootCollected(loot);
                 }
 
