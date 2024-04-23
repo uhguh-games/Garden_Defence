@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Junk
   description: Junk can be used to craft towers and re-fuel the Fire Pit
   prefab: {fileID: 649248169516072583, guid: e0982f3594288bf48b0a88e3d9ab0363, type: 3}
-  icon: {fileID: 2800000, guid: 7caed469676802f47ae6d3d28edc433c, type: 3}
+  icon: {fileID: 2800000, guid: 16795729f79c51b4faa2b2546a983b45, type: 3}
   value: 1
   type: 1
