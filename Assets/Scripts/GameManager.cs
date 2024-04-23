@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] EventManagerSO eventManager;
-    // public int junk = 5;
     [SerializeField] private TextMeshProUGUI textybit; 
-
     public float cropHealth;
     private float baseCropHealth;
     private int numberOfCrops;
-    // public int junkAmount = 5;
     private int enemiesInScene;
     private int kills;
+    private TimeManager timeManager;
 
-    // EconomyManager economyManager;
+    // should PROBABLY put this somewhere else :) but its ok for now
+    [SerializeField] private GameObject winLosePanel;
+    [SerializeField] private TextMeshProUGUI feedbackText;
+    [SerializeField] private RawImage winLoseImage;
+    [SerializeField] private Texture loseTexture;
+    [SerializeField] private Texture winTexture;
 
     void Start() 
     {
-        // economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+        timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        winLosePanel.SetActive(false);
     }
 
     private void Update()
@@ -29,10 +35,10 @@ public class GameManager : MonoBehaviour
 
         if (cropHealth < 0)
         { 
-            cropHealth= 0; 
+            cropHealth = 0; 
         }
         
-        if (kills == enemiesInScene) // win condition would be something like: timer is out and cropHealth < 0
+        if (timeManager.timeIsUp && cropHealth > 0)
         {
             Win();
         }
@@ -75,21 +81,32 @@ public class GameManager : MonoBehaviour
 
     private void EnemySummation() // not sure this is needed
     {
-        enemiesInScene++;
+        // enemiesInScene++;
     }
     private void KillCounter()
     {
-        kills++;
+        // kills++;
     }
 
     private void Win()
     {
-    
+        winLosePanel.SetActive(true);
+        timeManager.StopTimer();
+        textybit.enabled = true;
+        textybit.text = "Victory!";
+        feedbackText.text = $"You made {cropHealth} Gold.";
+        winLoseImage.texture = winTexture;
+   
+        textybit.color = Color.white;
     }
     private void Lose()
     {
+        winLosePanel.SetActive(true);
+        timeManager.StopTimer();
         textybit.enabled = true;
-        textybit.text = "You lose";
+        textybit.text = "Defeat!";
+        feedbackText.text = "Bugged Out!";
+        winLoseImage.texture = loseTexture;
         textybit.color = Color.red;
     }
 }

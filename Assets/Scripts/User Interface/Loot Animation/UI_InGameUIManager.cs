@@ -8,8 +8,7 @@ public class UI_InGameUIManager : MonoBehaviour
 
     private List<UI_ItemSlot> ui_ItemSlots;
     private Canvas canvas;
-    private UI_CollectedItemAnimSpawner collectableItem; // rename this
-
+    private UI_CollectedItemAnimSpawner collectableItem;
     private void OnEnable()
     {
         eventManager.onLootCollected += PlayPulseAnimation;
@@ -29,7 +28,7 @@ public class UI_InGameUIManager : MonoBehaviour
 
         foreach (var item in ui_ItemSlots)
         {
-            Debug.Log($"UI Item initialized with collectable type {item.CollectableType}");
+            // Debug.Log($"UI Item initialized with collectable type {item.CollectableType}");
         }
 
         canvas = GetComponent<Canvas>();
