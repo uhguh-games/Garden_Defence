@@ -36,7 +36,7 @@ public class TimeManager : MonoBehaviour
     {
         lightCycle = GameObject.Find("Directional Light").GetComponent<LightCycle>();
         maxGameDuration = morningDuration + dayDuration + eveningDuration + nightDuration;
-        // Time.timeScale = 3f;
+        Time.timeScale = 3f;
     }
 
     void Update() 
