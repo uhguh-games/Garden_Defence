@@ -46,6 +46,4 @@ public class EventManagerSO : ScriptableObject
     {
         loseCondition?.Invoke();
     }
-
-
 }
