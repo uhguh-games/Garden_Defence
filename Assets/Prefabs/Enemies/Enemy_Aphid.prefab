@@ -446,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 1984126549882779747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.27, y: 1, z: 7.55}
+  m_LocalPosition: {x: 7.27, y: 1.2, z: 7.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -559,7 +559,7 @@ MonoBehaviour:
   Agent: {fileID: 2694526060579305941}
   EnemyScriptableObject: {fileID: 11400000, guid: a5248f8139e35b14dbc9496e4cf765f4,
     type: 2}
-  Health: 2
+  Health: 4
 --- !u!114 &6985758261319750095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  maxHealth: 2
+  maxHealth: 4
   eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 3795463032311767885}
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   cropToEat: {fileID: 0}
-  cropList: []
+  healthManager: {fileID: 0}
 --- !u!1 &2007958761945380896
 GameObject:
   m_ObjectHideFlags: 0

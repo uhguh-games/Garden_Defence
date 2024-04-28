@@ -514,7 +514,7 @@ MonoBehaviour:
   Agent: {fileID: 5500781251752474562}
   EnemyScriptableObject: {fileID: 11400000, guid: a5248f8139e35b14dbc9496e4cf765f4,
     type: 2}
-  Health: 4
+  Health: 5
 --- !u!114 &8298492115833186460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  maxHealth: 4
+  maxHealth: 5
   eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 7876964546858684752}
@@ -546,6 +546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  cropToEat: {fileID: 0}
+  healthManager: {fileID: 0}
 --- !u!1 &7363061414396658886
 GameObject:
   m_ObjectHideFlags: 0

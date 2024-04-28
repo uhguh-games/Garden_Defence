@@ -78,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
 
             enemy.Movement.StartChasing();
 
-            // eventManager.EnemySummation();
+            eventManager.EnemySummation();
 
             yield return wait;
         }

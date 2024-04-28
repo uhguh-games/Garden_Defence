@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     public float cropHealth;
     private float baseCropHealth;
     private int numberOfCrops;
-    private int enemiesInScene;
-    private int kills;
+    [SerializeField] private int enemiesInScene;
+    [SerializeField] private int kills;
+
+    [SerializeField] private bool enemiesDefeated;
     private TimeManager timeManager;
 
     // should PROBABLY put this somewhere else :) but its ok for now
@@ -37,8 +39,17 @@ public class GameManager : MonoBehaviour
         { 
             cropHealth = 0; 
         }
+
+        if (kills == enemiesInScene) 
+        {
+            enemiesDefeated = true;
+        } 
+        else 
+        {
+            enemiesDefeated = false;
+        }
         
-        if (timeManager.timeIsUp && cropHealth > 0)
+        if (timeManager.timeIsUp && cropHealth > 0 && enemiesDefeated)
         {
             Win();
         }
@@ -56,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         // eventManager.junkCollect += CollectJunk;
         eventManager.onCropEaten += DamageCrops;
-        eventManager.addEnemy += EnemySummation; // not sure this is needed
+        eventManager.addEnemy += EnemySummation;
         eventManager.onKill += KillCounter;
     }
 
@@ -65,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         eventManager.onKill -= CollectJunk;
     }
+    */
 
     /*
     private void CollectJunk()
@@ -79,13 +91,13 @@ public class GameManager : MonoBehaviour
         cropHealth -= (baseCropHealth/numberOfCrops);
     }
 
-    private void EnemySummation() // not sure this is needed
+    private void EnemySummation()
     {
-        // enemiesInScene++;
+        enemiesInScene++;
     }
     private void KillCounter()
     {
-        // kills++;
+        kills++;
     }
 
     private void Win()

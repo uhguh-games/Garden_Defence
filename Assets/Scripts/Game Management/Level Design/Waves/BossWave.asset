@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4f82832229ee4c46b030a29f5ed953f, type: 3}
-  m_Name: NormalWave
+  m_Name: BossWave
   m_EditorClassIdentifier: 
-  description: Normal wave of day enemies
+  description: 
   EnemiesToSpawn:
     _serializedList:
-    - Key: {fileID: -4254213315348629638, guid: 55d659fad2f6ea44eadb2a68b06f8e07,
-        type: 3}
-      Value: 3
+    - Key: {fileID: 7261639986508623139, guid: 1387e0f142d3ca54f9bf2ef19d36888a, type: 3}
+      Value: 1

@@ -90,6 +90,8 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Temp") 
         {
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
+            eventManager.OnKill();
+
         }
         if (other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
         {
