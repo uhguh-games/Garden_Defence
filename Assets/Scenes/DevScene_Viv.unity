@@ -4400,12 +4400,13 @@ MonoBehaviour:
   timeText: {fileID: 592033192}
   timeCounterText: {fileID: 1406795194}
   gameTime: 0
-  morningDuration: 20
-  dayDuration: 20
-  eveningDuration: 20
-  nightDuration: 35
   timeIsUp: 0
   timeGo: 1
+  maxGameDuration: 0
+  morningDuration: 0
+  dayDuration: 0
+  eveningDuration: 0
+  nightDuration: 0
   playSpeed: 1
   fireFlies:
   - {fileID: 1254417953}
@@ -5025,7 +5026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15442087, y: 0.3964101}
   m_AnchorMax: {x: 0.82210433, y: 0.7921153}
-  m_AnchoredPosition: {x: 145, y: -247}
+  m_AnchoredPosition: {x: 145, y: 18}
   m_SizeDelta: {x: -59, y: -34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592033192
@@ -8843,13 +8844,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
   - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
+  - {fileID: 11400000, guid: 6dead38332748534888500c278f275a3, type: 2}
   - {fileID: 11400000, guid: 7ac9cf304fa6ab54d8440ee03b5f19d2, type: 2}
-  - {fileID: 11400000, guid: bbe0699415e6c934c97be3cc67afef66, type: 2}
   - {fileID: 11400000, guid: 77fb94d267e606e4bb9671da3282b959, type: 2}
+  - {fileID: 11400000, guid: bbe0699415e6c934c97be3cc67afef66, type: 2}
+  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
   timeManager: {fileID: 0}
   currentLevelIndex: 0
+  finalDuration: 0
+  timeRate: 12
+  currentLevel: {fileID: 0}
+  currentWave: {fileID: 0}
 --- !u!1 &1060449807
 GameObject:
   m_ObjectHideFlags: 0
@@ -10840,7 +10846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 223.5, y: -50.625}
+  m_AnchoredPosition: {x: -223, y: -50.625}
   m_SizeDelta: {x: -114.3338, y: 50.1013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1241665978
@@ -12412,7 +12418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersJunk: 5
+  playersJunk: 20
   playersGold: 0
   fuelCost: 1
   firePitCost: 3
@@ -13185,7 +13191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15442087, y: 0}
   m_AnchorMax: {x: 0.6855251, y: 0.20500001}
-  m_AnchoredPosition: {x: 228, y: -280.99988}
+  m_AnchoredPosition: {x: 228, y: -15.999878}
   m_SizeDelta: {x: -6, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406795194

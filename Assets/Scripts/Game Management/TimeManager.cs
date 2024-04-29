@@ -20,13 +20,17 @@ public class TimeManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI timeCounterText;
     [SerializeField] float gameTime;
-    float maxGameDuration;
-    public float morningDuration = 15f;
-    public float dayDuration = 30f;
-    public float eveningDuration = 15f;
-    public float nightDuration = 30f;
     public bool timeIsUp = false;
     public bool timeGo = true;
+    public float maxGameDuration;
+
+    // will be set by level manager
+    public float morningDuration;
+    public float dayDuration;
+    public float eveningDuration;
+    public float nightDuration;
+
+    LevelManager levelManager;
 
     [Range(1, 4)]
     [SerializeField] int playSpeed = 1;
@@ -36,14 +40,14 @@ public class TimeManager : MonoBehaviour
     private LightCycle lightCycle;
 
     void Awake() 
-    {
+    {   
         lightCycle = GameObject.Find("Directional Light").GetComponent<LightCycle>();
-        maxGameDuration = morningDuration + dayDuration + eveningDuration + nightDuration;
-        // Time.timeScale = 3f;
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
 
     void Update() 
     {
+        // playback speed for debugging
         Time.timeScale = playSpeed;
 
         if (timeGo) 
@@ -121,14 +125,13 @@ public class TimeManager : MonoBehaviour
         {
             case TimeState.Morning:
                 // Lighting
-                // Spawns
+            
                 lightCycle.StartLightRoutine(lightCycle.morningRotation);
 
                 foreach (GameObject particleEffect in fireFlies)
                 {
                     particleEffect.SetActive(false);
                 }
-        
                 break;
 
             case TimeState.Day:
