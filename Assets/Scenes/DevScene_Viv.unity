@@ -8844,12 +8844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
   - {fileID: 11400000, guid: 6dead38332748534888500c278f275a3, type: 2}
-  - {fileID: 11400000, guid: 7ac9cf304fa6ab54d8440ee03b5f19d2, type: 2}
-  - {fileID: 11400000, guid: 77fb94d267e606e4bb9671da3282b959, type: 2}
-  - {fileID: 11400000, guid: bbe0699415e6c934c97be3cc67afef66, type: 2}
   - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
+  - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
   timeManager: {fileID: 0}
   currentLevelIndex: 0
   finalDuration: 0
@@ -12418,6 +12415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStartJunk: 20
   playersJunk: 20
   playersGold: 0
   fuelCost: 1
@@ -14127,6 +14125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropList: []
+  cropInventory: []
 --- !u!1 &1559011589
 GameObject:
   m_ObjectHideFlags: 0
@@ -15571,7 +15570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1815366837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17395,7 +17394,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057128712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1053905703}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2057128712
 MonoBehaviour:
   m_ObjectHideFlags: 0

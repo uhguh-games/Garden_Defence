@@ -100,6 +100,23 @@ public class GameManager : MonoBehaviour
         kills++;
     }
 
+    public void ResetCropHealth() 
+    {
+        cropHealth = baseCropHealth;
+    }
+
+    #region Win and Lose Conditions
+    // separate visualization to a different class later
+    public void Confirmation() 
+    {
+        ResetCropHealth();
+        print("Hiding conformation window");
+        winLosePanel.SetActive(false);
+        feedbackText.text = " ";
+        textybit.text = " ";
+        winLoseImage.texture = null;
+    }
+
     private void Win()
     {
         winLosePanel.SetActive(true);
@@ -121,4 +138,6 @@ public class GameManager : MonoBehaviour
         winLoseImage.texture = loseTexture;
         textybit.color = Color.red;
     }
+
+    #endregion
 }

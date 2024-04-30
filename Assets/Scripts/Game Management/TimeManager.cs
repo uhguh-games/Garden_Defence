@@ -115,6 +115,14 @@ public class TimeManager : MonoBehaviour
         timeIsUp = true;
     }
 
+    public void ResetTimer() 
+    {
+        gameTime = 0f;
+        maxGameDuration = 0f;
+        currentState = TimeState.Morning;
+        ChangeState(TimeState.Morning);
+    }
+
     public void ChangeState(TimeState newState)
     {
         currentState = newState;
@@ -125,6 +133,11 @@ public class TimeManager : MonoBehaviour
         {
             case TimeState.Morning:
                 // Lighting
+
+                foreach (GameObject particleEffect in fireFlies)
+                {
+                    particleEffect.SetActive(false);
+                }
             
                 lightCycle.StartLightRoutine(lightCycle.morningRotation);
 

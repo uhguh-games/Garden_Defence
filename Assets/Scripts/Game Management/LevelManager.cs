@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public Level_SO[] levels;
@@ -11,11 +12,19 @@ public class LevelManager : MonoBehaviour
     [SerializeField] float timeRate = 8.7f;
     public Level_SO currentLevel = null;
     public Wave_SO currentWave = null;
+    GameManager gameManager;
+    HealthManager healthManager;
+    EconomyManager economyManager;
+    HexGrid hexGrid;
 
     public void Awake() 
     {
         timeManager = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         enemySpawner = GameObject.Find("EnemyManager").GetComponent<EnemySpawner>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
+        economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+        hexGrid = GameObject.Find("HexGrid").GetComponent<HexGrid>();
         timeManager.OnTimeStateChanged += OnTimeStateChangedHandler;
     }
 
@@ -36,7 +45,6 @@ public class LevelManager : MonoBehaviour
     {
         Level_SO level = levels[levelIndex];
         currentLevel = levels[levelIndex];
-
         // ClearEnemyPools();
         
         // Spawn enemies for the current time of day
@@ -77,7 +85,7 @@ public class LevelManager : MonoBehaviour
         }
     }
     
-    public void FindEnemyAmounts() // refactor repetitive code
+    public void FindEnemyAmounts() // refactor repetitive code later
     {
         foreach (var enemyAmountPair in currentLevel.morningWave.EnemiesToSpawn) 
         {
@@ -128,6 +136,33 @@ public class LevelManager : MonoBehaviour
         */
 
         enemySpawner.SpawnEnemiesFromPools(enemiesToSpawn, amounts);
+    }
+
+    public void LoadNextLevel() // the button loads a next level if level was won - replays the same one if lost
+    {
+        currentLevelIndex++;
+
+        if (currentLevelIndex < levels.Length)
+        {
+            gameManager.Confirmation();
+            healthManager.ResetHealth();
+            economyManager.ResetJunk();
+            timeManager.ResetTimer();
+            LoadLevel(currentLevelIndex);
+            FindEnemyAmounts();
+            hexGrid.ClearObjectsInScene();
+            timeManager.timeGo = true;
+            timeManager.timeIsUp = false;
+        }
+        else
+        {
+            Debug.Log("No more levels.");
+            healthManager.ResetHealth();
+            gameManager.Confirmation();
+            // Load next game scene (Level 2 environment)
+            // SceneManager.LoadScene(TheNextScene);
+            SceneManager.LoadScene("Level_02");
+        }
     }
 
     void ClearEnemyPools()

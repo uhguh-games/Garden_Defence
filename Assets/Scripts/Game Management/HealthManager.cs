@@ -1,22 +1,55 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class HealthManager : MonoBehaviour
 {
     public List<GameObject> cropList = new List<GameObject>();
+    [SerializeField] private List<GameObject> cropInventory = new List<GameObject>();
     void Awake() 
     {
-
         cropList.Clear();
 
+        PopulateCropList();
+    }
+
+    private void PopulateCropList() 
+    {
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Crop").Length; i++) 
         {
             cropList.Add(GameObject.FindGameObjectsWithTag("Crop")[i]);
+            cropInventory.Add(GameObject.FindGameObjectsWithTag("Crop")[i]);
         }
     }
     public void RemoveCrop(GameObject crop)
     {
         cropList.Remove(crop);
+    }
+
+    public void ResetHealth() // make this through events
+    {
+        // Remove all crops from the scene and replace with a new "batch"
+        StartCoroutine(ResetHealthCoroutine(2f));
+    }
+
+    IEnumerator ResetHealthCoroutine(float waitTime) 
+    {
+        while (true) 
+        {
+            foreach (GameObject cropObject in cropInventory)
+            {
+                cropObject.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(waitTime);
+
+            foreach (GameObject cropObject in cropInventory)
+            {
+                cropObject.SetActive(true);
+            }
+
+            yield break;
+        }
     }
 
     public void AddCrop(GameObject crop) 
