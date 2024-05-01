@@ -5128,6 +5128,7 @@ MonoBehaviour:
   gameTime: 0
   timeIsUp: 0
   timeGo: 1
+  maxGameDuration: 0
   morningDuration: 15
   dayDuration: 30
   eveningDuration: 15
@@ -5855,7 +5856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15442087, y: 0.3964101}
   m_AnchorMax: {x: 0.82210433, y: 0.7921153}
-  m_AnchoredPosition: {x: -93.5, y: 16}
+  m_AnchoredPosition: {x: 159, y: 16}
   m_SizeDelta: {x: -59, y: -34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &592033192
@@ -10025,6 +10026,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
+  - {fileID: 11400000, guid: 6dead38332748534888500c278f275a3, type: 2}
+  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
   - {fileID: 11400000, guid: 7ac9cf304fa6ab54d8440ee03b5f19d2, type: 2}
   - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
   - {fileID: 11400000, guid: 77fb94d267e606e4bb9671da3282b959, type: 2}
@@ -10032,6 +10035,9 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   currentLevelIndex: 0
   finalDuration: 0
+  timeRate: 8.7
+  currentLevel: {fileID: 0}
+  currentWave: {fileID: 0}
 --- !u!1 &1060449807
 GameObject:
   m_ObjectHideFlags: 0
@@ -12121,7 +12127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 223.5, y: -50.625}
+  m_AnchoredPosition: {x: -444, y: -50.625}
   m_SizeDelta: {x: -114.3338, y: 50.1013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1241665978
@@ -13785,7 +13791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersJunk: 20
+  playerStartJunk: 10
+  playersJunk: 10
   playersGold: 0
   fuelCost: 1
   firePitCost: 2
@@ -14632,7 +14639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15442087, y: 0}
   m_AnchorMax: {x: 0.6855251, y: 0.20500001}
-  m_AnchoredPosition: {x: -1, y: -18}
+  m_AnchoredPosition: {x: 251.50005, y: -18}
   m_SizeDelta: {x: -6, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1406795194
@@ -15667,6 +15674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropList: []
+  cropInventory: []
 --- !u!1 &1559011589
 GameObject:
   m_ObjectHideFlags: 0
@@ -17215,7 +17223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1815366837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19470,7 +19478,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2057128712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1053905703}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: LoadNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2057128712
 MonoBehaviour:
   m_ObjectHideFlags: 0

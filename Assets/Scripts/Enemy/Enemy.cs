@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     private int enemyJunkValue; // set by the economy manager
     EconomyManager economyManager;
 
+    private bool enemyHungry = true;
+
     [Tooltip("Scriptable Object of the enemy")]
     [SerializeField] EnemyScriptableObject enemyStats;
     private EnemyType enemyType;
@@ -93,10 +95,11 @@ public class Enemy : MonoBehaviour
             eventManager.OnKill();
 
         }
-        if (other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
+        if (enemyHungry && other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
         {
             cropToEat = other.GetComponent<Crop>();
             StartCoroutine(EatRoutine());
+            enemyHungry = false;
         }
     }
 
@@ -108,6 +111,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(eatingTime);
         enemyMovement.WalkOffScreen(); // walk off screen and despawn
+        yield break;
     }
 
     public void Eat() 

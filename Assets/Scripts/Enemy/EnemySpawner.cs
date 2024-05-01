@@ -82,10 +82,23 @@ public class EnemySpawner : MonoBehaviour
 
             yield return wait;
         }
-
-        
     }
 
+    public void DisableEnemies() 
+    {
+       foreach (KeyValuePair<int, ObjectPool> kvp in EnemyObjectPools)
+        {
+            ObjectPool pool = kvp.Value;
+            List<PoolableObject> objectsInPool = pool.GetAllObjects();
+
+            foreach (PoolableObject poolableObject in objectsInPool)
+            {
+                poolableObject.gameObject.SetActive(false);
+            }
+
+            print ("Enemies disabled");
+        }
+    }
 
     public void ClearEnemyPools()
     {
