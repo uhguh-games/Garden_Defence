@@ -52,6 +52,13 @@ public class LevelManager : MonoBehaviour
        
     }
 
+    void ReloadLevel(int levelIndex) 
+    {
+        Level_SO level = levels[levelIndex];
+        currentLevel = levels[levelIndex];
+        levelText.text = $"Level {level.levelNumber}";
+    }
+
     void SpawnEnemiesForTimeOfDay(TimeState timeOfDay, Level_SO level)
     {
         Wave_SO wave = null;
@@ -149,13 +156,13 @@ public class LevelManager : MonoBehaviour
         if (gameManager.levelWon) 
         {
             LoadNextLevel();
-            gameManager.levelWon = false;
         } 
         else 
         {
             ReplayLastLevel();
-            gameManager.levelLost = false;
         }
+
+        gameManager.ResetGameState();
     }
 
     public void ReplayLastLevel() 
@@ -170,7 +177,7 @@ public class LevelManager : MonoBehaviour
         timeManager.timeGo = true;
         timeManager.timeIsUp = false;
         healthManager.RePopulateCropList();
-        LoadLevel(currentLevelIndex);
+        ReloadLevel(currentLevelIndex);
     }
 
     public void LoadNextLevel() // the button loads a next level if level was won - replays the same one if lost
@@ -196,6 +203,7 @@ public class LevelManager : MonoBehaviour
             gameManager.Confirmation();
             // Load next game scene (Level 2 environment)
             // SceneManager.LoadScene(TheNextScene);
+            gameManager.ResetGameState();
             SceneManager.LoadScene("Level_02");
         }
         

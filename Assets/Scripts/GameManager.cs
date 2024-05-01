@@ -109,6 +109,15 @@ public class GameManager : MonoBehaviour
         cropHealth = baseCropHealth;
     }
 
+    public void ResetGameState() 
+    {
+        levelLost = false;
+        levelWon = false;
+        enemiesInScene = 0;
+        kills = 0;
+        enemiesDefeated = false;
+    }
+
     #region Win and Lose Conditions
     // separate visualization to a different class later
     public void Confirmation() 

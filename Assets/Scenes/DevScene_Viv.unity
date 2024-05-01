@@ -3357,6 +3357,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5296710546873318328, guid: a038b9d4043038942b23dd5a6a9d09de,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8926244237618260371, guid: a038b9d4043038942b23dd5a6a9d09de,
         type: 3}
       propertyPath: m_Enabled
@@ -7938,6 +7943,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanterBox (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5296710546873318328, guid: a038b9d4043038942b23dd5a6a9d09de,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8926244237618260371, guid: a038b9d4043038942b23dd5a6a9d09de,
         type: 3}
       propertyPath: m_Enabled
@@ -9066,8 +9076,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
   - {fileID: 11400000, guid: 6dead38332748534888500c278f275a3, type: 2}
+  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
+  - {fileID: 11400000, guid: 7ac9cf304fa6ab54d8440ee03b5f19d2, type: 2}
   timeManager: {fileID: 0}
   currentLevelIndex: 0
   finalDuration: 0
@@ -12548,8 +12559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStartJunk: 5
-  playersJunk: 5
+  playerStartJunk: 8
+  playersJunk: 8
   playersGold: 0
   fuelCost: 1
   firePitCost: 3
@@ -14494,6 +14505,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanterBox (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5296710546873318328, guid: a038b9d4043038942b23dd5a6a9d09de,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8926244237618260371, guid: a038b9d4043038942b23dd5a6a9d09de,
         type: 3}
       propertyPath: m_Enabled
@@ -15094,6 +15110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlanterBox (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296710546873318328, guid: a038b9d4043038942b23dd5a6a9d09de,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8926244237618260371, guid: a038b9d4043038942b23dd5a6a9d09de,
         type: 3}
@@ -19229,6 +19250,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlanterBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296710546873318328, guid: a038b9d4043038942b23dd5a6a9d09de,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8926244237618260371, guid: a038b9d4043038942b23dd5a6a9d09de,
         type: 3}

@@ -10064,9 +10064,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 6dead38332748534888500c278f275a3, type: 2}
   - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
-  - {fileID: 11400000, guid: 6dd85ff8ffcd6294ea022fa43207e564, type: 2}
+  - {fileID: 11400000, guid: 77fb94d267e606e4bb9671da3282b959, type: 2}
+  - {fileID: 11400000, guid: bbe0699415e6c934c97be3cc67afef66, type: 2}
   timeManager: {fileID: 0}
   currentLevelIndex: 0
   finalDuration: 0
@@ -19652,7 +19652,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1053905703}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadNextLevel
+        m_MethodName: GameStateHandler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
