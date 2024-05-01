@@ -5126,12 +5126,13 @@ MonoBehaviour:
   timeText: {fileID: 592033192}
   timeCounterText: {fileID: 1406795194}
   gameTime: 0
+  timeIsUp: 0
+  timeGo: 1
   morningDuration: 15
   dayDuration: 30
   eveningDuration: 15
   nightDuration: 30
-  timeIsUp: 0
-  timeGo: 1
+  playSpeed: 1
   fireFlies:
   - {fileID: 1254417953}
   - {fileID: 1372654697}
@@ -8951,6 +8952,9 @@ MonoBehaviour:
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
   textybit: {fileID: 414518903}
   cropHealth: 5
+  enemiesInScene: 0
+  kills: 0
+  enemiesDefeated: 0
   winLosePanel: {fileID: 1815366836}
   feedbackText: {fileID: 313346309}
   winLoseImage: {fileID: 334688764}
@@ -10027,6 +10031,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ba2d29a34f627449ad8af3fbc78c5a0, type: 2}
   timeManager: {fileID: 0}
   currentLevelIndex: 0
+  finalDuration: 0
 --- !u!1 &1060449807
 GameObject:
   m_ObjectHideFlags: 0

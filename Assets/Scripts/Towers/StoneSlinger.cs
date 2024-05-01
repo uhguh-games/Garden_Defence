@@ -87,7 +87,7 @@ public class StoneSlinger : MonoBehaviour
             if (stone != null) 
             {
                 stone.Setup(enemyDirection, tower.targetedEnemy);
-                stone.transform.SetParent(transform, false);
+                // stone.transform.SetParent(transform, false);
                 stone.transform.position = firePoint.transform.position;
             }
         }

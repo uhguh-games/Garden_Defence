@@ -88,9 +88,8 @@ public class StoneProjectile : AutoDestroyPoolableObject
 
     private void DeleteProjectile() 
     {
-        // sound effect
-        // vfx
-        base.OnDisable();
+        // base.OnDisable();
+        this.gameObject.SetActive(false);
     }
 
     private void ActivateRigidbody()

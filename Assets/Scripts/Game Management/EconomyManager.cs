@@ -8,7 +8,8 @@ using UnityEngine;
 public class EconomyManager : MonoBehaviour
 {
     [Header("Players Resources")] // later these could be fetched from a json or something that stores the players stats like funds across different levels/play sessions
-    public int playersJunk = 10;
+    public int playerStartJunk = 5;
+    public int playersJunk;
     public int playersGold = 0;
 
     [Space]
@@ -29,6 +30,11 @@ public class EconomyManager : MonoBehaviour
 
     public delegate void EnemyJunkValueChangeAction();
     public event EnemyJunkValueChangeAction OnEnemyJunkValueChange;
+
+    void Start() 
+    {
+        playersJunk = playerStartJunk;
+    }
 
     public int GetEnemyJunkValue(string enemyType) 
     {
@@ -85,4 +91,11 @@ public class EconomyManager : MonoBehaviour
     {
         playersJunk += amount;
     }
+
+    public void ResetJunk() 
+    {
+        playersJunk = playerStartJunk;
+    }
+
+
 }

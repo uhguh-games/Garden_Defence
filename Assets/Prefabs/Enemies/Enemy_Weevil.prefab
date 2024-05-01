@@ -241,7 +241,7 @@ MonoBehaviour:
   Agent: {fileID: 6690669747414516532}
   EnemyScriptableObject: {fileID: 11400000, guid: bb0952492d25a5c4ba1834e415a6374e,
     type: 2}
-  Health: 1
+  Health: 3
 --- !u!114 &-1685709617394219053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
-  maxHealth: 1
+  maxHealth: 3
   eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 3306933845622971492}

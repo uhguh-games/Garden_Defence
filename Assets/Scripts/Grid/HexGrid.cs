@@ -145,6 +145,22 @@ public class HexGrid : MonoBehaviour
         }
     }
 
+    public void ClearObjectsInScene() 
+    {
+        occupiedPositions.Clear();
+
+        foreach (var kvp in ItemsInScene) 
+        {
+            GameObject item = kvp.Key;
+            Vector3 itemPosition = kvp.Value;
+
+            occupiedPositions.Remove(itemPosition);
+            Destroy(item);
+        }
+        
+        ItemsInScene.Clear();
+    }
+
     public void ToggleGridVisibility(bool isVisible)
     {
         hexGridContainer.SetActive(isVisible);
