@@ -36,8 +36,6 @@ public class LevelManager : MonoBehaviour
 
     void OnTimeStateChangedHandler(TimeState newState)
     {
-        // ClearEnemyPools();
-
         LoadLevel(currentLevelIndex);
     }
 
@@ -45,10 +43,10 @@ public class LevelManager : MonoBehaviour
     {
         Level_SO level = levels[levelIndex];
         currentLevel = levels[levelIndex];
-        // ClearEnemyPools();
-        
+    
         // Spawn enemies for the current time of day
         SpawnEnemiesForTimeOfDay(timeManager.currentState, level);
+       
     }
 
     void SpawnEnemiesForTimeOfDay(TimeState timeOfDay, Level_SO level)
@@ -78,6 +76,7 @@ public class LevelManager : MonoBehaviour
         if (wave != null)
         {
             SpawnEnemiesFromWave(wave);
+            print("Spawning enemies for: " + currentLevel + " / " + currentWave);
         }
         else
         {
@@ -121,6 +120,9 @@ public class LevelManager : MonoBehaviour
         List<Enemy_AI> enemiesToSpawn = new List<Enemy_AI>();
         List<int> amounts = new List<int>();
 
+        enemiesToSpawn.Clear();
+        amounts.Clear();
+
         foreach (var enemyAmountPair in wave.EnemiesToSpawn) 
         {
             enemiesToSpawn.Add(enemyAmountPair.Key);
@@ -148,11 +150,12 @@ public class LevelManager : MonoBehaviour
             healthManager.ResetHealth();
             economyManager.ResetJunk();
             timeManager.ResetTimer();
-            LoadLevel(currentLevelIndex);
+            //LoadLevel(currentLevelIndex);
             FindEnemyAmounts();
             hexGrid.ClearObjectsInScene();
             timeManager.timeGo = true;
             timeManager.timeIsUp = false;
+            // ClearEnemyPools(); // CHEEKY TEST
         }
         else
         {

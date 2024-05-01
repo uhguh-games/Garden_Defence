@@ -12415,8 +12415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStartJunk: 20
-  playersJunk: 20
+  playerStartJunk: 5
+  playersJunk: 5
   playersGold: 0
   fuelCost: 1
   firePitCost: 3
