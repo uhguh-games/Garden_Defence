@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private float updateSpeed = 0.1f;
     private UnityEngine.AI.NavMeshAgent agent;
     private Coroutine FollowCoroutine;
-    [SerializeField] private GameObject cropToEat;
+    [SerializeField] public GameObject cropToEat;
     private bool foundCrop;
 
     [SerializeField] HealthManager healthManager;

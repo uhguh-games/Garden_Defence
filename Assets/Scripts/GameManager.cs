@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RawImage winLoseImage;
     [SerializeField] private Texture loseTexture;
     [SerializeField] private Texture winTexture;
+    public bool levelWon;
+    public bool levelLost;
 
     void Start() 
     {
@@ -52,10 +54,12 @@ public class GameManager : MonoBehaviour
         if (timeManager.timeIsUp && cropHealth > 0 && enemiesDefeated)
         {
             Win();
+            levelWon = true;
         }
         if (cropHealth == 0)
         {
             Lose();
+            levelLost = true;
         }
     }
     private void Awake()

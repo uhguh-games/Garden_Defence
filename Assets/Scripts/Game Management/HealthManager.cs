@@ -13,7 +13,7 @@ public class HealthManager : MonoBehaviour
         PopulateCropList();
     }
 
-    private void PopulateCropList() 
+    public void PopulateCropList() 
     {
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Crop").Length; i++) 
         {
@@ -21,6 +21,32 @@ public class HealthManager : MonoBehaviour
             cropInventory.Add(GameObject.FindGameObjectsWithTag("Crop")[i]);
         }
     }
+
+    /*
+
+    public void PopulateCropList()
+    {
+        GameObject[] crops = GameObject.FindGameObjectsWithTag("Crop");
+
+        foreach (GameObject crop in crops) 
+        {
+            cropList.Add(crop);
+            cropInventory.Add(crop);
+        }
+    }
+
+    */
+
+    public void RePopulateCropList() 
+    {
+        cropList.Clear();
+
+        foreach(GameObject crop in cropInventory) 
+        {
+            cropList.Add(crop);
+        }
+    }
+
     public void RemoveCrop(GameObject crop)
     {
         cropList.Remove(crop);

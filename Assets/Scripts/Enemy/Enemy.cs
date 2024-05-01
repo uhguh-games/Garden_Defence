@@ -12,10 +12,10 @@ public class Enemy : MonoBehaviour
     private HealthBar healthBar;
     [SerializeField] Transform hitTarget; // empty object on the enemy
     private PoolManager poolManager;
-    private Crop cropToEat;
+    // private Crop cropToEat;
     private int enemyJunkValue; // set by the economy manager
     EconomyManager economyManager;
-
+    GameManager gameManager;
     private bool enemyHungry = true;
 
     [Tooltip("Scriptable Object of the enemy")]
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         poolManager = GameObject.Find("PoolManager").GetComponent<PoolManager>();
         economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyMovement = GetComponent<EnemyMovement>();
     }
     void Start()
@@ -47,6 +48,11 @@ public class Enemy : MonoBehaviour
             eventManager.OnKill();
             DropJunk();
             this.gameObject.SetActive(false); // Enemy gets returned into the pool
+        }
+
+        if (gameManager.levelWon || gameManager.levelLost) 
+        {
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -87,17 +93,17 @@ public class Enemy : MonoBehaviour
         instance.transform.position = deathPos.position;
     }
 
-    void OnTriggerEnter(Collider other) // temporary cringy solution 
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Temp") 
         {
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
             eventManager.OnKill();
-
         }
-        if (enemyHungry && other.tag == "Crop") //if the enemy finds a crop whose tag was changed to CropEaten when they chose the crop to eat
-        {
-            cropToEat = other.GetComponent<Crop>();
+        
+        if (enemyHungry && other.tag == "Crop")
+        { 
+            // cropToEat = other.GetComponent<Crop>();
             StartCoroutine(EatRoutine());
             enemyHungry = false;
         }
@@ -107,7 +113,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(eatingTime);
 
-        Invoke("Eat", 2f); //tell crop to delete itself and to add the points to the game manager
+        Invoke("Eat", 1.6f); //tell crop to delete itself and to add the points to the game manager
 
         yield return new WaitForSeconds(eatingTime);
         enemyMovement.WalkOffScreen(); // walk off screen and despawn
@@ -116,7 +122,7 @@ public class Enemy : MonoBehaviour
 
     public void Eat() 
     {
-        cropToEat.GetEaten();
+        enemyMovement.cropToEat.GetComponent<Crop>().GetEaten();
     }
 }
 

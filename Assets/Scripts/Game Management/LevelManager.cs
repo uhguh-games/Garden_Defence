@@ -16,10 +16,8 @@ public class LevelManager : MonoBehaviour
     GameManager gameManager;
     HealthManager healthManager;
     EconomyManager economyManager;
-    public bool levelWon;
     HexGrid hexGrid;
     [SerializeField] private TextMeshProUGUI levelText;
-
 
     public void Awake() 
     {
@@ -147,15 +145,16 @@ public class LevelManager : MonoBehaviour
 
     public void GameStateHandler() 
     {
-        // enemySpawner.DisableEnemies();
 
-        if (levelWon) 
+        if (gameManager.levelWon) 
         {
             LoadNextLevel();
+            gameManager.levelWon = false;
         } 
         else 
         {
             ReplayLastLevel();
+            gameManager.levelLost = false;
         }
     }
 
@@ -165,12 +164,13 @@ public class LevelManager : MonoBehaviour
         healthManager.ResetHealth();
         economyManager.ResetJunk();
 
-        LoadLevel(currentLevelIndex);
         timeManager.ResetTimer();
         FindEnemyAmounts();
         hexGrid.ClearObjectsInScene();
         timeManager.timeGo = true;
         timeManager.timeIsUp = false;
+        healthManager.RePopulateCropList();
+        LoadLevel(currentLevelIndex);
     }
 
     public void LoadNextLevel() // the button loads a next level if level was won - replays the same one if lost
@@ -187,6 +187,7 @@ public class LevelManager : MonoBehaviour
             hexGrid.ClearObjectsInScene();
             timeManager.timeGo = true;
             timeManager.timeIsUp = false;
+            healthManager.RePopulateCropList();
         }
         else // Move on to next environment scene
         {
@@ -197,6 +198,7 @@ public class LevelManager : MonoBehaviour
             // SceneManager.LoadScene(TheNextScene);
             SceneManager.LoadScene("Level_02");
         }
+        
     }
 
     void ClearEnemyPools()

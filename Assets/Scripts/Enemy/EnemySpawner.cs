@@ -83,7 +83,8 @@ public class EnemySpawner : MonoBehaviour
             yield return wait;
         }
     }
-
+    
+    /*
     public void DisableEnemies() 
     {
        foreach (KeyValuePair<int, ObjectPool> kvp in EnemyObjectPools)
@@ -99,6 +100,7 @@ public class EnemySpawner : MonoBehaviour
             print ("Enemies disabled");
         }
     }
+    */
 
     public void ClearEnemyPools()
     {
