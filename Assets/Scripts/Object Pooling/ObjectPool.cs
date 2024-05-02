@@ -48,4 +48,9 @@ public class ObjectPool
     {
         AvailableObjectsPool.Add(Object);
     }
+
+    public List<PoolableObject> GetAllObjects()
+    {
+        return AvailableObjectsPool;
+    }
 }

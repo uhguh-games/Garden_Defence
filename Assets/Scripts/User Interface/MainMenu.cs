@@ -6,42 +6,55 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    [SerializeField] private GameObject mainCanvas;
-    [SerializeField] private GameObject optionsCanvas;
-    [SerializeField] private GameObject controlsCanvas;
-    [SerializeField] private int SceneID;
+    [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject optionsPanel;
+    [SerializeField] GameObject guidePanel;
+    [SerializeField] GameObject creditsPanel;
+    [SerializeField] GameObject menuPanel;
+    [SerializeField] GameObject backButton;
+    [SerializeField] int SceneID;
+    [SerializeField] List <GameObject> panels = new List<GameObject>();
 
     private void Start()
     {
-        optionsCanvas.SetActive(false);
-        mainCanvas.SetActive(true);
-        controlsCanvas.SetActive(false);
-    }
-    public void StartGame()
-    {
-        SceneManager.LoadScene(SceneID);
+        mainPanel.SetActive(true);
+        optionsPanel.SetActive(false);
+        guidePanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        backButton.SetActive(false);
+        menuPanel.SetActive(false);
     }
 
-    public void ShowSettings()
+    public void HideOtherPanels(GameObject activatedPanel) 
     {
-        optionsCanvas.SetActive(true);
-        // mainCanvas.SetActive(false);
+        foreach (GameObject panel in panels) 
+        {
+            if (panel != activatedPanel) 
+            {
+                activatedPanel.SetActive(true);
+                panel.SetActive(false);
+            }
+        }
     }
-    public void HideSettings()
+    public void OpenMenu() 
     {
-        optionsCanvas.SetActive(false);
-        mainCanvas.SetActive(true);
+        HideOtherPanels(optionsPanel);
+        menuPanel.SetActive(true);
+        backButton.SetActive(true);
     }
-    public void ShowControls()
+
+    public void OpenMain() 
     {
-        controlsCanvas.SetActive(true);
-        mainCanvas.SetActive(false);
+        HideOtherPanels(mainPanel);
+        menuPanel.SetActive(false);
+        backButton.SetActive(false);
     }
-    public void HideControls() 
+
+    public void StartGame()
     {
-        controlsCanvas.SetActive(false);
-        mainCanvas.SetActive(true);
+        SceneManager.LoadScene(1);
     }
+
     public void CloseGame()
     {
         Application.Quit();

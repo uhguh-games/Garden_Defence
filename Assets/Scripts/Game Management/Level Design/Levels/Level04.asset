@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433df40bca5c4ca42912ce1e7b20fe86, type: 3}
   m_Name: Level04
   m_EditorClassIdentifier: 
-  levelNumber: 0
+  levelNumber: 4
   morningWave: {fileID: 11400000, guid: 5918df4e7a4ac2a4eb386f41cd5463ed, type: 2}
   dayWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
-  eveningWave: {fileID: 11400000, guid: 690218f7874143a4caf2aa743270e579, type: 2}
+  eveningWave: {fileID: 11400000, guid: fbb551ee27ed11b479f3322ea7499da4, type: 2}
   nightWave: {fileID: 11400000, guid: c135b1d27c6ada44eb9a585c3a132336, type: 2}
