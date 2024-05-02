@@ -13827,15 +13827,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b230d903036ff794fbe1f9115d62fd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStartJunk: 10
-  playersJunk: 10
+  playerStartJunk: 8
+  playersJunk: 8
   playersGold: 0
   fuelCost: 1
-  firePitCost: 2
-  stoneSlingerCost: 3
+  firePitCost: 3
+  stoneSlingerCost: 5
   easyDrop: 2
-  normalDrop: 4
-  hardDrop: 6
+  normalDrop: 2
+  hardDrop: 5
   eventManager: {fileID: 11400000, guid: c99e68a16d8b03d46b499c9d197d985a, type: 2}
 --- !u!4 &1316376075 stripped
 Transform:

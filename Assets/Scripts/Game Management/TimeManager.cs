@@ -127,7 +127,7 @@ public class TimeManager : MonoBehaviour
     {
         currentState = newState;
 
-        timeText.text = $"Time of day: {currentState}";
+        timeText.text = $"{currentState}";
 
         switch (currentState)
         {
