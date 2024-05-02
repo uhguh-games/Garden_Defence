@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoneSlinger : MonoBehaviour
 {
     [Header("Shooting")]
+    
     float fireTimer;
     [SerializeField] float fireDelay = 1.0f;
     
@@ -16,6 +17,7 @@ public class StoneSlinger : MonoBehaviour
     PoolManager poolManager;
     private TimeManager timeManager;
 
+    [SerializeField] private EventManagerSO eventManager;
 
     private void Awake() 
     {
@@ -50,6 +52,7 @@ public class StoneSlinger : MonoBehaviour
                     {
                         fireTimer = 0f;
                         Fire();
+                        eventManager.PlaySFX(3);
                     }
                 }
             } 

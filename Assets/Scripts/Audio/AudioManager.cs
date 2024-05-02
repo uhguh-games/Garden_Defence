@@ -1,32 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using System;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private EventManagerSO eventManager;
+    [SerializeField] private AudioSource musicSource, sfxSource;
     public static AudioManager instance;
 
-    public Sound[] musicTracks, sfxTracks;
-    public AudioSource musicSource, sfxSource;
 
-    private void Awake()
+    void OnEnable()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        eventManager.playMusic += PlayMusic;
+        eventManager.playSFX += PlaySFX;
     }
 
-    public void PlayMusic(string name)
+    void Start()
+    {
+        PlayMusic(5); //Play the one song we have
+    }
+    public Soundbank soundBank;
+
+    public void PlayMusic(int i)
     {
         //find selected track
-        Sound s = Array.Find(musicTracks, s  => s.FileName == name);
+        AudioClip s = soundBank.soundbankArray[i];
         //check if file exists
         switch (s)
         {
@@ -34,15 +31,17 @@ public class AudioManager : MonoBehaviour
                 Debug.Log("No such song");
                 break;
             default:
-                musicSource.clip = s.clip;
+                musicSource.clip = s;
                 musicSource.Play();
+                
                 break;
         }
     }
-    public void PlaySFX(string name)
+    
+    public void PlaySFX(int i)
     {
         //find selected track
-        Sound s = Array.Find(sfxTracks, s => s.FileName == name);
+        AudioClip s = soundBank.soundbankArray[i];
         //check if file exists
         switch (s)
         {
@@ -50,7 +49,7 @@ public class AudioManager : MonoBehaviour
                 Debug.Log("No such song");
                 break;
             default:
-                sfxSource.clip = s.clip;
+                sfxSource.clip = s;
                 sfxSource.Play();
                 break;
         }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class StoneProjectile : AutoDestroyPoolableObject
 {
     [SerializeField] float projectileSpeed = 5f;
+    
     // float rotationSpeed = 360f;
     [SerializeField] float projectileDamage = 1f;
     [SerializeField] LayerMask groundLayers;
@@ -16,6 +17,7 @@ public class StoneProjectile : AutoDestroyPoolableObject
     private Vector3 lastDirection;
     [SerializeField] GameObject impact;
     public bool onGround;
+    [SerializeField] private EventManagerSO eventManager;
 
     void Awake()
     {
@@ -109,6 +111,9 @@ public class StoneProjectile : AutoDestroyPoolableObject
             // VFX
             GameObject newImpact = Instantiate(impact, transform.position, Quaternion.identity);
             Destroy(newImpact, 1f);
+
+            //Audio
+            eventManager.PlaySFX(2);
         }
  
         // Get destroyed anyway
