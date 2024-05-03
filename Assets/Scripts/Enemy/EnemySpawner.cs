@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private EventManagerSO eventManager;
+    
     public Transform target;
     public Transform setSpawnPoint;
     public float spawnDelay;
@@ -79,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.Movement.StartChasing();
 
             eventManager.EnemySummation();
+            eventManager.PlaySFX(1);
 
             yield return wait;
         }

@@ -17,6 +17,7 @@ public class Crop : MonoBehaviour
     public void GetEaten()
     {
         eventManager.CropEaten();
+        eventManager.PlaySFX(0);
         this.gameObject.SetActive(false);
         this.enabled = false;
     }

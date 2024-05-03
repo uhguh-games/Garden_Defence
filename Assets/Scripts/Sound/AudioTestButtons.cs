@@ -42,31 +42,31 @@ public class AudioTestButtons : MonoBehaviour
     //}
     public void PlayMusic()
     {
-        AudioManager.instance.PlayMusic("TestMusic");
+        AudioManager.instance.PlayMusic(1);
     }
     public void PlayTowerBuild()
     {
-        AudioManager.instance.PlaySFX("TowerBuild");
+        AudioManager.instance.PlaySFX(2);
     }
     public void PlaySelectTower()
     {
-        AudioManager.instance.PlaySFX("SelectTower");
+        AudioManager.instance.PlaySFX(3);
     }
     public void PlaySelectUI() 
     {
-        AudioManager.instance.PlaySFX("SelectUI");
+        AudioManager.instance.PlaySFX(4);
     }
     public void PlayJunkCollect()
     {
-        AudioManager.instance.PlaySFX("JunkCollect");
+        AudioManager.instance.PlaySFX(5);
     }
     public void PlayEatenCarrot()
     {
-        AudioManager.instance.PlaySFX("EatenCarrot");
+        AudioManager.instance.PlaySFX(6);
     }
     public void PlayBackUI()
     {
-        AudioManager.instance.PlaySFX("BackUI");
+        AudioManager.instance.PlaySFX(7);
     }
 
 }
