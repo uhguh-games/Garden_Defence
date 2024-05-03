@@ -9144,7 +9144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Can''t place stuff here '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5c1a77c798a29fb4ba510f46935af349, type: 2}
   m_sharedMaterial: {fileID: -8216338076808449414, guid: 5c1a77c798a29fb4ba510f46935af349,

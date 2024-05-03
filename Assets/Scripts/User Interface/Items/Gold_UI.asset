@@ -16,6 +16,6 @@ MonoBehaviour:
   itemName: Gold
   description: 
   prefab: {fileID: 8247742977813884954, guid: 480d12439922e1745823b68d804255ac, type: 3}
-  icon: {fileID: 2800000, guid: 926985b9c7bf1f043a421e988117d3db, type: 3}
+  icon: {fileID: 2800000, guid: 782013f2a8865f84cbe6bb0727e6e7c5, type: 3}
   value: 0
   type: 1
