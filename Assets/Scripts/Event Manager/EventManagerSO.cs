@@ -11,6 +11,8 @@ public class EventManagerSO : ScriptableObject
     public event Action loseCondition;
     public event Action addEnemy;
     public event Action onKill;
+    public event Action<int> playMusic;
+    public event Action<int>  playSFX;
     public event Action<Collectable> onLootCollected; // loot animation
     public void LootCollected(Collectable collectable) => onLootCollected?.Invoke(collectable); // loot animation
 
@@ -46,4 +48,9 @@ public class EventManagerSO : ScriptableObject
     {
         loseCondition?.Invoke();
     }
+    public void PlayMusic(int index) 
+    {
+        playMusic?.Invoke(index);
+    } 
+    public void PlaySFX (int index) => playSFX?.Invoke(index);
 }
