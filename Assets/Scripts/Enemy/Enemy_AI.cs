@@ -9,6 +9,12 @@ public class Enemy_AI : PoolableObject
     public NavMeshAgent Agent;
     public EnemyScriptableObject EnemyScriptableObject;
     public int Health = 5;
+    EnemyTracker enemyTracker;
+
+    void Awake() 
+    {
+        enemyTracker = GameObject.Find("EnemyTracker").GetComponent<EnemyTracker>();
+    }
 
     public virtual void OnEnable() 
     {
@@ -23,6 +29,8 @@ public class Enemy_AI : PoolableObject
         {
             Agent.enabled = false;
         }
+
+        // enemyTracker.RemoveEnemy(this);
     }
 
     public virtual void SetUpAgentFromConfiguration() 

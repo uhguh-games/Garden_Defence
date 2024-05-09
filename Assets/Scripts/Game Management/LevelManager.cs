@@ -18,6 +18,9 @@ public class LevelManager : MonoBehaviour
     EconomyManager economyManager;
     HexGrid hexGrid;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] List<Enemy_AI> enemiesToSpawn = new List<Enemy_AI>();
+    [SerializeField] List<int> amounts = new List<int>();
+    EnemyTracker enemyTracker;
 
     public void Awake() 
     {
@@ -28,6 +31,7 @@ public class LevelManager : MonoBehaviour
         economyManager = GameObject.Find("EconomyManager").GetComponent<EconomyManager>();
         hexGrid = GameObject.Find("HexGrid").GetComponent<HexGrid>();
         timeManager.OnTimeStateChanged += OnTimeStateChangedHandler;
+        enemyTracker = GameObject.Find("EnemyTracker").GetComponent<EnemyTracker>();
     }
 
     void Start()
@@ -39,6 +43,7 @@ public class LevelManager : MonoBehaviour
     void OnTimeStateChangedHandler(TimeState newState)
     {
         LoadLevel(currentLevelIndex);
+        Debug.Log("Time state changed to: " + newState);
     }
 
     void LoadLevel(int levelIndex)
@@ -49,6 +54,7 @@ public class LevelManager : MonoBehaviour
     
         // Spawn enemies for the current time of day
         SpawnEnemiesForTimeOfDay(timeManager.currentState, level);
+        print ($"Enemies for {timeManager.currentState} the level is: {level}");
        
     }
 
@@ -127,8 +133,8 @@ public class LevelManager : MonoBehaviour
 
     void SpawnEnemiesFromWave(Wave_SO wave)
     {
-        List<Enemy_AI> enemiesToSpawn = new List<Enemy_AI>();
-        List<int> amounts = new List<int>();
+        // List<Enemy_AI> enemiesToSpawn = new List<Enemy_AI>();
+        // List<int> amounts = new List<int>();
 
         enemiesToSpawn.Clear();
         amounts.Clear();
@@ -137,22 +143,21 @@ public class LevelManager : MonoBehaviour
         {
             enemiesToSpawn.Add(enemyAmountPair.Key);
             amounts.Add(enemyAmountPair.Value);
-        }
 
-        /*
-        foreach (var bossAmountPair in wave.BossToSpawn)
-        {
-            enemiesToSpawn.Add(bossAmountPair.Key);
-            amounts.Add(bossAmountPair.Value);
+            enemyTracker.AddEnemy(enemyAmountPair.Key);
         }
-        */
 
         enemySpawner.SpawnEnemiesFromPools(enemiesToSpawn, amounts);
     }
 
+    void ResetEnemiesFromWave() 
+    {
+        enemiesToSpawn.Clear();
+        amounts.Clear();
+    }
+
     public void GameStateHandler() 
     {
-
         if (gameManager.levelWon) 
         {
             LoadNextLevel();
@@ -172,39 +177,46 @@ public class LevelManager : MonoBehaviour
         economyManager.ResetJunk();
 
         timeManager.ResetTimer();
-        FindEnemyAmounts();
         hexGrid.ClearObjectsInScene();
         timeManager.timeGo = true;
         timeManager.timeIsUp = false;
+        gameManager.ResetGameState();
+        ResetEnemiesFromWave();
         healthManager.RePopulateCropList();
-        ReloadLevel(currentLevelIndex);
+        FindEnemyAmounts();
+        // ReloadLevel(currentLevelIndex);
+        // LoadLevel(currentLevelIndex);
     }
 
-    public void LoadNextLevel() // the button loads a next level if level was won - replays the same one if lost
+    public void LoadNextLevel() // the button loads a next level if level was won
     {
         currentLevelIndex++;
 
-        if (currentLevelIndex < levels.Length)
+        if (currentLevelIndex < levels.Length && gameManager.levelWon)
         {
             gameManager.Confirmation();
             healthManager.ResetHealth();
             economyManager.ResetJunk();
             timeManager.ResetTimer();
-            FindEnemyAmounts();
             hexGrid.ClearObjectsInScene();
             timeManager.timeGo = true;
             timeManager.timeIsUp = false;
+            ResetEnemiesFromWave();
+            gameManager.ResetGameState();
             healthManager.RePopulateCropList();
+            FindEnemyAmounts();
+            // LoadLevel(currentLevelIndex);
+
         }
-        else // Move on to next environment scene
+        else if (currentLevelIndex >= levels.Length && gameManager.levelWon) // Move on to next environment scene
         {
             Debug.Log("No more levels.");
             healthManager.ResetHealth();
             gameManager.Confirmation();
+            ResetEnemiesFromWave();
             // Load next game scene (Level 2 environment)
-            // SceneManager.LoadScene(TheNextScene);
             gameManager.ResetGameState();
-            SceneManager.LoadScene("Level_02");
+            // SceneManager.LoadScene("Level_02");
         }
         
     }

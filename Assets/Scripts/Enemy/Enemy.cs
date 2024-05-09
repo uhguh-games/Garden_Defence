@@ -16,12 +16,15 @@ public class Enemy : MonoBehaviour
     private int enemyJunkValue; // set by the economy manager
     EconomyManager economyManager;
     GameManager gameManager;
-    private bool enemyHungry = true;
+    public bool enemyHungry = true;
 
     [Tooltip("Scriptable Object of the enemy")]
     [SerializeField] EnemyScriptableObject enemyStats;
     private EnemyType enemyType;
     private EnemyMovement enemyMovement;
+    Material originalMaterial;
+    Material whiteMaterial;
+    EnemyTracker enemyTracker;
 
     private void Awake()
     {
@@ -33,6 +36,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyType = enemyStats.Type;
+        originalMaterial = GetComponent<Renderer>().material;
+        whiteMaterial = Resources.Load("Materials/EnemyHit") as Material;
         healthBar = GetComponentInChildren<HealthBar>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -64,6 +69,7 @@ public class Enemy : MonoBehaviour
     void OnDisable() 
     {
         economyManager.OnEnemyJunkValueChange -= UpdateEnemyJunkValue;
+        
     }
 
     private void UpdateEnemyJunkValue() 
@@ -73,11 +79,22 @@ public class Enemy : MonoBehaviour
     }
     public void TakeDamage(float damage) 
     {
+        GetComponent<MeshRenderer>().material = whiteMaterial;
+
         float percentage = damage / maxHealth;
         float actualDamage = maxHealth * percentage;
     
         currentHealth -= actualDamage;
         healthBar.SetHealth(currentHealth);
+
+        // Invoke("ResetMat", 0.10f);
+    
+    }
+
+    void ResetMat()
+    {
+        GetComponent<MeshRenderer>().material = originalMaterial;
+        print ("Material is supposed to change");
     }
 
     public Transform getHitTarget() 
@@ -99,6 +116,7 @@ public class Enemy : MonoBehaviour
         {
             this.gameObject.SetActive(false); // Enemy gets returned into its' pool
             eventManager.OnKill();
+            enemyMovement.cropToEat = null;
         }
         
         if (enemyHungry && other.tag == "Crop")

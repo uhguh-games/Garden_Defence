@@ -12,16 +12,18 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine FollowCoroutine;
     [SerializeField] public GameObject cropToEat;
     private bool foundCrop;
-
     [SerializeField] HealthManager healthManager;
+    CapsuleCollider enemyCollider;
+    Enemy enemyScript;
 
     void Awake() 
     {
         target = GameObject.Find("MonsterTarget").GetComponent<Transform>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.enabled = true; // Ensure NavMeshAgent is enabled
-
         healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
+        enemyCollider = GetComponent<CapsuleCollider>();
+        enemyScript = GetComponent<Enemy>();
 
         foundCrop = false;
     }
@@ -48,6 +50,11 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(target.transform.position);
     }
 
+    public void IgnoreCrop() 
+    {
+        enemyScript.enemyHungry = false;
+    }
+
     private IEnumerator FollowTarget() 
     {
         WaitForSeconds wait = new WaitForSeconds(updateSpeed);
@@ -59,7 +66,6 @@ public class EnemyMovement : MonoBehaviour
                 if (healthManager.cropList.Count > 0 && !foundCrop)
                 {
                     foundCrop = true; //tell it not to set the destination to MonsterTarget anymore
-
                     cropToEat = healthManager.GetRandomCrop();
 
                     if (cropToEat != null) 
@@ -69,14 +75,16 @@ public class EnemyMovement : MonoBehaviour
                     } 
                     else 
                     {
-
                         Debug.LogWarning("No crops available");
+                        IgnoreCrop();
                         WalkOffScreen();
                     }
 
-                    if (healthManager.cropList.Count == 0)
+                    if (cropToEat == null && healthManager.cropList.Count == 0)
                     {
-                        break;
+                        IgnoreCrop();
+                        WalkOffScreen();
+                        //break;
                     }
                 }
             }
