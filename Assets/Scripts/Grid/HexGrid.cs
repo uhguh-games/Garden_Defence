@@ -119,6 +119,41 @@ public class HexGrid : MonoBehaviour
             }
         }
     }
+    public void FindFirePitsAndDoStuff() // refactor These two methods to work together
+    {
+        foreach (var kvp in ItemsInScene) 
+        {
+            if (kvp.Key.name == "FirePit(Clone)") 
+            {
+                Vector3 position = kvp.Value;
+                GameObject firePit = kvp.Key;
+            
+                Outline outline = firePit.GetComponent<Outline>();
+                  
+                if (outline != null) 
+                {
+                    outline.ToggleOutlineOn(true);
+                }
+            }
+        }
+    }
+
+    public void TurnOffFirePitOutline() // refactor repetitive code later
+    {
+        print ("should fire");
+        foreach (var kvp in ItemsInScene) 
+        {
+            if (kvp.Key.name == "FirePit(Clone)") 
+            {
+                Vector3 position = kvp.Value;
+                GameObject firePit = kvp.Key;
+            
+                Outline outline = firePit.GetComponent<Outline>();
+                outline.ToggleOutline(false);
+            }
+        }
+    }
+
 
     public void FindItemInList()
     {

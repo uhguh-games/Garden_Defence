@@ -19,8 +19,8 @@ public class TowerSpawner : MonoBehaviour
     private HexGrid hexGrid;
     [SerializeField] Tilemap tilemap;
     private Vector3Int cellPosition;
-
     EconomyManager economyManager;
+    Outline outline; // might not neeeed
 
     [Header("UI & UX")]
     [SerializeField] TextMeshProUGUI tooltipText; // I will move this to a different class later
@@ -50,6 +50,14 @@ public class TowerSpawner : MonoBehaviour
         {
             // Debug.Log($"World Position: {worldPosition} TowerIndicator: {towerIndicator.transform.position}");
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            hexGrid.TurnOffFirePitOutline();
+            print ("Should be turning off");
+        }
+
+
     }
 
     public void PreviewTower()
@@ -59,6 +67,12 @@ public class TowerSpawner : MonoBehaviour
             towerIndicator = Instantiate(placeItem.itemToPlace, GetMousePosition(), Quaternion.identity);
             hexGrid.ToggleGridVisibility(true);
             spawnerActive = true;
+
+            if (placeItem.itemToPlace.tag == "Resource")
+            {
+                // grab all firepits in the scene and activate their outline
+                hexGrid.FindFirePitsAndDoStuff();
+            }
         }
     }
 
@@ -98,6 +112,7 @@ public class TowerSpawner : MonoBehaviour
             CancelTower();
         }
 
+        hexGrid.TurnOffFirePitOutline();
         hexGrid.FindItemInList(); // Scans through the towers placed in the scene. If a firepit is found and the current mouse pos matches with the fire pits pos the firepit is reignited
         hexGrid.ToggleGridVisibility(false);
     }

@@ -577,7 +577,10 @@ MonoBehaviour:
   eatingTime: 2
   currentHealth: 0
   hitTarget: {fileID: 3795463032311767885}
+  enemyHungry: 1
   enemyStats: {fileID: 11400000, guid: a5248f8139e35b14dbc9496e4cf765f4, type: 2}
+  explosion: {fileID: 5876002023624309920, guid: 0079454758ef3a94bb9786de15cd21d1,
+    type: 3}
 --- !u!114 &3245208777338401791
 MonoBehaviour:
   m_ObjectHideFlags: 0

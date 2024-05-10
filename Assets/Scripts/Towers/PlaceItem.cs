@@ -83,6 +83,7 @@ public class PlaceItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
             tooltipText.text =  "Not enough funds.";
             Invoke("TextAway", 2.5f);
         }
+    
 
         // Show tooltip
     }

@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     Material originalMaterial;
     Material whiteMaterial;
     EnemyTracker enemyTracker;
+    [SerializeField] GameObject explosion; // access through resources later
 
     private void Awake()
     {
@@ -50,8 +51,11 @@ public class Enemy : MonoBehaviour
         {
             deathPos = this.transform;
             enemyMovement.OnEnemyDeath();
+            GameObject newExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(newExplosion, 1f);
             eventManager.OnKill();
             DropJunk();
+
             this.gameObject.SetActive(false); // Enemy gets returned into the pool
         }
 
